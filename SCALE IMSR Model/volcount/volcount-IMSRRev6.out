@@ -1,0 +1,2415 @@
+ *******************************************************************************
+ *                                                                             *
+ *                                 SCALE 6.3.1                                 *
+ *                                -------------                                *
+ *                                   1970-01                                   *
+ *                                                                             *
+ *           SCALE:  A Comprehensive Modeling and Simulation Suite             *
+ *                   for Nuclear Safety Analysis and Design                    *
+ *                                                                             *
+ *                      Reactor and Nuclear Systems Division                   *
+ *                        Oak Ridge National Laboratory                        *
+ *                                                                             *
+ *                           http://scale.ornl.gov                             *
+ *                            scalehelp@ornl.gov                               *
+ *                                                                             *
+ *******************************************************************************
+ *******************************************************************************
+
+                  Job Information
+                  ---------------
+      Job started on owl on Sat 2023-07-01 11:22:14
+      Working directory: /tmp/scale.o.170819
+      Input file name  : /home/o/git/IMSR/SCALE IMSR Model/volcount/volcount-IMSRRev6.inp
+      Output file name : /home/o/git/IMSR/SCALE IMSR Model/volcount/volcount-IMSRRev6.out
+      SCALE executable : /opt/scale6.3.1-mpi/bin/scale
+
+ *******************************************************************************
+--------------------------------------------------------------------------
+[[12266,1],0]: A high-performance Open MPI point-to-point messaging module
+was unable to find any relevant network interfaces:
+
+Module: OpenFabrics (openib)
+  Host: owl
+
+Another transport will be used instead, although this may result in
+lower performance.
+
+NOTE: You can disable this warning by setting the MCA parameter
+btl_base_warn_component_unused to 0.
+--------------------------------------------------------------------------
+
+
+    module csas6-shift will be called on Sat Jul  1 23:22:14 2023.
+    sequence specification record:=csas6-shift parm=( check  )
+Input Data:
+
+      IMSR Core Model
+      v7.1-252
+      
+      ' Model with fixed materials and dimensions (according to MCNP script for published model)
+      ' Nominal operating temperature of 650 degrees C (923.15 K) adapted from Dr. Carter's published work
+      ' Changes from Rev 4: Control rod definition has been modified to include a fuel region below like in the MCNP .inp file
+      
+      ' C. Erika Moss
+      
+      read volume
+          type=trace
+          nrays=1e7
+      end volume
+      
+      
+      read comp
+      
+      ' TODO: verify comp is correct; modify if needed
+      
+      ' FLiBe Fuel (percent composition is assumed using data from Dr. Carter's MCNP IMSR input and Alex's sourdough Serpent files)
+      ' May need to modify fuel salt composition
+      wtptFLiBe 1 2.05 4
+               3000 17.9
+               4000 2.2555
+               9000 45.1698
+               92000 34.6733
+               1.0 923.15 
+               3006 1.676E-5 3007 99.998
+               4009 100.0
+               9019 100.0
+               92235 1.8 92238 98.2 end
+      
+      ' Hastelloy N
+      wtptHastelloy 2 8.89 5
+               28000 71.0
+               24000 7.0
+               26000 5.0
+               14000 1.0
+               42000 16.0
+               1.0 923.15 
+               28058 67.6 28060 32.4
+               24052 100.0
+               26056 100.0
+               14028 100.0
+               42092 14.65 42094 9.19 42095 15.87 42096 16.67 42097 9.58 42098 24.29 42100 9.75 end
+      ' Gd Shutdown Rods
+          gd 3 den=7.901000 1.0 923.15
+              64158 14.8 
+              64156 10.5 
+              64155 4.8 
+              64160 11.9 
+              64157 55.7 
+              64152 2.3 end
+      ' Graphite
+         graphite 4 den=2.300000 1.0 923.15 end
+      ' Stainless Steel SS316
+         ss316 5 den=8.030000 1.0 923.15 end
+      
+      
+      end comp
+      
+      read parameters
+       npg=10000 nsk=50 gen=10050 sig=50e-5
+      end parameters
+      
+      
+      read geometry
+      
+      ' ****************************************************************************
+      '                             CONTROL RODS
+      ' ****************************************************************************
+      
+      ' Verify control rod height
+      
+      ' Unit 1: Control rod unit cell (cylinder 1 = shutdown rod; cylinder 2 = guide tube)
+      unit 1
+      ' Shutdown rod (Gd)
+        cylinder 1 7.0 415.0 130
+      ' Guide tube
+        cylinder 2 7.2 415.0 130
+      ' Fuel region beneath
+        cylinder 3 7.2 130 0.0
+      ' Graphite hexprism
+        hexprism 4 13.076 415.0 0.0     
+        media 3 1 1
+        media 2 1 -1 2
+        media 1 1 3
+        media 4 1 4 -1 -2 -3
+        boundary 4
+      
+      ' ****************************************************************************
+      '                        REGION 1 FUEL ASSEMBLIES
+      ' ****************************************************************************
+      
+      ' ----- Small molten salt fuel channel -----
+      
+      ' Unit 2: Region 1 Fuel Assembly - Single Cylindrical Unit
+      unit 2
+      ' Single small fuel channel
+        cylinder 1 1.157 415.0 0.0
+      ' Graphite hexprism to contain fuel channel  
+        hexprism 2 2.6 415.0 0.0
+        media 1 1 1
+        media 4 1 -1 2 
+        boundary 2
+      
+      ' Unit 3: Region 1 Fuel Assembly - Bare Graphite Hexprism
+      unit 3
+        hexprism 1 2.6 415.0 0.0
+        media 4 1 1
+        boundary 1
+      
+      ' Unit 4: Region 1 Fuel Assembly Hex
+      unit 4
+      ' Cylinder to contain array of fuel channel elements
+        cylinder 1 12.5 415.0 0.0   
+      ' Graphite hexprism
+        hexprism 2 13.076 415.0 0.0
+        array 1 1 place 5 5 1 0.0 0.0 0.0
+        media 4 1 2 -1  
+        boundary 2
+      
+      ' ****************************************************************************
+      '                        REGION 2 FUEL ASSEMBLIES
+      ' ****************************************************************************
+      
+      ' ----- Medium molten salt fuel channel -----
+      
+      ' Unit 5: Region 2 Fuel Assembly - Single Cylindrical Unit
+      unit 5
+      ' Single medium fuel channel
+        cylinder 1 1.2197 415.0 0.0
+      ' Graphite hexprism to contain fuel channel 
+        hexprism 2 2.6 415.0 0.0
+        media 1 1 1
+        media 4 1 -1 2 
+        boundary 2
+      
+      ' Bare Graphite Hexprism is the same for this region as Region 1 (Unit 3)
+      
+      ' Unit 6 - Region 2 Fuel Assembly Hex
+      unit 6
+      ' Cylinder to contain array of fuel channel elements
+        cylinder 1 12.5 415.0 0.0 
+      ' Graphite hexprism  
+        hexprism 2 13.076 415.0 0.0
+        array 2 1 place 5 5 1 0.0 0.0 0.0
+        media 4 1 2 -1  
+        boundary 2
+      
+      ' ****************************************************************************
+      '                        REGION 3 FUEL ASSEMBLIES
+      ' ****************************************************************************
+      
+      ' ----- Large molten salt fuel channel -----
+      
+      ' Unit 7: Region 3 Fuel Assembly - Single Cylindrical Unit
+      unit 7
+      ' Single large fuel channel
+        cylinder 1 1.3485 415.0 0.0   
+      ' Graphite hexprism to contain fuel channel
+        hexprism 2 2.6 415.0 0.0
+        media 1 1 1
+        media 4 1 -1 2 
+        boundary 2
+      
+      ' Bare Graphite Hexprism is the same for this region as Region 1 (Unit 3)
+      
+      ' Unit 8 - Region 3 Fuel Assembly Hex
+      unit 8
+      ' Cylinder to contain array of fuel channel elements
+        cylinder 1 12.5 415.0 0.0 
+      ' Graphite hexprism  
+        hexprism 2 13.076 415.0 0.0
+        array 3 1 place 5 5 1 0.0 0.0 0.0
+        media 4 1 2 -1  
+        boundary 2
+      
+      ' ****************************************************************************
+      '                        GRAPHITE REFLECTOR CELLS
+      ' ****************************************************************************
+      
+      ' Single hexprism of graphite
+      unit 9  
+        hexprism 1 13.076 415.0 0.0
+        media 4 1 1
+        boundary 1
+      
+      ' ****************************************************************************
+      '                              GLOBAL UNIT
+      ' ****************************************************************************
+      
+      global unit 10
+      ' Core Volume (fill with Array 4)
+        cylinder 1 190 415 0.0   
+      ' Hastelloy N Core Blanket
+        cylinder 2 195 415 0.0
+      ' Downcomer Region
+        cylinder 3 210 455 -25
+      ' Hastelloy N Reactor Vessel
+        cylinder 4 215 460 -30
+      ' Reflector (top) (Hastelloy N)
+        cylinder 5 195 430 415
+      ' Outlet Plenum
+        cylinder 6 195 455 430
+      ' Inlet Plenum
+        cylinder 7 195 0.0 -25
+      ' Main array placement
+        array 4 1 place 10 10 1 0.0 0.0 0.0
+        media 2 1 -1 2
+      ' Downcomer media
+        media 1 1 3 -2 -5 -6 -7
+      ' Reactor Vessel Media
+        media 2 1 4 -5 -3 -6 -7
+      ' Reflector (top) media
+        media 2 1 5
+      ' Outlet Plenum media
+        media 1 1 6
+      ' Inlet Plenum media
+        media 1 1 7
+        boundary 4
+      
+      end geometry
+      
+      read array
+      
+      ' Array 1: Fuel Region 1 Single Hex
+        ara=1
+        prt=yes
+        typ=triangular
+        nux=9
+        nuy=9
+        nuz=1
+        fill
+      ' z = 1 
+          3 3 3 3 3 3 3 3 3
+           3 3 3 3 3 3 3 3 3
+            3 3 3 3 2 2 2 3 3
+             3 3 3 2 2 2 2 3 3
+              3 3 2 2 2 2 2 3 3
+               3 3 2 2 2 2 3 3 3
+                3 3 2 2 2 3 3 3 3
+                 3 3 3 3 3 3 3 3 3
+                  3 3 3 3 3 3 3 3 3
+        end fill
+      
+      ' Array 2: Fuel Region 2 Single Hex
+        ara=2
+        prt=yes
+        typ=triangular
+        nux=9
+        nuy=9
+        nuz=1
+        fill
+      ' z = 1 
+          3 3 3 3 3 3 3 3 3
+           3 3 3 3 3 3 3 3 3
+            3 3 3 3 5 5 5 3 3
+             3 3 3 5 5 5 5 3 3
+              3 3 5 5 5 5 5 3 3
+               3 3 5 5 5 5 3 3 3
+                3 3 5 5 5 3 3 3 3
+                 3 3 3 3 3 3 3 3 3
+                  3 3 3 3 3 3 3 3 3
+        end fill
+      
+      ' Array 3: Fuel Region 2 Single Hex
+        ara=3
+        prt=yes
+        typ=triangular
+        nux=9
+        nuy=9
+        nuz=1
+        fill
+      ' z = 1 
+          3 3 3 3 3 3 3 3 3
+           3 3 3 3 3 3 3 3 3
+            3 3 3 3 7 7 7 3 3
+             3 3 3 7 7 7 7 3 3
+              3 3 7 7 7 7 7 3 3
+               3 3 7 7 7 7 3 3 3
+                3 3 7 7 7 3 3 3 3
+                 3 3 3 3 3 3 3 3 3
+                  3 3 3 3 3 3 3 3 3
+        end fill
+      
+        
+      ' Array 4: Main Array Containing All Hex Elements
+        ara=4
+        prt=yes
+        typ=triangular
+        nux=21
+        nuy=21
+        nuz=1
+        fill
+      ' z = 1 
+          9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9
+           9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9
+            9 9 9 9 9 9 9 9 9 9 9 9 8 8 9 9 9 9 9 9 9
+             9 9 9 9 9 9 9 9 9 8 8 8 8 8 8 8 9 9 9 9 9
+              9 9 9 9 9 9 9 9 8 6 6 6 6 6 6 8 9 9 9 9 9
+               9 9 9 9 9 9 8 8 6 6 6 6 6 6 6 8 9 9 9 9 9
+                9 9 9 9 9 8 8 6 6 6 6 6 6 6 6 8 8 9 9 9 9
+                 9 9 9 9 9 8 6 6 6 4 1 4 6 6 6 8 8 9 9 9 9
+                  9 9 9 9 8 6 6 6 1 4 4 1 6 6 6 8 9 9 9 9 9
+                   9 9 9 8 6 6 6 4 4 4 4 4 6 6 6 8 9 9 9 9 9
+                    9 9 9 8 6 6 6 1 4 4 1 6 6 6 8 9 9 9 9 9 9
+                     9 9 9 8 6 6 6 4 1 4 6 6 6 8 9 9 9 9 9 9 9
+                      9 9 8 8 6 6 6 6 6 6 6 6 8 8 9 9 9 9 9 9 9
+                       9 9 8 8 6 6 6 6 6 6 6 8 8 9 9 9 9 9 9 9 9
+                        9 9 9 8 6 6 6 6 6 6 8 9 9 9 9 9 9 9 9 9 9
+                         9 9 9 8 8 8 8 8 8 8 9 9 9 9 9 9 9 9 9 9 9
+                          9 9 9 9 9 8 8 9 9 9 9 9 9 9 9 9 9 9 9 9 9
+                           9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9
+                            9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9
+                             9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9
+                              9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9
+        end fill
+      
+      
+      
+      
+      end array
+      
+      
+      end data
+end
+
+    >>>> ScaleDriver initializes CsasShift on 36 processors.
+
+--------------------------------------------------------------------------
+[[12258,1],1]: A high-performance Open MPI point-to-point messaging module
+was unable to find any relevant network interfaces:
+
+Module: OpenFabrics (openib)
+  Host: owl
+
+Another transport will be used instead, although this may result in
+lower performance.
+
+NOTE: You can disable this warning by setting the MCA parameter
+btl_base_warn_component_unused to 0.
+--------------------------------------------------------------------------
+
+
+
+************************************************************************************************************************************
+************************************************************************************************************************************
+************************************************************************************************************************************
+*****                                                                                                                          *****
+*****                                             program verification information                                             *****
+*****                                                                                                                          *****
+*****                                           code system: SCALE   version: 6.3.0                                            *****
+*****                                                                                                                          *****
+************************************************************************************************************************************
+************************************************************************************************************************************
+*****                                                                                                                          *****
+*****                                                                                                                          *****
+*****                      program:  csas6-shift                                                                               *****
+*****                                                                                                                          *****
+*****                      version:  6.3.1 (603001)                                                                            *****
+*****                                                                                                                          *****
+*****                     username:  o                                                                                         *****
+*****                                                                                                                          *****
+*****                     hostname:  Unknown                                                                                   *****
+*****                                                                                                                          *****
+*****                                                                                                                          *****
+*****            date of execution:  2023-07-01                                                                                *****
+*****                                                                                                                          *****
+*****            time of execution:  23:22:15                                                                                  *****
+*****                                                                                                                          *****
+************************************************************************************************************************************
+************************************************************************************************************************************
+************************************************************************************************************************************
+
+
+
+------------------------------------------------------------------------------------
+ Mixture table for component comps at line:13, column:1
+------------------------------------------------------------------------------------
+Mixture = 1 with density(g/cc) = 2.0500 and temperature(K) = 923.15
+        Entry      Mixture      Nuclide     Density (atoms/b-cm)     Temperature (K)
+------------------------------------------------------------------------------------
+            1            1         3006             6.157260e-09              923.15
+            2            1         3007             3.149631e-02              923.15
+            3            1         4009             3.089710e-03              923.15
+            4            1         9019             2.935188e-02              923.15
+            5            1        92235             3.278110e-05              923.15
+            6            1        92238             1.765801e-03              923.15
+------------------------------------------------------------------------------------
+Mixture = 2 with density(g/cc) = 8.8900 and temperature(K) = 923.15
+        Entry      Mixture      Nuclide     Density (atoms/b-cm)     Temperature (K)
+------------------------------------------------------------------------------------
+            7            2        14028             1.913607e-03              923.15
+            8            2        24052             7.215138e-03              923.15
+            9            2        26056             4.785635e-03              923.15
+           10            2        28058             4.435210e-02              923.15
+           11            2        28060             2.054973e-02              923.15
+           12            2        42092             1.365409e-03              923.15
+           13            2        42094             8.382993e-04              923.15
+           14            2        42095             1.432375e-03              923.15
+           15            2        42096             1.488910e-03              923.15
+           16            2        42097             8.468130e-04              923.15
+           17            2        42098             2.125170e-03              923.15
+           18            2        42100             8.359482e-04              923.15
+------------------------------------------------------------------------------------
+Mixture = 3 with density(g/cc) = 7.9010 and temperature(K) = 923.15
+        Entry      Mixture      Nuclide     Density (atoms/b-cm)     Temperature (K)
+------------------------------------------------------------------------------------
+           19            3        64152             7.203550e-04              923.15
+           20            3        64155             1.474210e-03              923.15
+           21            3        64156             3.204163e-03              923.15
+           22            3        64157             1.688881e-02              923.15
+           23            3        64158             4.459091e-03              923.15
+           24            3        64160             3.540447e-03              923.15
+------------------------------------------------------------------------------------
+Mixture = 4 with density(g/cc) = 2.3000 and temperature(K) = 923.15
+        Entry      Mixture      Nuclide     Density (atoms/b-cm)     Temperature (K)
+------------------------------------------------------------------------------------
+           25            4      3006012             1.140873e-01              923.15
+           26            4      3006013             1.233937e-03              923.15
+------------------------------------------------------------------------------------
+Mixture = 5 with density(g/cc) = 8.0300 and temperature(K) = 923.15
+        Entry      Mixture      Nuclide     Density (atoms/b-cm)     Temperature (K)
+------------------------------------------------------------------------------------
+           27            5         6012             3.186507e-04              923.15
+           28            5         6013             3.446439e-06              923.15
+           29            5        14028             1.587902e-03              923.15
+           30            5        14029             8.066662e-05              923.15
+           31            5        14030             5.323825e-05              923.15
+           32            5        15031             7.025628e-05              923.15
+           33            5        24050             6.869642e-04              923.15
+           34            5        24052             1.324742e-02              923.15
+           35            5        24053             1.502151e-03              923.15
+           36            5        24054             3.739173e-04              923.15
+           37            5        25055             1.760448e-03              923.15
+           38            5        26054             3.308852e-03              923.15
+           39            5        26056             5.194190e-02              923.15
+           40            5        26057             1.199565e-03              923.15
+           41            5        26058             1.596401e-04              923.15
+           42            5        28058             6.730675e-03              923.15
+           43            5        28060             2.592644e-03              923.15
+           44            5        28061             1.127004e-04              923.15
+           45            5        28062             3.593383e-04              923.15
+           46            5        28064             9.151288e-05              923.15
+           47            5        42092             1.861222e-04              923.15
+           48            5        42094             1.163106e-04              923.15
+           49            5        42095             2.003618e-04              923.15
+           50            5        42096             2.101908e-04              923.15
+           51            5        42097             1.204691e-04              923.15
+           52            5        42098             3.048271e-04              923.15
+           53            5        42100             1.218552e-04              923.15
+------------------------------------------------------------------------------------
+        Entry      Mixture      Nuclide     Density (atoms/b-cm)     Temperature (K)
+------------------------------------------------------------------------------------
+ End of mixture table for component comps at line:13, column:1
+------------------------------------------------------------------------------------
+
+Loaded MG Library: /opt/scale6.3.1-mpi/data/scale.rev05.xn252v7.1
+
+----------------------------------------------------------------------------------------------------
+ Cross section processing summary of the cells:
+----------------------------------------------------------------------------------------------------
+
+ Total 5 cells are being processed:
+      4 *default cells* (non-fissionable) processed with BONAMI.
+      1 *default cells* (fissionable) processed with CENTRM (sequence default option).
+
+ NOTE: *default cells* are the cells not specified in CELLDATA block (They are processed as
+       infinite homogeneous cells).
+
+----------------------------------------------------------------------------------------------------
+
+SequenceInputBuilder prepared 5 unit cells in 0.13 seconds.
+
+Running XSProc on 5 cells...
+
+
+     0$ array      4 entries read
+
+     1$ array     10 entries read
+
+     1* array     10 entries read
+
+     1t
+ 
+  MG Library Source: endf Revision: 7 Mod: 1
+  Determined CE Library HDF5 file to be: ce_v7.1_endf.h5
+  Could not find: /opt/scale6.3.1-mpi/data/ce_v7.1_endf.h5
+  Trying: ce_v7_endf.h5
+  No HDF5 library!  Trying XML: ce_v7.1_endf.xml
+
+
+   CE-KENO xsdir HDF5/XML file:   /opt/scale6.3.1-mpi/data/ce_v7.1_endf.xml
+
+
+   A new centrm library has been written on unit number:   81
+   The number of input nuclides was:                        6
+   Number of Nuclides on output PW library:                 6
+
+
+                  Description of Output CENTRM Library 
+
+ Entry    ZA   Data Src  Vers No.  Mod No.  MT-Optn  Thermal ID    XS temperatures 
+ -----  -----  --------  --------  -------  -------  ----------    --------------- 
+    1     3006    endf       7         1        1             0        923.15
+    2     3007    endf       7         1        1             0        923.15
+    3     4009    endf       7         1        1             0        923.15
+    4     9019    endf       7         1        1             0        923.15
+    5    92235    endf       7         1        1             0        923.15
+    6    92238    endf       7         1        1             0        923.15
+XSProc starting module Dancoff.
+
+ Dancoff Module Problem Description
+ ige--geometry type(0/1/2/3--inf med/slab/cyl/sphere)                         0
+ izm--number of zones or material regions                                     1
+ igo--celltype                                                                1
+ ibr--right boundary condition (0/1/2/3--vacuum/reflected/periodic/white)     0
+ ibl--left  boundary condition (0/1/2/3--vacuum/reflected/periodic/white)     0
+XSProc execution of module Dancoff completed.
+XSProc starting module Bonami.
+XSProc execution of module Bonami completed.
+XSProc starting module MixMacros.
+XSProc execution of module MixMacros completed.
+XSProc starting module CentrmPmc.
+
+ >>>> BEGIN CENTRM CALCULATION >>>>
+
+
+                         ***** Program CENTRM: Continuous ENergy TRansport Module
+
+     CENTRM MATERIALS
+
+        nuclides on                                                   Mixing Table
+        multi-grp lib.  composition                mixture   component   atom density      small
+     1      3006            1                         1         3006     6.15726E-09         1                
+     2      3007            1                         1         3007     3.14963E-02         1                
+     3      4009            1                         1         4009     3.08971E-03         1                
+     4      9019            1                         1         9019     2.93519E-02         1                
+     5     92235            1                         1        92235     3.27811E-05         1                
+     6     92238            1                         1        92238     1.76580E-03         1                
+     ft81f001            =   pointwise XS library from Crawdad
+
+      MULTIGROUP STRUCTURE
+
+     igm      =      252      number of energy groups
+     mmt      =      252      number of neutron groups
+     mcr      =        0      number of gamma groups
+     iftg     =      156      first thermal group number
+
+
+     GENERAL PROBLEM DATA
+
+     ige      =        0     problem geometry
+                               0/1/2/3 = inf. hom. medium/plane/cylinder/sphere
+     izm      =        1     number of zones
+     im       =        1     number of spatial intervals
+     ibl      =        1     left boundary condition:
+                               0/1/2/3 = vacuum/reflected/periodic/albedo
+     ibr      =        1     right boundary condition:
+                               0/1/2/3 = vacuum/reflected/periodic/albedo
+     mxx      =        1     number of mixtures
+     ms       =        6     mixing table length
+     isn      =        2     SN quadrature order (not used for npxs=6)
+     isct     =        0     order of elastic scattering
+     isrc     =        1     type of source spectrum:
+                               0/1/2 = multigroup input spectrum/fission spectrum/both (1)
+     iim      =       10     inner iterations maximum (10)
+     iup      =        3     upscatter outer iterations in thermal range (3)
+     nfst     =        3     multigroup calculation option in upper energy range [option nfst=5 is deprecated]:
+                               0/1/2/3/4/6 = sn/diffusion/homogeneous/zonewise homogeneous/BN/2D MoC cell (0)
+     nthr     =        3     multigroup calculation option in lower energy range [option nthr=5 is deprecated]:
+                               0/1/2/3/4/6 = sn/diffusion/homogeneous/zonewise homogeneous/BN/2D MoC cell (0)
+     npxs     =        4     pointwise calculation option:
+                               <=0/1/2/3/4/5/6 = no pointwise: do multigroup as in nfst/sn/coll. prob./
+                                 homogeneous/zonewise homogeneous/zonewise two-region/2D MoC cell (1)
+     isvar    =        3     multigroup source & cross section linearization option :
+                               0/1/2/3 = none/linearize source/linearize group cross sections/both (3)
+     mocMesh  =        0     spatial meshing options for MoC calculation; npxs=6 only:
+                               0/1/2   = coarse/regular/fine mesh/input by zone (0)
+     mocPol   =        0     number of polar angles for MoC quadrature; npxs=6 only:
+                               2/3/4 = allowable values        (3)
+     mocAzi   =        0     number of azimuthal angles for MoC quadrature; npxs=6 only:
+                               1 -> 16 = allowable values      (8)
+     kern     =        0     thermal neutron scattering treatment:
+                               0/1 = all free-gas thermal kernels/use bound S(alpha, beta) data if available (1)
+     iscti    =        0     inelastic scattering order (0)
+     nmf6     =       -1     inelastic scattering option:
+                               -1/0/1 = no inelastic/discrete level only/discrete+continuum (0)
+     thrMesh  =        0     thermal PW energy meshing options:
+                               0/1/2   = coarse/regular/fine thermal energy mesh (1)
+
+
+     EDITTING AND OTHER OPTIONS
+
+     iprt     =       -3     -3/-2/-1/n = mixture cross sections print options: 
+                               none/write P.W. energy & macro x-sections to output file/print 1-D M.G. x-sections
+                               /print nth p (p0,p1..) M.G. x-section matrix (-3)
+     id1      =       -1     -1/0/1/2 = flux print options:
+                                none/print M.G flux/also print M.G moments/save PW zone flux in ascii file
+     ipbt     =        0     0/1 = none/group summary table print (0)
+     iqm      =        0     input multigrp volumetric sources (0/n=no/yes)
+     ipm      =        0     input multigrp boundary angular sources (0/n=no/yes)
+     ipn      =        2     0/1/2 diff. coef. param (2)
+     idfm     =        1     0/1 = none/density factors (0)
+     ixprt    =        0     0/1 = minimum print/regular print (0)
+     mlim     =        0     0/m = no effect/restrict nuclides with mass >= m to have PW scatter order <= nlim  (100)
+     nlim     =        0     restrictive scatter order (1)
+
+
+
+     FLOATING POINT VALUES
+
+     eps      =     0.10000E-02    upscatter integral convergence (0.001)
+     ptc      =     0.10000E-03    inner iteration convergence (0.001)
+     xnf      =     0.10000E+01    source normalization factor (1.0)
+     b2       =     0.00000E+00    buckling value ( cm**(-2) )
+     demin    =     0.10000E-02    lowest energy of pointwise calculation in (eV)
+     demax    =     0.20000E+05    highest energy of pointwise calculation in (eV)
+     tole     =     0.10000E-02    tolerance used in thinning the pointwise cross sections (0.001)
+     mocRay   =     0.00000E+00    distance between MoC rays; npxs=6 only. (0.02)
+     flet     =     0.10000E+00    fractional lethargy used in construction of flux energy mesh (0.1)
+     alump    =     0.00000E+00    mass-lumping criterion (0)
+
+
+ .........................................................................................................
+
+  Input DEMIN and DEMAX values may be modified to lie on multigroup boundaries.
+    Min and Max energies (eV) defining range for pointwise flux calculation  =     1.000E-03    2.000E+04
+ .........................................................................................................
+
+
+          kern is input as 0 or no file supplied for bound thermal kernel data.
+          => All PW thermal scatter kernels are treated as Free Gas
+
+
+
+  ***Thermal Outer Iteration Limit Reached!
+
+  ***Worst Inner Convergence For Epithermal Groups Was 0.00000E+00
+  ***Worst Inner Convergence For Thermal Flux Was      0.00000E+00
+  ***Outer Convergence of Thermal Flux (MG/PW) Was     7.34195E-03 8.21263E-03
+  ***Max. Scale Factor For Thermal Band Was            1.00075E+00
+  ***Outer Integral Convergence of Thermal Balance Was-2.84637E-08
+
+
+
+   elapsed time .02 min.
+   =time at end of centrm_Execute.
+  
+ <<<< CENTRM CALCULATION COMPLETED <<<<
+
+ >>>> BEGIN PMC CALCULATION >>>>
+
+
+                         ***** Program PMC: Process Multigroup Cross sections
+
+     PMC LOGICAL UNITS 
+
+     libx  = 81    Input Pointwise XS Library
+     libsc = 18    Scratch Unit 1
+     libsx = 19    Scratch Unit 2
+     libsm = 17    scratch unit (master library)
+
+
+
+     PMC INPUT PARAMETERS
+
+     mrange =  2   Option for choosing energy range     0   Averaging over pointwise xs limits
+                                                        1   Averaging over resolved resonance range
+                                                        2   Averaging over pointwise flux limits
+
+     n2d    = -1   Option for 2-D scat. calculation    -2   Apply elastic removal correction to P0 matrix and 
+                                                             apply consistent PN correction to Legendre moments
+                                                       -1   Apply elastic removal correction to P0 matrix
+                                                        0   Normalize 2-D elastic data to shielded 1-D value
+                                                        1   Recompute 2-D elastic using flux and s-wave kernel
+                                                        2   Apply consistent PN correction to Legendre moments
+
+     nprt   = -1   Option for PMC print output         -1   Minimum data printed 
+                                                        0   Standard printed output
+                                                        1   Print 1-D XSs
+                                                        2   Print both 1-D and 2-D XSs 
+
+     nwt    =  0   Option for XS averaging              0   Zone average
+                                                        1   Cell average
+
+     mtt    =  1   Option for total XS calculation      0   Average independently
+                                                        1   As sum of partial XS 
+
+    pmc_omit=  0   Option for Processing PW Materials   0   Process all Pointwise Materials Used in CENTRM
+                                                        1   Process only nuclides in fissionable (fuel) regions
+                                                        N   Process all materials except N nuclides in 2$$
+
+     ixtr(2)=  0   Option for calculation sequence      0   CSAS Standard Sequence
+                                                        1   Independant (stand-alone) Execution
+                                                        2   CSAS Doubly-Heterogeneous Cell Sequence
+
+     ixtr(3)=  5   Legendre expansion order            -1   Process all Legendre expansion moments found on AMPX LIB.
+                                                  =0,...N   Process new values only up through PN moments 
+
+     n1d    =  0   Option for 1-D cross-sections        0   Weight using using scalar flux
+                                                        1   Weight using using abs value of current (1st moment)
+
+
+     XS_dilute =  1.0E+10   min background XS considered infinitely dilute
+
+   elapsed time .00 min.
+
+   elapsed time .00 min.
+
+ <<<< PMC CALCULATION COMPLETED <<<<
+
+XSProc execution of module CentrmPmc completed.
+XSProc starting module MixMacros.
+XSProc execution of module MixMacros completed.
+XSProc starting module Dancoff.
+
+ Dancoff Module Problem Description
+ ige--geometry type(0/1/2/3--inf med/slab/cyl/sphere)                         0
+ izm--number of zones or material regions                                     1
+ igo--celltype                                                                1
+ ibr--right boundary condition (0/1/2/3--vacuum/reflected/periodic/white)     0
+ ibl--left  boundary condition (0/1/2/3--vacuum/reflected/periodic/white)     0
+XSProc execution of module Dancoff completed.
+XSProc starting module Bonami.
+XSProc execution of module Bonami completed.
+XSProc starting module MixMacros.
+XSProc execution of module MixMacros completed.
+XSProc starting module Dancoff.
+
+ Dancoff Module Problem Description
+ ige--geometry type(0/1/2/3--inf med/slab/cyl/sphere)                         0
+ izm--number of zones or material regions                                     1
+ igo--celltype                                                                1
+ ibr--right boundary condition (0/1/2/3--vacuum/reflected/periodic/white)     0
+ ibl--left  boundary condition (0/1/2/3--vacuum/reflected/periodic/white)     0
+XSProc execution of module Dancoff completed.
+XSProc starting module Bonami.
+XSProc execution of module Bonami completed.
+XSProc starting module MixMacros.
+XSProc execution of module MixMacros completed.
+XSProc starting module Dancoff.
+
+ Dancoff Module Problem Description
+ ige--geometry type(0/1/2/3--inf med/slab/cyl/sphere)                         0
+ izm--number of zones or material regions                                     1
+ igo--celltype                                                                1
+ ibr--right boundary condition (0/1/2/3--vacuum/reflected/periodic/white)     0
+ ibl--left  boundary condition (0/1/2/3--vacuum/reflected/periodic/white)     0
+XSProc execution of module Dancoff completed.
+XSProc starting module Bonami.
+XSProc execution of module Bonami completed.
+XSProc starting module MixMacros.
+XSProc execution of module MixMacros completed.
+XSProc starting module Dancoff.
+
+ Dancoff Module Problem Description
+ ige--geometry type(0/1/2/3--inf med/slab/cyl/sphere)                         0
+ izm--number of zones or material regions                                     1
+ igo--celltype                                                                1
+ ibr--right boundary condition (0/1/2/3--vacuum/reflected/periodic/white)     0
+ ibl--left  boundary condition (0/1/2/3--vacuum/reflected/periodic/white)     0
+XSProc execution of module Dancoff completed.
+XSProc starting module Bonami.
+XSProc execution of module Bonami completed.
+XSProc starting module MixMacros.
+XSProc execution of module MixMacros completed.
+
+
+
+************************************************************************************************************************************
+************************************************************************************************************************************
+************************************************************************************************************************************
+*****                                                                                                                          *****
+*****                                             program verification information                                             *****
+*****                                                                                                                          *****
+*****                                           code system: SCALE   version: 6.3.0                                            *****
+*****                                                                                                                          *****
+************************************************************************************************************************************
+************************************************************************************************************************************
+*****                                                                                                                          *****
+*****                                                                                                                          *****
+*****                      program:  shift                                                                                     *****
+*****                                                                                                                          *****
+*****                      version:  6.3.1 (603001)                                                                            *****
+*****                                                                                                                          *****
+*****                     username:  o                                                                                         *****
+*****                                                                                                                          *****
+*****                     hostname:  Unknown                                                                                   *****
+*****                                                                                                                          *****
+*****                                                                                                                          *****
+*****            date of execution:  2023-07-01                                                                                *****
+*****                                                                                                                          *****
+*****            time of execution:  23:24:03                                                                                  *****
+*****                                                                                                                          *****
+************************************************************************************************************************************
+************************************************************************************************************************************
+************************************************************************************************************************************
+
+
+
+Loaded MG Library: /opt/scale6.3.1-mpi/data/scale.rev05.xn252v7.1
+
+
+============================================================================================================================
+ General Problem Information
+============================================================================================================================
+
+
+ - Problem-Title       Short description title for the input problem       IMSR Core Model  
+ - Problem-Mode        Forward / Hybrid / KCode                            KCode            
+ - Transport-Mode      Continuous-Energy / Multi-Group                     Multi-Group      
+ - Particle-Type       Neutron / Photon / Neutron-Photon transport         Neutron          
+ - Std-Comp-Path       Path to the SCALE Standard Composition Library      /opt/scale6.3.1-mpi/data/scale.rev40.sclib
+ - MC-Lib-Path         Library path used for Monte Carlo transport         /opt/scale6.3.1-mpi/data/scale.rev05.xn252v7.1
+ - MC-Num-Groups       Number of energy groups (N+P) for Monte Carlo       252              
+
+
+============================================================================================================================
+ Numeric and Logical Parameters
+============================================================================================================================
+
+
+ - cds                 Collect CADIS fissions                              OFF               ( default )
+ - cet                 CE-TSUNAMI sensitivity method                       NONE              ( default )
+ - cfp                 Number of latent gens in CE-TSUNAMI                 5                 ( default )
+ - cgd                 Use F*(r) Mesh                                      NO                ( default )
+ - dbh                 High Energy Cutoff (in eV) for DBRC                 210               ( default )
+ - dbl                 Low Energy Cutoff (in eV) for DBRC                  0.4               ( default )
+ - dbr                 DBRC isotope selection                              OFF               ( default )
+ - dbx                 Doppler Broadening Method                           1D-AND-2D         ( default )
+ - double_indexing     Accelerate xsec calculation using double indexing   OFF               ( default )
+ - fdn                 Compute fission densities                           ON                ( default )
+ - fis                 Fission rate mesh tally                             OFF               ( default )
+ - flx                 Print fluxes                                        OFF               ( default )
+ - fst                 Print F*(r) mesh values                             NO                ( default )
+ - gen                 Number of generations                               10050             ( input * )
+ - gfx                 Grid flux, averaged over voxel volume               OFF               ( default )
+ - mfx                 Compute mesh fluxes                                 OFF               ( default )
+ - msh                 Mesh size for mesh flux tally                       0.0               ( default )
+ - ngp                 Number of energy groups for tallying                252               ( default )
+ - npg                 Number per generation                               10000             ( input * )
+ - nsk                 Number of generations to be skipped                 50                ( input * )
+ - nub                 Print fission densities                             ON                ( default )
+ - pn_order            Legendre polynomial order                           5                 ( default )
+ - ptb                 Use probability tables                              ON                ( default )
+ - rnd                 Starting random number                              2272013           ( default )
+ - run                 Execute problem after checking data                 OFF               ( input * )
+ - scd                 Mesh based source convergence diagnostics           ON                ( default )
+ - sig                 Cut off standard deviation                          0.0005            ( input * )
+ - thc                 CE Thermal energy cutoff (in eV)                    10                ( default )
+ - thinning_tolerance  Tolerance to use thinning the unionized xsec grid   0.0001            ( default )
+ - trk                 Print tracking information                          OFF               ( default )
+ - wta                 Default value of weight average                     0.5               ( default )
+ - wtl                 Weight low for russian roulette                     0.333333          ( default )
+
+
+============================================================================================================================
+ Upper Energy(eV) Boundaries of 252 Group Structure
+============================================================================================================================
+
+   Group     E(eV)       Group     E(eV)       Group     E(eV)       Group     E(eV)       Group     E(eV)
+      1    2.00000e+07     52    5.00000e+04    103    6.75000e+01    154    6.00000e+00    205    9.75000e-01
+      2    1.73300e+07     53    4.50000e+04    104    6.50000e+01    155    5.40000e+00    206    9.50000e-01
+      3    1.56800e+07     54    3.00000e+04    105    6.30000e+01    156    5.00000e+00    207    9.25000e-01
+      4    1.45500e+07     55    2.00000e+04    106    6.10000e+01    157    4.70000e+00    208    9.00000e-01
+      5    1.38400e+07     56    1.70000e+04    107    5.80000e+01    158    4.10000e+00    209    8.50000e-01
+      6    1.28400e+07     57    1.30000e+04    108    5.34000e+01    159    3.73000e+00    210    8.00000e-01
+      7    1.00000e+07     58    9.50000e+03    109    5.06000e+01    160    3.50000e+00    211    7.50000e-01
+      8    8.18700e+06     59    8.03000e+03    110    4.83000e+01    161    3.20000e+00    212    7.00000e-01
+      9    6.43400e+06     60    5.70000e+03    111    4.52000e+01    162    3.10000e+00    213    6.50000e-01
+     10    4.80000e+06     61    3.90000e+03    112    4.40000e+01    163    3.00000e+00    214    6.25000e-01
+     11    4.30400e+06     62    3.74000e+03    113    4.24000e+01    164    2.97000e+00    215    6.00000e-01
+     12    3.00000e+06     63    3.00000e+03    114    4.10000e+01    165    2.87000e+00    216    5.50000e-01
+     13    2.47900e+06     64    2.50000e+03    115    3.96000e+01    166    2.77000e+00    217    5.00000e-01
+     14    2.35400e+06     65    2.25000e+03    116    3.91000e+01    167    2.67000e+00    218    4.50000e-01
+     15    1.85000e+06     66    2.20000e+03    117    3.80000e+01    168    2.57000e+00    219    4.00000e-01
+     16    1.50000e+06     67    1.80000e+03    118    3.76300e+01    169    2.47000e+00    220    3.75000e-01
+     17    1.40000e+06     68    1.55000e+03    119    3.72700e+01    170    2.38000e+00    221    3.50000e-01
+     18    1.35600e+06     69    1.50000e+03    120    3.71300e+01    171    2.30000e+00    222    3.25000e-01
+     19    1.31700e+06     70    1.15000e+03    121    3.70000e+01    172    2.21000e+00    223    3.00000e-01
+     20    1.25000e+06     71    9.50000e+02    122    3.60000e+01    173    2.12000e+00    224    2.75000e-01
+     21    1.20000e+06     72    6.83000e+02    123    3.55000e+01    174    2.00000e+00    225    2.50000e-01
+     22    1.10000e+06     73    6.70000e+02    124    3.50000e+01    175    1.94000e+00    226    2.25000e-01
+     23    1.01000e+06     74    5.50000e+02    125    3.37500e+01    176    1.86000e+00    227    2.00000e-01
+     24    9.20000e+05     75    3.05000e+02    126    3.32500e+01    177    1.77000e+00    228    1.75000e-01
+     25    9.00000e+05     76    2.85000e+02    127    3.17500e+01    178    1.68000e+00    229    1.50000e-01
+     26    8.75000e+05     77    2.40000e+02    128    3.12500e+01    179    1.59000e+00    230    1.25000e-01
+     27    8.61100e+05     78    2.20000e+02    129    3.00000e+01    180    1.50000e+00    231    1.00000e-01
+     28    8.20000e+05     79    2.09500e+02    130    2.75000e+01    181    1.45000e+00    232    9.00000e-02
+     29    7.50000e+05     80    2.07400e+02    131    2.50000e+01    182    1.40000e+00    233    8.00000e-02
+     30    6.79000e+05     81    2.02000e+02    132    2.25000e+01    183    1.35000e+00    234    7.00000e-02
+     31    6.70000e+05     82    1.93000e+02    133    2.17500e+01    184    1.30000e+00    235    6.00000e-02
+     32    6.00000e+05     83    1.91500e+02    134    2.12000e+01    185    1.25000e+00    236    5.00000e-02
+     33    5.73000e+05     84    1.88500e+02    135    2.05000e+01    186    1.22500e+00    237    4.00000e-02
+     34    5.50000e+05     85    1.87700e+02    136    2.00000e+01    187    1.20000e+00    238    3.00000e-02
+     35    4.92000e+05     86    1.80000e+02    137    1.94000e+01    188    1.17500e+00    239    2.53000e-02
+     36    4.70000e+05     87    1.70000e+02    138    1.85000e+01    189    1.15000e+00    240    1.00000e-02
+     37    4.40000e+05     88    1.43000e+02    139    1.70000e+01    190    1.14000e+00    241    7.50000e-03
+     38    4.20000e+05     89    1.22000e+02    140    1.60000e+01    191    1.13000e+00    242    5.00000e-03
+     39    4.00000e+05     90    1.19000e+02    141    1.44000e+01    192    1.12000e+00    243    4.00000e-03
+     40    3.30000e+05     91    1.17500e+02    142    1.29000e+01    193    1.11000e+00    244    3.00000e-03
+     41    2.70000e+05     92    1.16000e+02    143    1.19000e+01    194    1.10000e+00    245    2.50000e-03
+     42    2.00000e+05     93    1.13000e+02    144    1.15000e+01    195    1.09000e+00    246    2.00000e-03
+     43    1.49000e+05     94    1.08000e+02    145    1.00000e+01    196    1.08000e+00    247    1.50000e-03
+     44    1.28300e+05     95    1.05000e+02    146    9.10000e+00    197    1.07000e+00    248    1.20000e-03
+     45    1.00000e+05     96    1.01200e+02    147    8.10000e+00    198    1.06000e+00    249    1.00000e-03
+     46    8.50000e+04     97    9.70000e+01    148    7.15000e+00    199    1.05000e+00    250    7.50000e-04
+     47    8.20000e+04     98    9.00000e+01    149    7.00000e+00    200    1.04000e+00    251    5.00000e-04
+     48    7.50000e+04     99    8.17000e+01    150    6.87500e+00    201    1.03000e+00    252    1.00000e-04
+     49    7.30000e+04    100    8.00000e+01    151    6.75000e+00    202    1.02000e+00    253    1.00000e-05
+     50    6.00000e+04    101    7.60000e+01    152    6.50000e+00    203    1.01000e+00
+     51    5.20000e+04    102    7.20000e+01    153    6.25000e+00    204    1.00000e+00
+
+
+============================================================================================================================
+ Mixing Table
+============================================================================================================================
+
+
+ mixture =     1          density(g/cc) = 2.04996e+00          temperature(K) =    923.15
+    nuclide    nucmix   atom-dens.   wgt. frac.     za      awt         temp          nuclide title
+       3006        1   6.15726e-09  3.00009e-08    3006     6.0151      923.15     li6 325 endf-7 rel1 rev7 mod0 Sun Apr  8 12:11:57 2018
+       3007        1   3.14963e-02  1.79000e-01    3007     7.0160      923.15     li7 328 endf-7 rel1 rev7 mod0 Sun Apr  8 12:11:58 2018
+       4009        1   3.08971e-03  2.25554e-02    4009     9.0122      923.15     be9 425 endf-7 rel1 rev7 mod2 Sun Apr  8 12:10:03 2018
+       9019        1   2.93519e-02  4.51706e-01    9019    18.9984      923.15     f19 925 endf-7 rel1 rev7 mod1 Sun Apr  8 12:11:10 2018
+      92235        1   3.27811e-05  6.24130e-03   92235   235.0439      923.15     u235 9228 endf-7 rel1 rev7 mod7 Sun Apr  8 12:14:13 2018
+      92238        1   1.76580e-03  3.40498e-01   92238   238.0508      923.15     u238 9237 endf-7 rel1 rev7 mod5 Sun Apr  8 12:14:18 2018
+
+ mixture =     2          density(g/cc) = 8.89000e+00          temperature(K) =    923.15
+    nuclide    nucmix   atom-dens.   wgt. frac.     za      awt         temp          nuclide title
+      14028        2   1.91361e-03  1.00000e-02   14028    27.9769      923.15     si28 1425 endf-7 rel1 rev7 mod1 Sun Apr  8 12:13:23 2018
+      24052        2   7.21514e-03  7.00000e-02   24052    51.9405      923.15     cr52 2431 endf-7 rel1 rev7 mod4 Sun Apr  8 12:10:44 2018
+      26056        2   4.78563e-03  5.00000e-02   26056    55.9349      923.15     fe56 2631 endf-7 rel1 rev7 mod4 Sun Apr  8 12:11:12 2018
+      28058        2   4.43521e-02  4.79960e-01   28058    57.9353      923.15     ni58 2825 endf-7 rel1 rev7 mod5 Sun Apr  8 12:12:18 2018
+      28060        2   2.05497e-02  2.30040e-01   28060    59.9308      923.15     ni60 2831 endf-7 rel1 rev7 mod4 Sun Apr  8 12:12:19 2018
+      42092        2   1.36541e-03  2.34400e-02   42092    91.9068      923.15     mo92 4225 endf-7 rel1 rev7 mod1 Sun Apr  8 12:12:03 2018
+      42094        2   8.38299e-04  1.47040e-02   42094    93.9051      923.15     mo94 4231 endf-7 rel1 rev7 mod1 Sun Apr  8 12:12:05 2018
+      42095        2   1.43238e-03  2.53920e-02   42095    94.9058      923.15     mo95 4234 endf-7 rel1 rev7 mod1 Sun Apr  8 12:12:05 2018
+      42096        2   1.48891e-03  2.66720e-02   42096    95.9047      923.15     mo96 4237 endf-7 rel1 rev7 mod1 Sun Apr  8 12:12:05 2018
+      42097        2   8.46813e-04  1.53280e-02   42097    96.9060      923.15     mo97 4240 endf-7 rel1 rev7 mod1 Sun Apr  8 12:12:06 2018
+      42098        2   2.12517e-03  3.88640e-02   42098    97.9054      923.15     mo98 4243 endf-7 rel1 rev7 mod1 Sun Apr  8 12:12:07 2018
+      42100        2   8.35948e-04  1.56000e-02   42100    99.9075      923.15     mo100 4249 endf-7 rel1 rev7 mod1 Sun Apr  8 12:12:02 2018
+
+ mixture =     3          density(g/cc) = 7.90100e+00          temperature(K) =    923.15
+    nuclide    nucmix   atom-dens.   wgt. frac.     za      awt         temp          nuclide title
+      64152        3   7.20355e-04  2.30000e-02   64152   151.9198      923.15     gd152 6425 endf-7 rel1 rev7 mod1 Sun Apr  8 12:11:15 2018
+      64155        3   1.47421e-03  4.80000e-02   64155   154.9226      923.15     gd155 6434 endf-7 rel1 rev7 mod1 Sun Apr  8 12:11:18 2018
+      64156        3   3.20416e-03  1.05000e-01   64156   155.9221      923.15     gd156 6437 endf-7 rel1 rev7 mod1 Sun Apr  8 12:11:18 2018
+      64157        3   1.68888e-02  5.57000e-01   64157   156.9240      923.15     gd157 6440 endf-7 rel1 rev7 mod1 Sun Apr  8 12:11:21 2018
+      64158        3   4.45909e-03  1.48000e-01   64158   157.9241      923.15     gd158 6443 endf-7 rel1 rev7 mod1 Sun Apr  8 12:11:22 2018
+      64160        3   3.54045e-03  1.19000e-01   64160   159.9270      923.15     gd160 6449 endf-7 rel1 rev7 mod1 Sun Apr  8 12:11:22 2018
+
+ mixture =     4          density(g/cc) = 2.29815e+00          temperature(K) =    923.15
+    nuclide    nucmix   atom-dens.   wgt. frac.     za      awt         temp          nuclide title
+    3006000        4   1.15321e-01  1.00000e+00    6000    12.0011      923.15     graphite 31 fast: c endf-7 rel1 rev7 mod1 Tue Apr 10 15:50:46 2018
+
+
+============================================================================================================================
+ Geometry Essentials
+============================================================================================================================
+
+
+************************************************
+"unit 10" (<inp>:134)
+************************************************
+:Type:         masked unit
+:# Cells:      8 (offset = 0)
+:# Surfaces:   11 (offset = 0)
+:Bounding box: ``{-215 -215 -30 to 215 215 460}``
+
+======= = ==== ============================================================
+Cell    Z Name Surface logic
+======= = ==== ============================================================
+0       B bnds 0 ~ 1 & 2 ~ & ~
+               (from ``<inp>:149``)
+1       A 10.1 3 ~ 4 & 5 ~ &
+               (from ``<inp>:142``)
+2       M 10.2 3 ~ 4 & 5 ~ & ~ 4 5 ~ & 6 ~ & &
+               (from ``<inp>:143``)
+3       M 10.3 4 5 ~ & 6 ~ & ~ 7 ~ 8 & 9 ~ & & 5 6 ~ & 10 ~ & ~ & 6 ~ 9 ~
+               & 10 & ~ & 4 ~ 6 ~ & 8 & ~ &
+               (from ``<inp>:144``)
+4       M 10.4 0 ~ 1 & 2 ~ & 7 ~ 8 & 9 ~ & ~ & 5 6 ~ & 10 ~ & ~ & 6 ~ 9 ~
+               & 10 & ~ & 4 ~ 6 ~ & 8 & ~ &
+               (from ``<inp>:145``)
+5       M 10.5 5 6 ~ & 10 ~ &
+               (from ``<inp>:146``)
+6       M 10.6 6 ~ 9 ~ & 10 &
+               (from ``<inp>:147``)
+7       M 10.7 4 ~ 6 ~ & 8 &
+               (from ``<inp>:148``)
+======= = ==== ============================================================
+
+Cells with reentrant surface tracking: "bnds", "10.2", "10.3", "10.4"
+
+======= ========= ============================================================
+Surface Name      Description
+======= ========= ============================================================
+0                 Cyl z: r=215
+        CYL_4.coz (from ``<inp>:138``)
+1                 Plane: z=-30
+        CYL_4.mz  (from ``<inp>:138``)
+2                 Plane: z=460
+        CYL_4.pz  (from ``<inp>:138``)
+3                 Cyl z: r=190
+        CYL_1.coz (from ``<inp>:135``)
+4                 Plane: z=0
+        CYL_1.mz  (from ``<inp>:135``)
+        CYL_2.mz  (from ``<inp>:136``)
+        CYL_7.pz  (from ``<inp>:141``)
+5                 Plane: z=415
+        CYL_1.pz  (from ``<inp>:135``)
+        CYL_2.pz  (from ``<inp>:136``)
+        CYL_5.mz  (from ``<inp>:139``)
+6                 Cyl z: r=195
+        CYL_2.coz (from ``<inp>:136``)
+        CYL_5.coz (from ``<inp>:139``)
+        CYL_6.coz (from ``<inp>:140``)
+        CYL_7.coz (from ``<inp>:141``)
+7                 Cyl z: r=210
+        CYL_3.coz (from ``<inp>:137``)
+8                 Plane: z=-25
+        CYL_3.mz  (from ``<inp>:137``)
+        CYL_7.mz  (from ``<inp>:141``)
+9                 Plane: z=455
+        CYL_3.pz  (from ``<inp>:137``)
+        CYL_6.pz  (from ``<inp>:140``)
+10                Plane: z=430
+        CYL_5.pz  (from ``<inp>:139``)
+        CYL_6.mz  (from ``<inp>:140``)
+======= ========= ============================================================
+
+==== ==========================================================================
+Cell Fill
+==== ==========================================================================
+bnds ---
+10.1 array 4 {Translate -353.052 -203.835 0}
+10.2 Material 0
+10.3 Material 1
+10.4 Material 0
+10.5 Material 0
+10.6 Material 1
+10.7 Material 1
+==== ==========================================================================
+
+************************************************
+"array 4" (<inp>:210)
+************************************************
+:Type:         hexagonal array
+:# Cells:      441 (offset = 8)
+:# Surfaces:   8 (offset = 11)
+:Bounding box: ``{-13.076 -15.0989 0 to 797.636 468.065 415}``
+
+:Type: hexagonal array
+:Orientation: pointy_top
+:Apothem: 13.076
+:Dimensions: [21, 21, 1]
+:z: [0, 415]
+
+========= =====================================================================
+Cell      Fill
+========= =====================================================================
+{0,0,0}   unit 9
+{0,1,0}   unit 9 {Translate 13.076 22.6483 0}
+{0,2,0}   unit 9 {Translate 26.152 45.2966 0}
+{0,3,0}   unit 9 {Translate 39.228 67.9449 0}
+{0,4,0}   unit 9 {Translate 52.304 90.5932 0}
+{0,5,0}   unit 9 {Translate 65.38 113.241 0}
+{0,6,0}   unit 9 {Translate 78.456 135.89 0}
+{0,7,0}   unit 9 {Translate 91.532 158.538 0}
+{0,8,0}   unit 9 {Translate 104.608 181.186 0}
+{0,9,0}   unit 9 {Translate 117.684 203.835 0}
+{0,10,0}  unit 9 {Translate 130.76 226.483 0}
+{0,11,0}  unit 9 {Translate 143.836 249.131 0}
+{0,12,0}  unit 9 {Translate 156.912 271.78 0}
+{0,13,0}  unit 9 {Translate 169.988 294.428 0}
+{0,14,0}  unit 9 {Translate 183.064 317.076 0}
+{0,15,0}  unit 9 {Translate 196.14 339.724 0}
+{0,16,0}  unit 9 {Translate 209.216 362.373 0}
+{0,17,0}  unit 9 {Translate 222.292 385.021 0}
+{0,18,0}  unit 9 {Translate 235.368 407.669 0}
+{0,19,0}  unit 9 {Translate 248.444 430.318 0}
+{0,20,0}  unit 9 {Translate 261.52 452.966 0}
+{1,0,0}   unit 9 {Translate 26.152 0 0}
+{1,1,0}   unit 9 {Translate 39.228 22.6483 0}
+{1,2,0}   unit 9 {Translate 52.304 45.2966 0}
+{1,3,0}   unit 9 {Translate 65.38 67.9449 0}
+{1,4,0}   unit 9 {Translate 78.456 90.5932 0}
+{1,5,0}   unit 9 {Translate 91.532 113.241 0}
+{1,6,0}   unit 9 {Translate 104.608 135.89 0}
+{1,7,0}   unit 9 {Translate 117.684 158.538 0}
+{1,8,0}   unit 9 {Translate 130.76 181.186 0}
+{1,9,0}   unit 9 {Translate 143.836 203.835 0}
+{1,10,0}  unit 9 {Translate 156.912 226.483 0}
+{1,11,0}  unit 9 {Translate 169.988 249.131 0}
+{1,12,0}  unit 9 {Translate 183.064 271.78 0}
+{1,13,0}  unit 9 {Translate 196.14 294.428 0}
+{1,14,0}  unit 9 {Translate 209.216 317.076 0}
+{1,15,0}  unit 9 {Translate 222.292 339.724 0}
+{1,16,0}  unit 9 {Translate 235.368 362.373 0}
+{1,17,0}  unit 9 {Translate 248.444 385.021 0}
+{1,18,0}  unit 9 {Translate 261.52 407.669 0}
+{1,19,0}  unit 9 {Translate 274.596 430.318 0}
+{1,20,0}  unit 9 {Translate 287.672 452.966 0}
+{2,0,0}   unit 9 {Translate 52.304 0 0}
+{2,1,0}   unit 9 {Translate 65.38 22.6483 0}
+{2,2,0}   unit 9 {Translate 78.456 45.2966 0}
+{2,3,0}   unit 9 {Translate 91.532 67.9449 0}
+{2,4,0}   unit 9 {Translate 104.608 90.5932 0}
+{2,5,0}   unit 9 {Translate 117.684 113.241 0}
+{2,6,0}   unit 9 {Translate 130.76 135.89 0}
+{2,7,0}   unit 9 {Translate 143.836 158.538 0}
+{2,8,0}   unit 9 {Translate 156.912 181.186 0}
+{2,9,0}   unit 9 {Translate 169.988 203.835 0}
+{2,10,0}  unit 9 {Translate 183.064 226.483 0}
+{2,11,0}  unit 9 {Translate 196.14 249.131 0}
+{2,12,0}  unit 8 {Translate 209.216 271.78 0}
+{2,13,0}  unit 8 {Translate 222.292 294.428 0}
+{2,14,0}  unit 9 {Translate 235.368 317.076 0}
+{2,15,0}  unit 9 {Translate 248.444 339.724 0}
+{2,16,0}  unit 9 {Translate 261.52 362.373 0}
+{2,17,0}  unit 9 {Translate 274.596 385.021 0}
+{2,18,0}  unit 9 {Translate 287.672 407.669 0}
+{2,19,0}  unit 9 {Translate 300.748 430.318 0}
+{2,20,0}  unit 9 {Translate 313.824 452.966 0}
+{3,0,0}   unit 9 {Translate 78.456 0 0}
+{3,1,0}   unit 9 {Translate 91.532 22.6483 0}
+{3,2,0}   unit 9 {Translate 104.608 45.2966 0}
+{3,3,0}   unit 9 {Translate 117.684 67.9449 0}
+{3,4,0}   unit 9 {Translate 130.76 90.5932 0}
+{3,5,0}   unit 9 {Translate 143.836 113.241 0}
+{3,6,0}   unit 9 {Translate 156.912 135.89 0}
+{3,7,0}   unit 9 {Translate 169.988 158.538 0}
+{3,8,0}   unit 9 {Translate 183.064 181.186 0}
+{3,9,0}   unit 8 {Translate 196.14 203.835 0}
+{3,10,0}  unit 8 {Translate 209.216 226.483 0}
+{3,11,0}  unit 8 {Translate 222.292 249.131 0}
+{3,12,0}  unit 8 {Translate 235.368 271.78 0}
+{3,13,0}  unit 8 {Translate 248.444 294.428 0}
+{3,14,0}  unit 8 {Translate 261.52 317.076 0}
+{3,15,0}  unit 8 {Translate 274.596 339.724 0}
+{3,16,0}  unit 9 {Translate 287.672 362.373 0}
+{3,17,0}  unit 9 {Translate 300.748 385.021 0}
+{3,18,0}  unit 9 {Translate 313.824 407.669 0}
+{3,19,0}  unit 9 {Translate 326.9 430.318 0}
+{3,20,0}  unit 9 {Translate 339.976 452.966 0}
+{4,0,0}   unit 9 {Translate 104.608 0 0}
+{4,1,0}   unit 9 {Translate 117.684 22.6483 0}
+{4,2,0}   unit 9 {Translate 130.76 45.2966 0}
+{4,3,0}   unit 9 {Translate 143.836 67.9449 0}
+{4,4,0}   unit 9 {Translate 156.912 90.5932 0}
+{4,5,0}   unit 9 {Translate 169.988 113.241 0}
+{4,6,0}   unit 9 {Translate 183.064 135.89 0}
+{4,7,0}   unit 9 {Translate 196.14 158.538 0}
+{4,8,0}   unit 8 {Translate 209.216 181.186 0}
+{4,9,0}   unit 6 {Translate 222.292 203.835 0}
+{4,10,0}  unit 6 {Translate 235.368 226.483 0}
+{4,11,0}  unit 6 {Translate 248.444 249.131 0}
+{4,12,0}  unit 6 {Translate 261.52 271.78 0}
+{4,13,0}  unit 6 {Translate 274.596 294.428 0}
+{4,14,0}  unit 6 {Translate 287.672 317.076 0}
+{4,15,0}  unit 8 {Translate 300.748 339.724 0}
+{4,16,0}  unit 9 {Translate 313.824 362.373 0}
+{4,17,0}  unit 9 {Translate 326.9 385.021 0}
+{4,18,0}  unit 9 {Translate 339.976 407.669 0}
+{4,19,0}  unit 9 {Translate 353.052 430.318 0}
+{4,20,0}  unit 9 {Translate 366.128 452.966 0}
+{5,0,0}   unit 9 {Translate 130.76 0 0}
+{5,1,0}   unit 9 {Translate 143.836 22.6483 0}
+{5,2,0}   unit 9 {Translate 156.912 45.2966 0}
+{5,3,0}   unit 9 {Translate 169.988 67.9449 0}
+{5,4,0}   unit 9 {Translate 183.064 90.5932 0}
+{5,5,0}   unit 9 {Translate 196.14 113.241 0}
+{5,6,0}   unit 8 {Translate 209.216 135.89 0}
+{5,7,0}   unit 8 {Translate 222.292 158.538 0}
+{5,8,0}   unit 6 {Translate 235.368 181.186 0}
+{5,9,0}   unit 6 {Translate 248.444 203.835 0}
+{5,10,0}  unit 6 {Translate 261.52 226.483 0}
+{5,11,0}  unit 6 {Translate 274.596 249.131 0}
+{5,12,0}  unit 6 {Translate 287.672 271.78 0}
+{5,13,0}  unit 6 {Translate 300.748 294.428 0}
+{5,14,0}  unit 6 {Translate 313.824 317.076 0}
+{5,15,0}  unit 8 {Translate 326.9 339.724 0}
+{5,16,0}  unit 8 {Translate 339.976 362.373 0}
+{5,17,0}  unit 9 {Translate 353.052 385.021 0}
+{5,18,0}  unit 9 {Translate 366.128 407.669 0}
+{5,19,0}  unit 9 {Translate 379.204 430.318 0}
+{5,20,0}  unit 9 {Translate 392.28 452.966 0}
+{6,0,0}   unit 9 {Translate 156.912 0 0}
+{6,1,0}   unit 9 {Translate 169.988 22.6483 0}
+{6,2,0}   unit 9 {Translate 183.064 45.2966 0}
+{6,3,0}   unit 9 {Translate 196.14 67.9449 0}
+{6,4,0}   unit 9 {Translate 209.216 90.5932 0}
+{6,5,0}   unit 8 {Translate 222.292 113.241 0}
+{6,6,0}   unit 8 {Translate 235.368 135.89 0}
+{6,7,0}   unit 6 {Translate 248.444 158.538 0}
+{6,8,0}   unit 6 {Translate 261.52 181.186 0}
+{6,9,0}   unit 6 {Translate 274.596 203.835 0}
+{6,10,0}  unit 6 {Translate 287.672 226.483 0}
+{6,11,0}  unit 6 {Translate 300.748 249.131 0}
+{6,12,0}  unit 6 {Translate 313.824 271.78 0}
+{6,13,0}  unit 6 {Translate 326.9 294.428 0}
+{6,14,0}  unit 6 {Translate 339.976 317.076 0}
+{6,15,0}  unit 8 {Translate 353.052 339.724 0}
+{6,16,0}  unit 8 {Translate 366.128 362.373 0}
+{6,17,0}  unit 9 {Translate 379.204 385.021 0}
+{6,18,0}  unit 9 {Translate 392.28 407.669 0}
+{6,19,0}  unit 9 {Translate 405.356 430.318 0}
+{6,20,0}  unit 9 {Translate 418.432 452.966 0}
+{7,0,0}   unit 9 {Translate 183.064 0 0}
+{7,1,0}   unit 9 {Translate 196.14 22.6483 0}
+{7,2,0}   unit 9 {Translate 209.216 45.2966 0}
+{7,3,0}   unit 9 {Translate 222.292 67.9449 0}
+{7,4,0}   unit 9 {Translate 235.368 90.5932 0}
+{7,5,0}   unit 8 {Translate 248.444 113.241 0}
+{7,6,0}   unit 6 {Translate 261.52 135.89 0}
+{7,7,0}   unit 6 {Translate 274.596 158.538 0}
+{7,8,0}   unit 6 {Translate 287.672 181.186 0}
+{7,9,0}   unit 4 {Translate 300.748 203.835 0}
+{7,10,0}  unit 1 {Translate 313.824 226.483 0}
+{7,11,0}  unit 4 {Translate 326.9 249.131 0}
+{7,12,0}  unit 6 {Translate 339.976 271.78 0}
+{7,13,0}  unit 6 {Translate 353.052 294.428 0}
+{7,14,0}  unit 6 {Translate 366.128 317.076 0}
+{7,15,0}  unit 8 {Translate 379.204 339.724 0}
+{7,16,0}  unit 9 {Translate 392.28 362.373 0}
+{7,17,0}  unit 9 {Translate 405.356 385.021 0}
+{7,18,0}  unit 9 {Translate 418.432 407.669 0}
+{7,19,0}  unit 9 {Translate 431.508 430.318 0}
+{7,20,0}  unit 9 {Translate 444.584 452.966 0}
+{8,0,0}   unit 9 {Translate 209.216 0 0}
+{8,1,0}   unit 9 {Translate 222.292 22.6483 0}
+{8,2,0}   unit 9 {Translate 235.368 45.2966 0}
+{8,3,0}   unit 9 {Translate 248.444 67.9449 0}
+{8,4,0}   unit 8 {Translate 261.52 90.5932 0}
+{8,5,0}   unit 6 {Translate 274.596 113.241 0}
+{8,6,0}   unit 6 {Translate 287.672 135.89 0}
+{8,7,0}   unit 6 {Translate 300.748 158.538 0}
+{8,8,0}   unit 1 {Translate 313.824 181.186 0}
+{8,9,0}   unit 4 {Translate 326.9 203.835 0}
+{8,10,0}  unit 4 {Translate 339.976 226.483 0}
+{8,11,0}  unit 1 {Translate 353.052 249.131 0}
+{8,12,0}  unit 6 {Translate 366.128 271.78 0}
+{8,13,0}  unit 6 {Translate 379.204 294.428 0}
+{8,14,0}  unit 6 {Translate 392.28 317.076 0}
+{8,15,0}  unit 8 {Translate 405.356 339.724 0}
+{8,16,0}  unit 9 {Translate 418.432 362.373 0}
+{8,17,0}  unit 9 {Translate 431.508 385.021 0}
+{8,18,0}  unit 9 {Translate 444.584 407.669 0}
+{8,19,0}  unit 9 {Translate 457.66 430.318 0}
+{8,20,0}  unit 9 {Translate 470.736 452.966 0}
+{9,0,0}   unit 9 {Translate 235.368 0 0}
+{9,1,0}   unit 9 {Translate 248.444 22.6483 0}
+{9,2,0}   unit 9 {Translate 261.52 45.2966 0}
+{9,3,0}   unit 8 {Translate 274.596 67.9449 0}
+{9,4,0}   unit 6 {Translate 287.672 90.5932 0}
+{9,5,0}   unit 6 {Translate 300.748 113.241 0}
+{9,6,0}   unit 6 {Translate 313.824 135.89 0}
+{9,7,0}   unit 4 {Translate 326.9 158.538 0}
+{9,8,0}   unit 4 {Translate 339.976 181.186 0}
+{9,9,0}   unit 4 {Translate 353.052 203.835 0}
+{9,10,0}  unit 4 {Translate 366.128 226.483 0}
+{9,11,0}  unit 4 {Translate 379.204 249.131 0}
+{9,12,0}  unit 6 {Translate 392.28 271.78 0}
+{9,13,0}  unit 6 {Translate 405.356 294.428 0}
+{9,14,0}  unit 6 {Translate 418.432 317.076 0}
+{9,15,0}  unit 8 {Translate 431.508 339.724 0}
+{9,16,0}  unit 9 {Translate 444.584 362.373 0}
+{9,17,0}  unit 9 {Translate 457.66 385.021 0}
+{9,18,0}  unit 9 {Translate 470.736 407.669 0}
+{9,19,0}  unit 9 {Translate 483.812 430.318 0}
+{9,20,0}  unit 9 {Translate 496.888 452.966 0}
+{10,0,0}  unit 9 {Translate 261.52 0 0}
+{10,1,0}  unit 9 {Translate 274.596 22.6483 0}
+{10,2,0}  unit 9 {Translate 287.672 45.2966 0}
+{10,3,0}  unit 8 {Translate 300.748 67.9449 0}
+{10,4,0}  unit 6 {Translate 313.824 90.5932 0}
+{10,5,0}  unit 6 {Translate 326.9 113.241 0}
+{10,6,0}  unit 6 {Translate 339.976 135.89 0}
+{10,7,0}  unit 1 {Translate 353.052 158.538 0}
+{10,8,0}  unit 4 {Translate 366.128 181.186 0}
+{10,9,0}  unit 4 {Translate 379.204 203.835 0}
+{10,10,0} unit 1 {Translate 392.28 226.483 0}
+{10,11,0} unit 6 {Translate 405.356 249.131 0}
+{10,12,0} unit 6 {Translate 418.432 271.78 0}
+{10,13,0} unit 6 {Translate 431.508 294.428 0}
+{10,14,0} unit 8 {Translate 444.584 317.076 0}
+{10,15,0} unit 9 {Translate 457.66 339.724 0}
+{10,16,0} unit 9 {Translate 470.736 362.373 0}
+{10,17,0} unit 9 {Translate 483.812 385.021 0}
+{10,18,0} unit 9 {Translate 496.888 407.669 0}
+{10,19,0} unit 9 {Translate 509.964 430.318 0}
+{10,20,0} unit 9 {Translate 523.04 452.966 0}
+{11,0,0}  unit 9 {Translate 287.672 0 0}
+{11,1,0}  unit 9 {Translate 300.748 22.6483 0}
+{11,2,0}  unit 9 {Translate 313.824 45.2966 0}
+{11,3,0}  unit 8 {Translate 326.9 67.9449 0}
+{11,4,0}  unit 6 {Translate 339.976 90.5932 0}
+{11,5,0}  unit 6 {Translate 353.052 113.241 0}
+{11,6,0}  unit 6 {Translate 366.128 135.89 0}
+{11,7,0}  unit 4 {Translate 379.204 158.538 0}
+{11,8,0}  unit 1 {Translate 392.28 181.186 0}
+{11,9,0}  unit 4 {Translate 405.356 203.835 0}
+{11,10,0} unit 6 {Translate 418.432 226.483 0}
+{11,11,0} unit 6 {Translate 431.508 249.131 0}
+{11,12,0} unit 6 {Translate 444.584 271.78 0}
+{11,13,0} unit 8 {Translate 457.66 294.428 0}
+{11,14,0} unit 9 {Translate 470.736 317.076 0}
+{11,15,0} unit 9 {Translate 483.812 339.724 0}
+{11,16,0} unit 9 {Translate 496.888 362.373 0}
+{11,17,0} unit 9 {Translate 509.964 385.021 0}
+{11,18,0} unit 9 {Translate 523.04 407.669 0}
+{11,19,0} unit 9 {Translate 536.116 430.318 0}
+{11,20,0} unit 9 {Translate 549.192 452.966 0}
+{12,0,0}  unit 9 {Translate 313.824 0 0}
+{12,1,0}  unit 9 {Translate 326.9 22.6483 0}
+{12,2,0}  unit 8 {Translate 339.976 45.2966 0}
+{12,3,0}  unit 8 {Translate 353.052 67.9449 0}
+{12,4,0}  unit 6 {Translate 366.128 90.5932 0}
+{12,5,0}  unit 6 {Translate 379.204 113.241 0}
+{12,6,0}  unit 6 {Translate 392.28 135.89 0}
+{12,7,0}  unit 6 {Translate 405.356 158.538 0}
+{12,8,0}  unit 6 {Translate 418.432 181.186 0}
+{12,9,0}  unit 6 {Translate 431.508 203.835 0}
+{12,10,0} unit 6 {Translate 444.584 226.483 0}
+{12,11,0} unit 6 {Translate 457.66 249.131 0}
+{12,12,0} unit 8 {Translate 470.736 271.78 0}
+{12,13,0} unit 8 {Translate 483.812 294.428 0}
+{12,14,0} unit 9 {Translate 496.888 317.076 0}
+{12,15,0} unit 9 {Translate 509.964 339.724 0}
+{12,16,0} unit 9 {Translate 523.04 362.373 0}
+{12,17,0} unit 9 {Translate 536.116 385.021 0}
+{12,18,0} unit 9 {Translate 549.192 407.669 0}
+{12,19,0} unit 9 {Translate 562.268 430.318 0}
+{12,20,0} unit 9 {Translate 575.344 452.966 0}
+{13,0,0}  unit 9 {Translate 339.976 0 0}
+{13,1,0}  unit 9 {Translate 353.052 22.6483 0}
+{13,2,0}  unit 8 {Translate 366.128 45.2966 0}
+{13,3,0}  unit 8 {Translate 379.204 67.9449 0}
+{13,4,0}  unit 6 {Translate 392.28 90.5932 0}
+{13,5,0}  unit 6 {Translate 405.356 113.241 0}
+{13,6,0}  unit 6 {Translate 418.432 135.89 0}
+{13,7,0}  unit 6 {Translate 431.508 158.538 0}
+{13,8,0}  unit 6 {Translate 444.584 181.186 0}
+{13,9,0}  unit 6 {Translate 457.66 203.835 0}
+{13,10,0} unit 6 {Translate 470.736 226.483 0}
+{13,11,0} unit 8 {Translate 483.812 249.131 0}
+{13,12,0} unit 8 {Translate 496.888 271.78 0}
+{13,13,0} unit 9 {Translate 509.964 294.428 0}
+{13,14,0} unit 9 {Translate 523.04 317.076 0}
+{13,15,0} unit 9 {Translate 536.116 339.724 0}
+{13,16,0} unit 9 {Translate 549.192 362.373 0}
+{13,17,0} unit 9 {Translate 562.268 385.021 0}
+{13,18,0} unit 9 {Translate 575.344 407.669 0}
+{13,19,0} unit 9 {Translate 588.42 430.318 0}
+{13,20,0} unit 9 {Translate 601.496 452.966 0}
+{14,0,0}  unit 9 {Translate 366.128 0 0}
+{14,1,0}  unit 9 {Translate 379.204 22.6483 0}
+{14,2,0}  unit 9 {Translate 392.28 45.2966 0}
+{14,3,0}  unit 8 {Translate 405.356 67.9449 0}
+{14,4,0}  unit 6 {Translate 418.432 90.5932 0}
+{14,5,0}  unit 6 {Translate 431.508 113.241 0}
+{14,6,0}  unit 6 {Translate 444.584 135.89 0}
+{14,7,0}  unit 6 {Translate 457.66 158.538 0}
+{14,8,0}  unit 6 {Translate 470.736 181.186 0}
+{14,9,0}  unit 6 {Translate 483.812 203.835 0}
+{14,10,0} unit 8 {Translate 496.888 226.483 0}
+{14,11,0} unit 9 {Translate 509.964 249.131 0}
+{14,12,0} unit 9 {Translate 523.04 271.78 0}
+{14,13,0} unit 9 {Translate 536.116 294.428 0}
+{14,14,0} unit 9 {Translate 549.192 317.076 0}
+{14,15,0} unit 9 {Translate 562.268 339.724 0}
+{14,16,0} unit 9 {Translate 575.344 362.373 0}
+{14,17,0} unit 9 {Translate 588.42 385.021 0}
+{14,18,0} unit 9 {Translate 601.496 407.669 0}
+{14,19,0} unit 9 {Translate 614.572 430.318 0}
+{14,20,0} unit 9 {Translate 627.648 452.966 0}
+{15,0,0}  unit 9 {Translate 392.28 0 0}
+{15,1,0}  unit 9 {Translate 405.356 22.6483 0}
+{15,2,0}  unit 9 {Translate 418.432 45.2966 0}
+{15,3,0}  unit 8 {Translate 431.508 67.9449 0}
+{15,4,0}  unit 8 {Translate 444.584 90.5932 0}
+{15,5,0}  unit 8 {Translate 457.66 113.241 0}
+{15,6,0}  unit 8 {Translate 470.736 135.89 0}
+{15,7,0}  unit 8 {Translate 483.812 158.538 0}
+{15,8,0}  unit 8 {Translate 496.888 181.186 0}
+{15,9,0}  unit 8 {Translate 509.964 203.835 0}
+{15,10,0} unit 9 {Translate 523.04 226.483 0}
+{15,11,0} unit 9 {Translate 536.116 249.131 0}
+{15,12,0} unit 9 {Translate 549.192 271.78 0}
+{15,13,0} unit 9 {Translate 562.268 294.428 0}
+{15,14,0} unit 9 {Translate 575.344 317.076 0}
+{15,15,0} unit 9 {Translate 588.42 339.724 0}
+{15,16,0} unit 9 {Translate 601.496 362.373 0}
+{15,17,0} unit 9 {Translate 614.572 385.021 0}
+{15,18,0} unit 9 {Translate 627.648 407.669 0}
+{15,19,0} unit 9 {Translate 640.724 430.318 0}
+{15,20,0} unit 9 {Translate 653.8 452.966 0}
+{16,0,0}  unit 9 {Translate 418.432 0 0}
+{16,1,0}  unit 9 {Translate 431.508 22.6483 0}
+{16,2,0}  unit 9 {Translate 444.584 45.2966 0}
+{16,3,0}  unit 9 {Translate 457.66 67.9449 0}
+{16,4,0}  unit 9 {Translate 470.736 90.5932 0}
+{16,5,0}  unit 9 {Translate 483.812 113.241 0}
+{16,6,0}  unit 8 {Translate 496.888 135.89 0}
+{16,7,0}  unit 8 {Translate 509.964 158.538 0}
+{16,8,0}  unit 9 {Translate 523.04 181.186 0}
+{16,9,0}  unit 9 {Translate 536.116 203.835 0}
+{16,10,0} unit 9 {Translate 549.192 226.483 0}
+{16,11,0} unit 9 {Translate 562.268 249.131 0}
+{16,12,0} unit 9 {Translate 575.344 271.78 0}
+{16,13,0} unit 9 {Translate 588.42 294.428 0}
+{16,14,0} unit 9 {Translate 601.496 317.076 0}
+{16,15,0} unit 9 {Translate 614.572 339.724 0}
+{16,16,0} unit 9 {Translate 627.648 362.373 0}
+{16,17,0} unit 9 {Translate 640.724 385.021 0}
+{16,18,0} unit 9 {Translate 653.8 407.669 0}
+{16,19,0} unit 9 {Translate 666.876 430.318 0}
+{16,20,0} unit 9 {Translate 679.952 452.966 0}
+{17,0,0}  unit 9 {Translate 444.584 0 0}
+{17,1,0}  unit 9 {Translate 457.66 22.6483 0}
+{17,2,0}  unit 9 {Translate 470.736 45.2966 0}
+{17,3,0}  unit 9 {Translate 483.812 67.9449 0}
+{17,4,0}  unit 9 {Translate 496.888 90.5932 0}
+{17,5,0}  unit 9 {Translate 509.964 113.241 0}
+{17,6,0}  unit 9 {Translate 523.04 135.89 0}
+{17,7,0}  unit 9 {Translate 536.116 158.538 0}
+{17,8,0}  unit 9 {Translate 549.192 181.186 0}
+{17,9,0}  unit 9 {Translate 562.268 203.835 0}
+{17,10,0} unit 9 {Translate 575.344 226.483 0}
+{17,11,0} unit 9 {Translate 588.42 249.131 0}
+{17,12,0} unit 9 {Translate 601.496 271.78 0}
+{17,13,0} unit 9 {Translate 614.572 294.428 0}
+{17,14,0} unit 9 {Translate 627.648 317.076 0}
+{17,15,0} unit 9 {Translate 640.724 339.724 0}
+{17,16,0} unit 9 {Translate 653.8 362.373 0}
+{17,17,0} unit 9 {Translate 666.876 385.021 0}
+{17,18,0} unit 9 {Translate 679.952 407.669 0}
+{17,19,0} unit 9 {Translate 693.028 430.318 0}
+{17,20,0} unit 9 {Translate 706.104 452.966 0}
+{18,0,0}  unit 9 {Translate 470.736 0 0}
+{18,1,0}  unit 9 {Translate 483.812 22.6483 0}
+{18,2,0}  unit 9 {Translate 496.888 45.2966 0}
+{18,3,0}  unit 9 {Translate 509.964 67.9449 0}
+{18,4,0}  unit 9 {Translate 523.04 90.5932 0}
+{18,5,0}  unit 9 {Translate 536.116 113.241 0}
+{18,6,0}  unit 9 {Translate 549.192 135.89 0}
+{18,7,0}  unit 9 {Translate 562.268 158.538 0}
+{18,8,0}  unit 9 {Translate 575.344 181.186 0}
+{18,9,0}  unit 9 {Translate 588.42 203.835 0}
+{18,10,0} unit 9 {Translate 601.496 226.483 0}
+{18,11,0} unit 9 {Translate 614.572 249.131 0}
+{18,12,0} unit 9 {Translate 627.648 271.78 0}
+{18,13,0} unit 9 {Translate 640.724 294.428 0}
+{18,14,0} unit 9 {Translate 653.8 317.076 0}
+{18,15,0} unit 9 {Translate 666.876 339.724 0}
+{18,16,0} unit 9 {Translate 679.952 362.373 0}
+{18,17,0} unit 9 {Translate 693.028 385.021 0}
+{18,18,0} unit 9 {Translate 706.104 407.669 0}
+{18,19,0} unit 9 {Translate 719.18 430.318 0}
+{18,20,0} unit 9 {Translate 732.256 452.966 0}
+{19,0,0}  unit 9 {Translate 496.888 0 0}
+{19,1,0}  unit 9 {Translate 509.964 22.6483 0}
+{19,2,0}  unit 9 {Translate 523.04 45.2966 0}
+{19,3,0}  unit 9 {Translate 536.116 67.9449 0}
+{19,4,0}  unit 9 {Translate 549.192 90.5932 0}
+{19,5,0}  unit 9 {Translate 562.268 113.241 0}
+{19,6,0}  unit 9 {Translate 575.344 135.89 0}
+{19,7,0}  unit 9 {Translate 588.42 158.538 0}
+{19,8,0}  unit 9 {Translate 601.496 181.186 0}
+{19,9,0}  unit 9 {Translate 614.572 203.835 0}
+{19,10,0} unit 9 {Translate 627.648 226.483 0}
+{19,11,0} unit 9 {Translate 640.724 249.131 0}
+{19,12,0} unit 9 {Translate 653.8 271.78 0}
+{19,13,0} unit 9 {Translate 666.876 294.428 0}
+{19,14,0} unit 9 {Translate 679.952 317.076 0}
+{19,15,0} unit 9 {Translate 693.028 339.724 0}
+{19,16,0} unit 9 {Translate 706.104 362.373 0}
+{19,17,0} unit 9 {Translate 719.18 385.021 0}
+{19,18,0} unit 9 {Translate 732.256 407.669 0}
+{19,19,0} unit 9 {Translate 745.332 430.318 0}
+{19,20,0} unit 9 {Translate 758.408 452.966 0}
+{20,0,0}  unit 9 {Translate 523.04 0 0}
+{20,1,0}  unit 9 {Translate 536.116 22.6483 0}
+{20,2,0}  unit 9 {Translate 549.192 45.2966 0}
+{20,3,0}  unit 9 {Translate 562.268 67.9449 0}
+{20,4,0}  unit 9 {Translate 575.344 90.5932 0}
+{20,5,0}  unit 9 {Translate 588.42 113.241 0}
+{20,6,0}  unit 9 {Translate 601.496 135.89 0}
+{20,7,0}  unit 9 {Translate 614.572 158.538 0}
+{20,8,0}  unit 9 {Translate 627.648 181.186 0}
+{20,9,0}  unit 9 {Translate 640.724 203.835 0}
+{20,10,0} unit 9 {Translate 653.8 226.483 0}
+{20,11,0} unit 9 {Translate 666.876 249.131 0}
+{20,12,0} unit 9 {Translate 679.952 271.78 0}
+{20,13,0} unit 9 {Translate 693.028 294.428 0}
+{20,14,0} unit 9 {Translate 706.104 317.076 0}
+{20,15,0} unit 9 {Translate 719.18 339.724 0}
+{20,16,0} unit 9 {Translate 732.256 362.373 0}
+{20,17,0} unit 9 {Translate 745.332 385.021 0}
+{20,18,0} unit 9 {Translate 758.408 407.669 0}
+{20,19,0} unit 9 {Translate 771.484 430.318 0}
+{20,20,0} unit 9 {Translate 784.56 452.966 0}
+========= =====================================================================
+
+************************************************
+"unit 9" (<inp>:128)
+************************************************
+:Type:         masked unit
+:# Cells:      2 (offset = 449)
+:# Surfaces:   8 (offset = 19)
+:Bounding box: ``{-13.076 -15.0989 0 to 13.076 15.0989 415}``
+
+======= = ==== ============================================================
+Cell    Z Name Surface logic
+======= = ==== ============================================================
+0         bnds * ~
+               (from ``<inp>:131``)
+1       M 9.1  *
+               (from ``<inp>:130``)
+======= = ==== ============================================================
+
+Cells with reentrant surface tracking: "bnds", "9.1"
+
+======= ======== ============================================================
+Surface Name     Description
+======= ======== ============================================================
+0                Plane: x=13.076
+        HEX_1.p0 (from ``<inp>:129``)
+1                Plane: n=(0.5 0.866025 0), d=13.076
+        HEX_1.p1 (from ``<inp>:129``)
+2                Plane: n=(0.5 -0.866025 0), d=-13.076
+        HEX_1.p2 (from ``<inp>:129``)
+3                Plane: x=-13.076
+        HEX_1.p3 (from ``<inp>:129``)
+4                Plane: n=(0.5 0.866025 0), d=-13.076
+        HEX_1.p4 (from ``<inp>:129``)
+5                Plane: n=(0.5 -0.866025 0), d=13.076
+        HEX_1.p5 (from ``<inp>:129``)
+6                Plane: z=0
+        HEX_1.mz (from ``<inp>:129``)
+7                Plane: z=415
+        HEX_1.pz (from ``<inp>:129``)
+======= ======== ============================================================
+
+==== ==========================================================================
+Cell Fill
+==== ==========================================================================
+bnds ---
+9.1  Material 2
+==== ==========================================================================
+
+************************************************
+"unit 8" (<inp>:120)
+************************************************
+:Type:         masked unit
+:# Cells:      3 (offset = 451)
+:# Surfaces:   9 (offset = 27)
+:Bounding box: ``{-13.076 -15.0989 0 to 13.076 15.0989 415}``
+
+======= = ==== ============================================================
+Cell    Z Name Surface logic
+======= = ==== ============================================================
+0         bnds * ~
+               (from ``<inp>:125``)
+1       A 8.1  0 ~ * &
+               (from ``<inp>:123``)
+2       M 8.2  0 ~ * & ~
+               (from ``<inp>:124``)
+======= = ==== ============================================================
+
+Cells with reentrant surface tracking: "bnds", "8.2"
+
+======= ========= ============================================================
+Surface Name      Description
+======= ========= ============================================================
+0                 Cyl z: r=12.5
+        CYL_1.coz (from ``<inp>:121``)
+1                 Plane: z=0
+        CYL_1.mz  (from ``<inp>:121``)
+        HEX_2.mz  (from ``<inp>:122``)
+2                 Plane: z=415
+        CYL_1.pz  (from ``<inp>:121``)
+        HEX_2.pz  (from ``<inp>:122``)
+3                 Plane: x=13.076
+        HEX_2.p0  (from ``<inp>:122``)
+4                 Plane: n=(0.5 0.866025 0), d=13.076
+        HEX_2.p1  (from ``<inp>:122``)
+5                 Plane: n=(0.5 -0.866025 0), d=-13.076
+        HEX_2.p2  (from ``<inp>:122``)
+6                 Plane: x=-13.076
+        HEX_2.p3  (from ``<inp>:122``)
+7                 Plane: n=(0.5 0.866025 0), d=-13.076
+        HEX_2.p4  (from ``<inp>:122``)
+8                 Plane: n=(0.5 -0.866025 0), d=13.076
+        HEX_2.p5  (from ``<inp>:122``)
+======= ========= ============================================================
+
+==== ==========================================================================
+Cell Fill
+==== ==========================================================================
+bnds ---
+8.1  array 3 {Translate -31.2 -18.0133 0}
+8.2  Material 2
+==== ==========================================================================
+
+************************************************
+"unit 6" (<inp>:103)
+************************************************
+:Type:         masked unit
+:# Cells:      3 (offset = 454)
+:# Surfaces:   9 (offset = 36)
+:Bounding box: ``{-13.076 -15.0989 0 to 13.076 15.0989 415}``
+
+======= = ==== ============================================================
+Cell    Z Name Surface logic
+======= = ==== ============================================================
+0         bnds * ~
+               (from ``<inp>:108``)
+1       A 6.1  0 ~ * &
+               (from ``<inp>:106``)
+2       M 6.2  0 ~ * & ~
+               (from ``<inp>:107``)
+======= = ==== ============================================================
+
+Cells with reentrant surface tracking: "bnds", "6.2"
+
+======= ========= ============================================================
+Surface Name      Description
+======= ========= ============================================================
+0                 Cyl z: r=12.5
+        CYL_1.coz (from ``<inp>:104``)
+1                 Plane: z=0
+        CYL_1.mz  (from ``<inp>:104``)
+        HEX_2.mz  (from ``<inp>:105``)
+2                 Plane: z=415
+        CYL_1.pz  (from ``<inp>:104``)
+        HEX_2.pz  (from ``<inp>:105``)
+3                 Plane: x=13.076
+        HEX_2.p0  (from ``<inp>:105``)
+4                 Plane: n=(0.5 0.866025 0), d=13.076
+        HEX_2.p1  (from ``<inp>:105``)
+5                 Plane: n=(0.5 -0.866025 0), d=-13.076
+        HEX_2.p2  (from ``<inp>:105``)
+6                 Plane: x=-13.076
+        HEX_2.p3  (from ``<inp>:105``)
+7                 Plane: n=(0.5 0.866025 0), d=-13.076
+        HEX_2.p4  (from ``<inp>:105``)
+8                 Plane: n=(0.5 -0.866025 0), d=13.076
+        HEX_2.p5  (from ``<inp>:105``)
+======= ========= ============================================================
+
+==== ==========================================================================
+Cell Fill
+==== ==========================================================================
+bnds ---
+6.1  array 2 {Translate -31.2 -18.0133 0}
+6.2  Material 2
+==== ==========================================================================
+
+************************************************
+"unit 4" (<inp>:86)
+************************************************
+:Type:         masked unit
+:# Cells:      3 (offset = 457)
+:# Surfaces:   9 (offset = 45)
+:Bounding box: ``{-13.076 -15.0989 0 to 13.076 15.0989 415}``
+
+======= = ==== ============================================================
+Cell    Z Name Surface logic
+======= = ==== ============================================================
+0         bnds * ~
+               (from ``<inp>:91``)
+1       A 4.1  0 ~ * &
+               (from ``<inp>:89``)
+2       M 4.2  0 ~ * & ~
+               (from ``<inp>:90``)
+======= = ==== ============================================================
+
+Cells with reentrant surface tracking: "bnds", "4.2"
+
+======= ========= ============================================================
+Surface Name      Description
+======= ========= ============================================================
+0                 Cyl z: r=12.5
+        CYL_1.coz (from ``<inp>:87``)
+1                 Plane: z=0
+        CYL_1.mz  (from ``<inp>:87``)
+        HEX_2.mz  (from ``<inp>:88``)
+2                 Plane: z=415
+        CYL_1.pz  (from ``<inp>:87``)
+        HEX_2.pz  (from ``<inp>:88``)
+3                 Plane: x=13.076
+        HEX_2.p0  (from ``<inp>:88``)
+4                 Plane: n=(0.5 0.866025 0), d=13.076
+        HEX_2.p1  (from ``<inp>:88``)
+5                 Plane: n=(0.5 -0.866025 0), d=-13.076
+        HEX_2.p2  (from ``<inp>:88``)
+6                 Plane: x=-13.076
+        HEX_2.p3  (from ``<inp>:88``)
+7                 Plane: n=(0.5 0.866025 0), d=-13.076
+        HEX_2.p4  (from ``<inp>:88``)
+8                 Plane: n=(0.5 -0.866025 0), d=13.076
+        HEX_2.p5  (from ``<inp>:88``)
+======= ========= ============================================================
+
+==== ==========================================================================
+Cell Fill
+==== ==========================================================================
+bnds ---
+4.1  array 1 {Translate -31.2 -18.0133 0}
+4.2  Material 2
+==== ==========================================================================
+
+************************************************
+"unit 1" (<inp>:61)
+************************************************
+:Type:         masked unit
+:# Cells:      5 (offset = 460)
+:# Surfaces:   11 (offset = 54)
+:Bounding box: ``{-13.076 -15.0989 0 to 13.076 15.0989 415}``
+
+======= = ==== ============================================================
+Cell    Z Name Surface logic
+======= = ==== ============================================================
+0         bnds * ~
+               (from ``<inp>:70``)
+1       M 1.1  0 ~ 1 & * &
+               (from ``<inp>:66``)
+2       M 1.2  0 ~ 1 & * & ~ 1 * & 3 ~ & &
+               (from ``<inp>:67``)
+3       M 1.3  1 ~ 3 ~ &
+               (from ``<inp>:68``)
+4       M 1.4  0 ~ 1 & * & ~ 1 * & 3 ~ & ~ & 1 ~ 3 ~ & ~ &
+               (from ``<inp>:69``)
+======= = ==== ============================================================
+
+Cells with reentrant surface tracking: "bnds", "1.2", "1.4"
+
+======= ========= ============================================================
+Surface Name      Description
+======= ========= ============================================================
+0                 Cyl z: r=7
+        CYL_1.coz (from ``<inp>:62``)
+1                 Plane: z=130
+        CYL_1.mz  (from ``<inp>:62``)
+        CYL_2.mz  (from ``<inp>:63``)
+        CYL_3.pz  (from ``<inp>:64``)
+2                 Plane: z=415
+        CYL_1.pz  (from ``<inp>:62``)
+        CYL_2.pz  (from ``<inp>:63``)
+        HEX_4.pz  (from ``<inp>:65``)
+3                 Cyl z: r=7.2
+        CYL_2.coz (from ``<inp>:63``)
+        CYL_3.coz (from ``<inp>:64``)
+4                 Plane: z=0
+        CYL_3.mz  (from ``<inp>:64``)
+        HEX_4.mz  (from ``<inp>:65``)
+5                 Plane: x=13.076
+        HEX_4.p0  (from ``<inp>:65``)
+6                 Plane: n=(0.5 0.866025 0), d=13.076
+        HEX_4.p1  (from ``<inp>:65``)
+7                 Plane: n=(0.5 -0.866025 0), d=-13.076
+        HEX_4.p2  (from ``<inp>:65``)
+8                 Plane: x=-13.076
+        HEX_4.p3  (from ``<inp>:65``)
+9                 Plane: n=(0.5 0.866025 0), d=-13.076
+        HEX_4.p4  (from ``<inp>:65``)
+10                Plane: n=(0.5 -0.866025 0), d=13.076
+        HEX_4.p5  (from ``<inp>:65``)
+======= ========= ============================================================
+
+==== ==========================================================================
+Cell Fill
+==== ==========================================================================
+bnds ---
+1.1  Material 3
+1.2  Material 0
+1.3  Material 1
+1.4  Material 2
+==== ==========================================================================
+
+************************************************
+"array 3" (<inp>:191)
+************************************************
+:Type:         hexagonal array
+:# Cells:      81 (offset = 465)
+:# Surfaces:   8 (offset = 65)
+:Bounding box: ``{-2.6 -3.00222 0 to 65 39.0289 415}``
+
+:Type: hexagonal array
+:Orientation: pointy_top
+:Apothem: 2.6
+:Dimensions: [9, 9, 1]
+:z: [0, 415]
+
+======= =======================================================================
+Cell    Fill
+======= =======================================================================
+{0,0,0} unit 3
+{0,1,0} unit 3 {Translate 2.6 4.50333 0}
+{0,2,0} unit 3 {Translate 5.2 9.00666 0}
+{0,3,0} unit 3 {Translate 7.8 13.51 0}
+{0,4,0} unit 3 {Translate 10.4 18.0133 0}
+{0,5,0} unit 3 {Translate 13 22.5167 0}
+{0,6,0} unit 3 {Translate 15.6 27.02 0}
+{0,7,0} unit 3 {Translate 18.2 31.5233 0}
+{0,8,0} unit 3 {Translate 20.8 36.0267 0}
+{1,0,0} unit 3 {Translate 5.2 0 0}
+{1,1,0} unit 3 {Translate 7.8 4.50333 0}
+{1,2,0} unit 3 {Translate 10.4 9.00666 0}
+{1,3,0} unit 3 {Translate 13 13.51 0}
+{1,4,0} unit 3 {Translate 15.6 18.0133 0}
+{1,5,0} unit 3 {Translate 18.2 22.5167 0}
+{1,6,0} unit 3 {Translate 20.8 27.02 0}
+{1,7,0} unit 3 {Translate 23.4 31.5233 0}
+{1,8,0} unit 3 {Translate 26 36.0267 0}
+{2,0,0} unit 3 {Translate 10.4 0 0}
+{2,1,0} unit 3 {Translate 13 4.50333 0}
+{2,2,0} unit 3 {Translate 15.6 9.00666 0}
+{2,3,0} unit 3 {Translate 18.2 13.51 0}
+{2,4,0} unit 7 {Translate 20.8 18.0133 0}
+{2,5,0} unit 7 {Translate 23.4 22.5167 0}
+{2,6,0} unit 7 {Translate 26 27.02 0}
+{2,7,0} unit 3 {Translate 28.6 31.5233 0}
+{2,8,0} unit 3 {Translate 31.2 36.0267 0}
+{3,0,0} unit 3 {Translate 15.6 0 0}
+{3,1,0} unit 3 {Translate 18.2 4.50333 0}
+{3,2,0} unit 3 {Translate 20.8 9.00666 0}
+{3,3,0} unit 7 {Translate 23.4 13.51 0}
+{3,4,0} unit 7 {Translate 26 18.0133 0}
+{3,5,0} unit 7 {Translate 28.6 22.5167 0}
+{3,6,0} unit 7 {Translate 31.2 27.02 0}
+{3,7,0} unit 3 {Translate 33.8 31.5233 0}
+{3,8,0} unit 3 {Translate 36.4 36.0267 0}
+{4,0,0} unit 3 {Translate 20.8 0 0}
+{4,1,0} unit 3 {Translate 23.4 4.50333 0}
+{4,2,0} unit 7 {Translate 26 9.00666 0}
+{4,3,0} unit 7 {Translate 28.6 13.51 0}
+{4,4,0} unit 7 {Translate 31.2 18.0133 0}
+{4,5,0} unit 7 {Translate 33.8 22.5167 0}
+{4,6,0} unit 7 {Translate 36.4 27.02 0}
+{4,7,0} unit 3 {Translate 39 31.5233 0}
+{4,8,0} unit 3 {Translate 41.6 36.0267 0}
+{5,0,0} unit 3 {Translate 26 0 0}
+{5,1,0} unit 3 {Translate 28.6 4.50333 0}
+{5,2,0} unit 7 {Translate 31.2 9.00666 0}
+{5,3,0} unit 7 {Translate 33.8 13.51 0}
+{5,4,0} unit 7 {Translate 36.4 18.0133 0}
+{5,5,0} unit 7 {Translate 39 22.5167 0}
+{5,6,0} unit 3 {Translate 41.6 27.02 0}
+{5,7,0} unit 3 {Translate 44.2 31.5233 0}
+{5,8,0} unit 3 {Translate 46.8 36.0267 0}
+{6,0,0} unit 3 {Translate 31.2 0 0}
+{6,1,0} unit 3 {Translate 33.8 4.50333 0}
+{6,2,0} unit 7 {Translate 36.4 9.00666 0}
+{6,3,0} unit 7 {Translate 39 13.51 0}
+{6,4,0} unit 7 {Translate 41.6 18.0133 0}
+{6,5,0} unit 3 {Translate 44.2 22.5167 0}
+{6,6,0} unit 3 {Translate 46.8 27.02 0}
+{6,7,0} unit 3 {Translate 49.4 31.5233 0}
+{6,8,0} unit 3 {Translate 52 36.0267 0}
+{7,0,0} unit 3 {Translate 36.4 0 0}
+{7,1,0} unit 3 {Translate 39 4.50333 0}
+{7,2,0} unit 3 {Translate 41.6 9.00666 0}
+{7,3,0} unit 3 {Translate 44.2 13.51 0}
+{7,4,0} unit 3 {Translate 46.8 18.0133 0}
+{7,5,0} unit 3 {Translate 49.4 22.5167 0}
+{7,6,0} unit 3 {Translate 52 27.02 0}
+{7,7,0} unit 3 {Translate 54.6 31.5233 0}
+{7,8,0} unit 3 {Translate 57.2 36.0267 0}
+{8,0,0} unit 3 {Translate 41.6 0 0}
+{8,1,0} unit 3 {Translate 44.2 4.50333 0}
+{8,2,0} unit 3 {Translate 46.8 9.00666 0}
+{8,3,0} unit 3 {Translate 49.4 13.51 0}
+{8,4,0} unit 3 {Translate 52 18.0133 0}
+{8,5,0} unit 3 {Translate 54.6 22.5167 0}
+{8,6,0} unit 3 {Translate 57.2 27.02 0}
+{8,7,0} unit 3 {Translate 59.8 31.5233 0}
+{8,8,0} unit 3 {Translate 62.4 36.0267 0}
+======= =======================================================================
+
+************************************************
+"array 2" (<inp>:173)
+************************************************
+:Type:         hexagonal array
+:# Cells:      81 (offset = 546)
+:# Surfaces:   8 (offset = 73)
+:Bounding box: ``{-2.6 -3.00222 0 to 65 39.0289 415}``
+
+:Type: hexagonal array
+:Orientation: pointy_top
+:Apothem: 2.6
+:Dimensions: [9, 9, 1]
+:z: [0, 415]
+
+======= =======================================================================
+Cell    Fill
+======= =======================================================================
+{0,0,0} unit 3
+{0,1,0} unit 3 {Translate 2.6 4.50333 0}
+{0,2,0} unit 3 {Translate 5.2 9.00666 0}
+{0,3,0} unit 3 {Translate 7.8 13.51 0}
+{0,4,0} unit 3 {Translate 10.4 18.0133 0}
+{0,5,0} unit 3 {Translate 13 22.5167 0}
+{0,6,0} unit 3 {Translate 15.6 27.02 0}
+{0,7,0} unit 3 {Translate 18.2 31.5233 0}
+{0,8,0} unit 3 {Translate 20.8 36.0267 0}
+{1,0,0} unit 3 {Translate 5.2 0 0}
+{1,1,0} unit 3 {Translate 7.8 4.50333 0}
+{1,2,0} unit 3 {Translate 10.4 9.00666 0}
+{1,3,0} unit 3 {Translate 13 13.51 0}
+{1,4,0} unit 3 {Translate 15.6 18.0133 0}
+{1,5,0} unit 3 {Translate 18.2 22.5167 0}
+{1,6,0} unit 3 {Translate 20.8 27.02 0}
+{1,7,0} unit 3 {Translate 23.4 31.5233 0}
+{1,8,0} unit 3 {Translate 26 36.0267 0}
+{2,0,0} unit 3 {Translate 10.4 0 0}
+{2,1,0} unit 3 {Translate 13 4.50333 0}
+{2,2,0} unit 3 {Translate 15.6 9.00666 0}
+{2,3,0} unit 3 {Translate 18.2 13.51 0}
+{2,4,0} unit 5 {Translate 20.8 18.0133 0}
+{2,5,0} unit 5 {Translate 23.4 22.5167 0}
+{2,6,0} unit 5 {Translate 26 27.02 0}
+{2,7,0} unit 3 {Translate 28.6 31.5233 0}
+{2,8,0} unit 3 {Translate 31.2 36.0267 0}
+{3,0,0} unit 3 {Translate 15.6 0 0}
+{3,1,0} unit 3 {Translate 18.2 4.50333 0}
+{3,2,0} unit 3 {Translate 20.8 9.00666 0}
+{3,3,0} unit 5 {Translate 23.4 13.51 0}
+{3,4,0} unit 5 {Translate 26 18.0133 0}
+{3,5,0} unit 5 {Translate 28.6 22.5167 0}
+{3,6,0} unit 5 {Translate 31.2 27.02 0}
+{3,7,0} unit 3 {Translate 33.8 31.5233 0}
+{3,8,0} unit 3 {Translate 36.4 36.0267 0}
+{4,0,0} unit 3 {Translate 20.8 0 0}
+{4,1,0} unit 3 {Translate 23.4 4.50333 0}
+{4,2,0} unit 5 {Translate 26 9.00666 0}
+{4,3,0} unit 5 {Translate 28.6 13.51 0}
+{4,4,0} unit 5 {Translate 31.2 18.0133 0}
+{4,5,0} unit 5 {Translate 33.8 22.5167 0}
+{4,6,0} unit 5 {Translate 36.4 27.02 0}
+{4,7,0} unit 3 {Translate 39 31.5233 0}
+{4,8,0} unit 3 {Translate 41.6 36.0267 0}
+{5,0,0} unit 3 {Translate 26 0 0}
+{5,1,0} unit 3 {Translate 28.6 4.50333 0}
+{5,2,0} unit 5 {Translate 31.2 9.00666 0}
+{5,3,0} unit 5 {Translate 33.8 13.51 0}
+{5,4,0} unit 5 {Translate 36.4 18.0133 0}
+{5,5,0} unit 5 {Translate 39 22.5167 0}
+{5,6,0} unit 3 {Translate 41.6 27.02 0}
+{5,7,0} unit 3 {Translate 44.2 31.5233 0}
+{5,8,0} unit 3 {Translate 46.8 36.0267 0}
+{6,0,0} unit 3 {Translate 31.2 0 0}
+{6,1,0} unit 3 {Translate 33.8 4.50333 0}
+{6,2,0} unit 5 {Translate 36.4 9.00666 0}
+{6,3,0} unit 5 {Translate 39 13.51 0}
+{6,4,0} unit 5 {Translate 41.6 18.0133 0}
+{6,5,0} unit 3 {Translate 44.2 22.5167 0}
+{6,6,0} unit 3 {Translate 46.8 27.02 0}
+{6,7,0} unit 3 {Translate 49.4 31.5233 0}
+{6,8,0} unit 3 {Translate 52 36.0267 0}
+{7,0,0} unit 3 {Translate 36.4 0 0}
+{7,1,0} unit 3 {Translate 39 4.50333 0}
+{7,2,0} unit 3 {Translate 41.6 9.00666 0}
+{7,3,0} unit 3 {Translate 44.2 13.51 0}
+{7,4,0} unit 3 {Translate 46.8 18.0133 0}
+{7,5,0} unit 3 {Translate 49.4 22.5167 0}
+{7,6,0} unit 3 {Translate 52 27.02 0}
+{7,7,0} unit 3 {Translate 54.6 31.5233 0}
+{7,8,0} unit 3 {Translate 57.2 36.0267 0}
+{8,0,0} unit 3 {Translate 41.6 0 0}
+{8,1,0} unit 3 {Translate 44.2 4.50333 0}
+{8,2,0} unit 3 {Translate 46.8 9.00666 0}
+{8,3,0} unit 3 {Translate 49.4 13.51 0}
+{8,4,0} unit 3 {Translate 52 18.0133 0}
+{8,5,0} unit 3 {Translate 54.6 22.5167 0}
+{8,6,0} unit 3 {Translate 57.2 27.02 0}
+{8,7,0} unit 3 {Translate 59.8 31.5233 0}
+{8,8,0} unit 3 {Translate 62.4 36.0267 0}
+======= =======================================================================
+
+************************************************
+"array 1" (<inp>:155)
+************************************************
+:Type:         hexagonal array
+:# Cells:      81 (offset = 627)
+:# Surfaces:   8 (offset = 81)
+:Bounding box: ``{-2.6 -3.00222 0 to 65 39.0289 415}``
+
+:Type: hexagonal array
+:Orientation: pointy_top
+:Apothem: 2.6
+:Dimensions: [9, 9, 1]
+:z: [0, 415]
+
+======= =======================================================================
+Cell    Fill
+======= =======================================================================
+{0,0,0} unit 3
+{0,1,0} unit 3 {Translate 2.6 4.50333 0}
+{0,2,0} unit 3 {Translate 5.2 9.00666 0}
+{0,3,0} unit 3 {Translate 7.8 13.51 0}
+{0,4,0} unit 3 {Translate 10.4 18.0133 0}
+{0,5,0} unit 3 {Translate 13 22.5167 0}
+{0,6,0} unit 3 {Translate 15.6 27.02 0}
+{0,7,0} unit 3 {Translate 18.2 31.5233 0}
+{0,8,0} unit 3 {Translate 20.8 36.0267 0}
+{1,0,0} unit 3 {Translate 5.2 0 0}
+{1,1,0} unit 3 {Translate 7.8 4.50333 0}
+{1,2,0} unit 3 {Translate 10.4 9.00666 0}
+{1,3,0} unit 3 {Translate 13 13.51 0}
+{1,4,0} unit 3 {Translate 15.6 18.0133 0}
+{1,5,0} unit 3 {Translate 18.2 22.5167 0}
+{1,6,0} unit 3 {Translate 20.8 27.02 0}
+{1,7,0} unit 3 {Translate 23.4 31.5233 0}
+{1,8,0} unit 3 {Translate 26 36.0267 0}
+{2,0,0} unit 3 {Translate 10.4 0 0}
+{2,1,0} unit 3 {Translate 13 4.50333 0}
+{2,2,0} unit 3 {Translate 15.6 9.00666 0}
+{2,3,0} unit 3 {Translate 18.2 13.51 0}
+{2,4,0} unit 2 {Translate 20.8 18.0133 0}
+{2,5,0} unit 2 {Translate 23.4 22.5167 0}
+{2,6,0} unit 2 {Translate 26 27.02 0}
+{2,7,0} unit 3 {Translate 28.6 31.5233 0}
+{2,8,0} unit 3 {Translate 31.2 36.0267 0}
+{3,0,0} unit 3 {Translate 15.6 0 0}
+{3,1,0} unit 3 {Translate 18.2 4.50333 0}
+{3,2,0} unit 3 {Translate 20.8 9.00666 0}
+{3,3,0} unit 2 {Translate 23.4 13.51 0}
+{3,4,0} unit 2 {Translate 26 18.0133 0}
+{3,5,0} unit 2 {Translate 28.6 22.5167 0}
+{3,6,0} unit 2 {Translate 31.2 27.02 0}
+{3,7,0} unit 3 {Translate 33.8 31.5233 0}
+{3,8,0} unit 3 {Translate 36.4 36.0267 0}
+{4,0,0} unit 3 {Translate 20.8 0 0}
+{4,1,0} unit 3 {Translate 23.4 4.50333 0}
+{4,2,0} unit 2 {Translate 26 9.00666 0}
+{4,3,0} unit 2 {Translate 28.6 13.51 0}
+{4,4,0} unit 2 {Translate 31.2 18.0133 0}
+{4,5,0} unit 2 {Translate 33.8 22.5167 0}
+{4,6,0} unit 2 {Translate 36.4 27.02 0}
+{4,7,0} unit 3 {Translate 39 31.5233 0}
+{4,8,0} unit 3 {Translate 41.6 36.0267 0}
+{5,0,0} unit 3 {Translate 26 0 0}
+{5,1,0} unit 3 {Translate 28.6 4.50333 0}
+{5,2,0} unit 2 {Translate 31.2 9.00666 0}
+{5,3,0} unit 2 {Translate 33.8 13.51 0}
+{5,4,0} unit 2 {Translate 36.4 18.0133 0}
+{5,5,0} unit 2 {Translate 39 22.5167 0}
+{5,6,0} unit 3 {Translate 41.6 27.02 0}
+{5,7,0} unit 3 {Translate 44.2 31.5233 0}
+{5,8,0} unit 3 {Translate 46.8 36.0267 0}
+{6,0,0} unit 3 {Translate 31.2 0 0}
+{6,1,0} unit 3 {Translate 33.8 4.50333 0}
+{6,2,0} unit 2 {Translate 36.4 9.00666 0}
+{6,3,0} unit 2 {Translate 39 13.51 0}
+{6,4,0} unit 2 {Translate 41.6 18.0133 0}
+{6,5,0} unit 3 {Translate 44.2 22.5167 0}
+{6,6,0} unit 3 {Translate 46.8 27.02 0}
+{6,7,0} unit 3 {Translate 49.4 31.5233 0}
+{6,8,0} unit 3 {Translate 52 36.0267 0}
+{7,0,0} unit 3 {Translate 36.4 0 0}
+{7,1,0} unit 3 {Translate 39 4.50333 0}
+{7,2,0} unit 3 {Translate 41.6 9.00666 0}
+{7,3,0} unit 3 {Translate 44.2 13.51 0}
+{7,4,0} unit 3 {Translate 46.8 18.0133 0}
+{7,5,0} unit 3 {Translate 49.4 22.5167 0}
+{7,6,0} unit 3 {Translate 52 27.02 0}
+{7,7,0} unit 3 {Translate 54.6 31.5233 0}
+{7,8,0} unit 3 {Translate 57.2 36.0267 0}
+{8,0,0} unit 3 {Translate 41.6 0 0}
+{8,1,0} unit 3 {Translate 44.2 4.50333 0}
+{8,2,0} unit 3 {Translate 46.8 9.00666 0}
+{8,3,0} unit 3 {Translate 49.4 13.51 0}
+{8,4,0} unit 3 {Translate 52 18.0133 0}
+{8,5,0} unit 3 {Translate 54.6 22.5167 0}
+{8,6,0} unit 3 {Translate 57.2 27.02 0}
+{8,7,0} unit 3 {Translate 59.8 31.5233 0}
+{8,8,0} unit 3 {Translate 62.4 36.0267 0}
+======= =======================================================================
+
+************************************************
+"unit 3" (<inp>:81)
+************************************************
+:Type:         masked unit
+:# Cells:      2 (offset = 708)
+:# Surfaces:   8 (offset = 89)
+:Bounding box: ``{-2.6 -3.00222 0 to 2.6 3.00222 415}``
+
+======= = ==== ============================================================
+Cell    Z Name Surface logic
+======= = ==== ============================================================
+0         bnds * ~
+               (from ``<inp>:84``)
+1       M 3.1  *
+               (from ``<inp>:83``)
+======= = ==== ============================================================
+
+Cells with reentrant surface tracking: "bnds", "3.1"
+
+======= ======== ============================================================
+Surface Name     Description
+======= ======== ============================================================
+0                Plane: x=2.6
+        HEX_1.p0 (from ``<inp>:82``)
+1                Plane: n=(0.5 0.866025 0), d=2.6
+        HEX_1.p1 (from ``<inp>:82``)
+2                Plane: n=(0.5 -0.866025 0), d=-2.6
+        HEX_1.p2 (from ``<inp>:82``)
+3                Plane: x=-2.6
+        HEX_1.p3 (from ``<inp>:82``)
+4                Plane: n=(0.5 0.866025 0), d=-2.6
+        HEX_1.p4 (from ``<inp>:82``)
+5                Plane: n=(0.5 -0.866025 0), d=2.6
+        HEX_1.p5 (from ``<inp>:82``)
+6                Plane: z=0
+        HEX_1.mz (from ``<inp>:82``)
+7                Plane: z=415
+        HEX_1.pz (from ``<inp>:82``)
+======= ======== ============================================================
+
+==== ==========================================================================
+Cell Fill
+==== ==========================================================================
+bnds ---
+3.1  Material 2
+==== ==========================================================================
+
+************************************************
+"unit 7" (<inp>:112)
+************************************************
+:Type:         masked unit
+:# Cells:      3 (offset = 710)
+:# Surfaces:   9 (offset = 97)
+:Bounding box: ``{-2.6 -3.00222 0 to 2.6 3.00222 415}``
+
+======= = ==== ============================================================
+Cell    Z Name Surface logic
+======= = ==== ============================================================
+0         bnds * ~
+               (from ``<inp>:117``)
+1       M 7.1  0 ~ * &
+               (from ``<inp>:115``)
+2       M 7.2  0 ~ * & ~
+               (from ``<inp>:116``)
+======= = ==== ============================================================
+
+Cells with reentrant surface tracking: "bnds", "7.2"
+
+======= ========= ============================================================
+Surface Name      Description
+======= ========= ============================================================
+0                 Cyl z: r=1.3485
+        CYL_1.coz (from ``<inp>:113``)
+1                 Plane: z=0
+        CYL_1.mz  (from ``<inp>:113``)
+        HEX_2.mz  (from ``<inp>:114``)
+2                 Plane: z=415
+        CYL_1.pz  (from ``<inp>:113``)
+        HEX_2.pz  (from ``<inp>:114``)
+3                 Plane: x=2.6
+        HEX_2.p0  (from ``<inp>:114``)
+4                 Plane: n=(0.5 0.866025 0), d=2.6
+        HEX_2.p1  (from ``<inp>:114``)
+5                 Plane: n=(0.5 -0.866025 0), d=-2.6
+        HEX_2.p2  (from ``<inp>:114``)
+6                 Plane: x=-2.6
+        HEX_2.p3  (from ``<inp>:114``)
+7                 Plane: n=(0.5 0.866025 0), d=-2.6
+        HEX_2.p4  (from ``<inp>:114``)
+8                 Plane: n=(0.5 -0.866025 0), d=2.6
+        HEX_2.p5  (from ``<inp>:114``)
+======= ========= ============================================================
+
+==== ==========================================================================
+Cell Fill
+==== ==========================================================================
+bnds ---
+7.1  Material 1
+7.2  Material 2
+==== ==========================================================================
+
+************************************************
+"unit 5" (<inp>:95)
+************************************************
+:Type:         masked unit
+:# Cells:      3 (offset = 713)
+:# Surfaces:   9 (offset = 106)
+:Bounding box: ``{-2.6 -3.00222 0 to 2.6 3.00222 415}``
+
+======= = ==== ============================================================
+Cell    Z Name Surface logic
+======= = ==== ============================================================
+0         bnds * ~
+               (from ``<inp>:100``)
+1       M 5.1  0 ~ * &
+               (from ``<inp>:98``)
+2       M 5.2  0 ~ * & ~
+               (from ``<inp>:99``)
+======= = ==== ============================================================
+
+Cells with reentrant surface tracking: "bnds", "5.2"
+
+======= ========= ============================================================
+Surface Name      Description
+======= ========= ============================================================
+0                 Cyl z: r=1.2197
+        CYL_1.coz (from ``<inp>:96``)
+1                 Plane: z=0
+        CYL_1.mz  (from ``<inp>:96``)
+        HEX_2.mz  (from ``<inp>:97``)
+2                 Plane: z=415
+        CYL_1.pz  (from ``<inp>:96``)
+        HEX_2.pz  (from ``<inp>:97``)
+3                 Plane: x=2.6
+        HEX_2.p0  (from ``<inp>:97``)
+4                 Plane: n=(0.5 0.866025 0), d=2.6
+        HEX_2.p1  (from ``<inp>:97``)
+5                 Plane: n=(0.5 -0.866025 0), d=-2.6
+        HEX_2.p2  (from ``<inp>:97``)
+6                 Plane: x=-2.6
+        HEX_2.p3  (from ``<inp>:97``)
+7                 Plane: n=(0.5 0.866025 0), d=-2.6
+        HEX_2.p4  (from ``<inp>:97``)
+8                 Plane: n=(0.5 -0.866025 0), d=2.6
+        HEX_2.p5  (from ``<inp>:97``)
+======= ========= ============================================================
+
+==== ==========================================================================
+Cell Fill
+==== ==========================================================================
+bnds ---
+5.1  Material 1
+5.2  Material 2
+==== ==========================================================================
+
+************************************************
+"unit 2" (<inp>:74)
+************************************************
+:Type:         masked unit
+:# Cells:      3 (offset = 716)
+:# Surfaces:   9 (offset = 115)
+:Bounding box: ``{-2.6 -3.00222 0 to 2.6 3.00222 415}``
+
+======= = ==== ============================================================
+Cell    Z Name Surface logic
+======= = ==== ============================================================
+0         bnds * ~
+               (from ``<inp>:79``)
+1       M 2.1  0 ~ * &
+               (from ``<inp>:77``)
+2       M 2.2  0 ~ * & ~
+               (from ``<inp>:78``)
+======= = ==== ============================================================
+
+Cells with reentrant surface tracking: "bnds", "2.2"
+
+======= ========= ============================================================
+Surface Name      Description
+======= ========= ============================================================
+0                 Cyl z: r=1.157
+        CYL_1.coz (from ``<inp>:75``)
+1                 Plane: z=0
+        CYL_1.mz  (from ``<inp>:75``)
+        HEX_2.mz  (from ``<inp>:76``)
+2                 Plane: z=415
+        CYL_1.pz  (from ``<inp>:75``)
+        HEX_2.pz  (from ``<inp>:76``)
+3                 Plane: x=2.6
+        HEX_2.p0  (from ``<inp>:76``)
+4                 Plane: n=(0.5 0.866025 0), d=2.6
+        HEX_2.p1  (from ``<inp>:76``)
+5                 Plane: n=(0.5 -0.866025 0), d=-2.6
+        HEX_2.p2  (from ``<inp>:76``)
+6                 Plane: x=-2.6
+        HEX_2.p3  (from ``<inp>:76``)
+7                 Plane: n=(0.5 0.866025 0), d=-2.6
+        HEX_2.p4  (from ``<inp>:76``)
+8                 Plane: n=(0.5 -0.866025 0), d=2.6
+        HEX_2.p5  (from ``<inp>:76``)
+======= ========= ============================================================
+
+==== ==========================================================================
+Cell Fill
+==== ==========================================================================
+bnds ---
+2.1  Material 1
+2.2  Material 2
+==== ==========================================================================
+
+
+============================================================================================================================
+ Volumes for those units utilized in this problem
+============================================================================================================================
+
+                     volumes not specified in the input were set to -1.0
+
+                                         geometry
+                         unit     uses    region     mixture        total region volume (cm**3)
+
+                           1         6       1           3          2.63224e+05 +/- 1.69649e+01
+                                             2           2          1.52561e+04 +/- 2.21206e+01
+                                             3           1          1.27026e+05 +/- 7.12301e+00
+                                             4           4          1.06930e+06 +/- 3.83923e+01
+
+                           2       247       1           1          4.31007e+05 +/- 4.98727e+01
+                                             2           4          1.91082e+06 +/- 8.18208e+01
+
+                           3      8246       1           4          3.13517e+06 +/- 2.05601e+02
+
+                           4        13       2           4          5.47157e+05 +/- 6.38952e+01
+
+                           5      1368       1           1          2.65359e+06 +/- 1.25528e+02
+                                             2           4          1.03164e+07 +/- 1.65631e+02
+
+                           6        72       2           4          3.03070e+06 +/- 1.26455e+02
+
+                           7       912       1           1          2.16241e+06 +/- 1.24318e+02
+                                             2           4          6.48432e+06 +/- 1.58915e+02
+
+                           8        48       2           4          2.02029e+06 +/- 9.17110e+01
+
+                           9       302       1           4          1.28991e+07 +/- 8.24274e+01
+
+                          10         1       2           2          2.50983e+06 +/- 5.28372e+01
+                                             3           1          9.16073e+06 +/- 8.50871e+01
+                                             4           2          4.65668e+06 +/- 1.03699e+02
+                                             5           2          1.79189e+06 +/- 1.73774e+00
+                                             6           1          2.98648e+06 +/- 2.89622e+00
+                                             7           1          2.98648e+06 +/- 2.89622e+00
+
+
+
+                             mixture       total mixture volume (cm**3)           total mixture mass (gm)
+
+                                 1         2.05077e+07 +/- 8.34119e+01             4.20401e+07 +/- 1.70991e+02
+                                 2         8.97365e+06 +/- 7.97654e+01             7.97758e+07 +/- 7.09114e+02
+                                 3         2.63224e+05 +/- 1.69649e+01             2.07974e+06 +/- 1.34040e+02
+                                 4         4.14132e+07 +/- 1.34484e+02             9.51740e+07 +/- 3.09066e+02
+                                          -------------                           -------------
+                                           7.11578e+07                             2.19070e+08
+
+ The maximum order of error associated with the calculated volumes is    0.1450 percent.
+
+
+
+============================================================================================================================
+ Starting Source Distribution
+============================================================================================================================
+
+Starting source type 0 was used for the initial neutron distribution.
+
+Neutrons were started with a flat distribution in a cuboid defined by:
+
+         xmin = -215.000000 xmax = 215.000000 ymin = -215.000000 ymax = 215.000000 zmin = -30.000000 zmax = 460.000000
+
+
+***Warning: This problem will not be run because parm=check was entered in the analytical sequence specification.
+
+    SCALE is finished on Sat Jul  1 23:24:05 2023.
+-------------------------- Summary --------------------------
+csas6-shift finished. used 110.11 seconds.
+SCALE driver required a maximum of 47.35 MiB of RAM.
+------------------------ End Summary ------------------------
+
+_vol000000000000000000 copied to /home/o/git/IMSR/SCALE IMSR Model/volcount/volcount-IMSRRev6.000000000000000000.volumes.
