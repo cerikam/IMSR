@@ -95,6 +95,6 @@ def get_MTiHM(mixing_table):
 if __name__ == '__main__':
     filename = 'IMSRRev6.out'
     mixing_table = parse_mixing_table(filename)
-    print(mixing_table)
+    print('mixing_table = ', mixing_table)
     mtihm = get_MTiHM(mixing_table)
-    print(mtihm)
+    print('mtihm = ', mtihm)
