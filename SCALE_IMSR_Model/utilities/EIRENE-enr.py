@@ -11,34 +11,38 @@ import salts
 import os
 import numpy as np
 
-def tempK(tempC:float) -> float:
+
+def tempK(tempC: float) -> float:
     return tempC + 273.15
-def tempC(tempK:float) -> float:
+
+
+def tempC(tempK: float) -> float:
     return tempK - 273.15
 
 
-def saltmix(mU:float=5) -> str:
-    '''Calculates salt mixture, assuming the MSRR salt is a melt of two salts,
+def saltmix(mU: float = 5) -> str:
+    """Calculates salt mixture, assuming the MSRR salt is a melt of two salts,
      UF4 salt and a 66.6% LiF 33.3%BeF2 eutectic FLiBe.
     input: UF4 mol%
-    output: salt name string'''
+    output: salt name string"""
 
-    mLi:float = (100.0 - mU) * 2.0/3.0
-    mBe:float = mLi / 2.0
+    mLi: float = (100.0 - mU) * 2.0 / 3.0
+    mBe: float = mLi / 2.0
     mysalt = f'{mLi:5.3f}%LiF + {mBe:5.3f}%BeF2 + {mU:5.3f}%UF4'
     if True:
-        print ("Salt: ", mysalt)
-        print ("Molar percent sum: ", mBe+mLi+mU)
+        print("Salt: ", mysalt)
+        print("Molar percent sum: ", mBe + mLi + mU)
     return mysalt
+
 
 #
 # main
 #
 
-UF4molpct = 5.0     # UF4 mol % in FLiBe-U
+UF4molpct = 5.0  # UF4 mol % in FLiBe-U
 
 for enrpct in np.linspace(2.7, 2.9, 11):
-#np.linspace(2.2, 2.4, 11):
+    # np.linspace(2.2, 2.4, 11):
     enrpath = f'enr_{enrpct:5.03f}'
     if not os.path.isdir(enrpath):
         os.mkdir(enrpath)
@@ -346,11 +350,10 @@ end data
 end
 '''
 
-    fout = open("EIRENE.inp","w")   # Dump deck into file
+    fout = open("EIRENE.inp", "w")  # Dump deck into file
     fout.write(keno_deck)
     fout.close()
 
-    os.system('qsub ../../runEIRENE-Scale.sh') # Submit job
+    os.system('qsub ../../runEIRENE-Scale.sh')  # Submit job
 
     os.chdir('..')
-

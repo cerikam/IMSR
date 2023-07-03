@@ -1,8 +1,7 @@
 #!/bin/env python3
 
-
 """ Example Integral REactor for Nuclear Education (EIRENE)
-Script to calculate the Integral Temprature Coefficeint of reactivity (ITC) of EIRENE.
+Script to calculate the Integral Temperature Coefficient of reactivity (ITC) of EIRENE.
 Geometrical and density changes of moderator and steel are ignored.
 Ondrej Chvala <ochvala@utk.edu>
 MIT license
@@ -12,32 +11,36 @@ import salts
 import os
 import numpy as np
 
-def tempK(tempC:float) -> float:
+
+def tempK(tempC: float) -> float:
     return tempC + 273.15
-def tempC(tempK:float) -> float:
+
+
+def tempC(tempK: float) -> float:
     return tempK - 273.15
 
 
-def saltmix(mU:float=5) -> str:
+def saltmix(mU: float = 5) -> str:
     '''Calculates salt mixture, assuming the MSRR salt is a melt of two salts,
      UF4 salt and a 66.6% LiF 33.3%BeF2 eutectic FLiBe.
     input: UF4 mol%
     output: salt name string'''
 
-    mLi:float = (100.0 - mU) * 2.0/3.0
-    mBe:float = mLi / 2.0
+    mLi: float = (100.0 - mU) * 2.0 / 3.0
+    mBe: float = mLi / 2.0
     mysalt = f'{mLi:5.3f}%LiF + {mBe:5.3f}%BeF2 + {mU:5.3f}%UF4'
     if True:
-        print ("Salt: ", mysalt)
-        print ("Molar percent sum: ", mBe+mLi+mU)
+        print("Salt: ", mysalt)
+        print("Molar percent sum: ", mBe + mLi + mU)
     return mysalt
+
 
 #
 # main
 #
 
-UF4molpct = 5.0     # UF4 mol % in FLiBe-U
-Uenrpct   = 2.78    # Uranium enrichment %
+UF4molpct = 5.0  # UF4 mol % in FLiBe-U
+Uenrpct = 2.78  # Uranium enrichment %
 Uenrichment = Uenrpct / 100.0
 
 for core_tempC in np.linspace(600, 700, 11):
@@ -348,11 +351,10 @@ end data
 end
 '''
 
-    fout = open("EIRENE.inp","w")   # Dump deck into file
+    fout = open("EIRENE.inp", "w")  # Dump deck into file
     fout.write(keno_deck)
     fout.close()
 
-    os.system('qsub ../../runEIRENE-Scale.sh') # Submit job
+    os.system('qsub ../../runEIRENE-Scale.sh')  # Submit job
 
     os.chdir('..')
-

@@ -6,7 +6,9 @@ Ondrej Chvala <ochvala@utexas.edu>
 """
 
 import re
-debug:int = 0
+
+debug: int = 0
+
 
 def parse_mixing_table(filename):
     """Parses input file and extracts mixing table, and total volume and mass table"""
