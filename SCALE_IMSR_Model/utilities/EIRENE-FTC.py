@@ -37,20 +37,20 @@ def saltmix(mU:float=5) -> str:
 
 UF4molpct = 5.0     # UF4 mol % in FLiBe-U
 Uenrpct   = 2.29    # Uranium enrichment %
+Uenrichment = Uenrpct / 100.0
 
-for salt_tempC in np.linspace(600, 700, 11)
+for salt_tempC in np.linspace(600, 700, 11):
     deckpath = f'FTC_{salt_tempC:5.01f}'
     if not os.path.isdir(deckpath):
         os.mkdir(deckpath)
     os.chdir(deckpath)
 
-    Uenrichment = enrpct / 100.0
     s = salts.Salt(saltmix(UF4molpct), Uenrichment)
     T = tempK(salt_tempC)
     scale_fuel = s.scale_mat(T, T, 1, 1)
 
     keno_deck = f'''=csas6 parm=(   )
-EIRENE SCALE/CSAS model, UF4 mol% = {UF4molpct}, U enrichment% = {enrpct}, fuel salt {T} K
+EIRENE SCALE/CSAS model, UF4 mol% = {UF4molpct}, U enrichment% = {Uenrpct}, fuel salt {T} K
 ce_v7.1
 
 read comp
