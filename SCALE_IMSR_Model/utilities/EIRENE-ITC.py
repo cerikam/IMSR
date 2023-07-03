@@ -21,10 +21,10 @@ def tempC(tempK: float) -> float:
 
 
 def saltmix(mU: float = 5) -> str:
-    '''Calculates salt mixture, assuming the MSRR salt is a melt of two salts,
+    """Calculates salt mixture, assuming the MSRR salt is a melt of two salts,
      UF4 salt and a 66.6% LiF 33.3%BeF2 eutectic FLiBe.
     input: UF4 mol%
-    output: salt name string'''
+    output: salt name string"""
 
     mLi: float = (100.0 - mU) * 2.0 / 3.0
     mBe: float = mLi / 2.0
