@@ -1,16 +1,16 @@
-SCALE Job started on Sun 2023-07-02 03:32:39
-With Host name owl
-working directory /tmp/scale.o.218476
-and process id 218476.
-Input file named /home/o/git/IMSR/SCALE_IMSR_Model/01-vol_mass_count/EIRENE.inp
-and output file named /home/o/git/IMSR/SCALE_IMSR_Model/01-vol_mass_count/EIRENE.out
+SCALE Job started on Mon 2023-07-03 01:26:04
+With Host name c0209
+working directory /tmp/scale.ondrejch.3941708
+and process id 3941708.
+Input file named /home/ondrejch/git/IMSR/SCALE_IMSR_Model/01-vol_mass_count/EIRENE.inp
+and output file named /home/ondrejch/git/IMSR/SCALE_IMSR_Model/01-vol_mass_count/EIRENE.out
 ----------------------------------------------------------
->>> Loading SCALE Standard Composition Library from /opt/scale6.3.0_data/scale.rev40.sclib
-*** Adjusted number of batches to 36 to be divisible by the number of nodes (36)
-Calculating volume batches 1-36 of 36
+>>> Loading SCALE Standard Composition Library from /opt/scale6.3_data/scale.rev40.sclib
+*** Adjusted number of batches to 64 to be divisible by the number of nodes (64)
+Calculating volume batches 1-64 of 64
 Tracing 50013184 rays per core along the Z axis
-[owl:218531] 35 more processes have sent help message help-mpi-btl-base.txt / btl:no-nics
-[owl:218531] Set MCA parameter "orte_base_help_aggregate" to 0 to see all help / error messages
+[c0209:3941728] 63 more processes have sent help message help-mpi-btl-base.txt / btl:no-nics
+[c0209:3941728] Set MCA parameter "orte_base_help_aggregate" to 0 to see all help / error messages
 Reinitializing LFG control, ignoring new seed 2272013 (actual seed 112358) and resetting stream ID
 *** Disabling parallel HDF5 calls
 ::: Building model
@@ -18,7 +18,7 @@ Reinitializing LFG control, ignoring new seed 2272013 (actual seed 112358) and r
 >>> Splitting compound 6000 into at% {6012: 0.9893, 6013: 0.0107}
 >>> Creating default boundary mesh from (-215 -215 -30) to (215 215 460) for ORANGE geometry
 ::: Building physics 'physics_ce_mc'
->>> Loading CE library /opt/scale6.3.1-mpi/data/ce_v7.1_endf.xml
+>>> Loading CE library /opt/scale6.3_data/ce_v7.1_endf.xml
 Loading      nuclide       li-6 @ 900K
 Loading      nuclide       li-6 @ 1200K
 Broadening   nuclide       li-6 @ 923.15K
@@ -156,1097 +156,1839 @@ Building source 'cuboid_fission'
 
 
 ***Warning: This problem will not be run because parm=check was entered in the analytical sequence specification.
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-thread 0HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
 thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
-    major: Invalid arguments to routine
-    minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
-    major: Invalid arguments to routine
-    minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
-    major: Invalid arguments to routine
-    minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
-    major: Invalid arguments to routine
-    minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
-    major: Invalid arguments to routine
-    minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
-    major: Invalid arguments to routine
-    minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
-    major: Invalid arguments to routine
-    minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
-    major: Invalid arguments to routine
-    minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
-    major: Invalid arguments to routine
-    minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
-    major: Invalid arguments to routine
-    minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
-    major: Invalid arguments to routine
-    minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
-    major: Invalid arguments to routine
-    minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
-    major: Invalid arguments to routine
-    minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
-    major: Invalid arguments to routine
-    minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
-    major: Invalid arguments to routine
-    minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
-    major: Invalid arguments to routine
-    minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
-    major: Invalid arguments to routine
-    minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
-    major: Invalid arguments to routine
-    minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
-    major: Invalid arguments to routine
-    minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2)   #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
 thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
-    major: Invalid arguments to routine
-    minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
-    major: Invalid arguments to routine
-    minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
 thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
 :
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
 :
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5G.c line 893 in H5Gclose(): decrementing group ID failed
-    major: Symbol table
-    minor: Unable to decrement reference count
-  #001: H5Iint.c line 1155 in H5I_dec_app_ref(): can't decrement ID ref count
-    major: Object ID
-    minor: Unable to decrement reference count
-  #002: H5Iint.c line 1107 in H5I__dec_app_ref(): can't decrement ID ref count
-    major: Object ID
-    minor: Unable to decrement reference count
-  #003: H5Iint.c line 1011 in H5I__dec_ref(): can't locate ID
-    major: Object ID
-    minor: Unable to find ID information (already closed?)
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5G.c line 893 in H5Gclose(): decrementing group ID failed
-    major: Symbol table
-    minor: Unable to decrement reference count
-  #001: H5Iint.c line 1155 in H5I_dec_app_ref(): can't decrement ID ref count
-    major: Object ID
-    minor: Unable to decrement reference count
-  #002: H5Iint.c line 1107 in H5I__dec_app_ref(): can't decrement ID ref count
-    major: Object ID
-    minor: Unable to decrement reference count
-  #003: H5Iint.c line 1011 in H5I__dec_ref(): can't locate ID
-    major: Object ID
-    minor: Unable to find ID information (already closed?)
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5F.c line 982 in H5Fflush(): unable to synchronously flush file
-    major: File accessibility
-    minor: Unable to flush data from cache
-  #001: H5F.c line 946 in H5F__flush_api_common(): invalid object identifier
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-  #002: H5VLint.c line 1779 in H5VL_vol_object(): invalid identifier
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5F.c line 982 in H5Fflush(): unable to synchronously flush file
-    major: File accessibility
-    minor: Unable to flush data from cache
-  #001: H5F.c line 946 in H5F__flush_api_common(): invalid object identifier
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-  #002: H5VLint.c line 1779 in H5VL_vol_object(): invalid identifier
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
     major: Invalid arguments to routine
     minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5I.c line 550 in H5Iget_ref(): can't get ID ref count
-    major: Object ID
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+    minor: Inappropriate type
+thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5G.c line 634 in H5Gclose(): not a group
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5G.c line 634 in H5Gclose(): not a group
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5F.c line 452 in H5Fflush(): invalid file identifier
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5F.c line 452 in H5Fflush(): invalid file identifier
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5T.c line 1875 in H5Tclose(): not a datatype
+    major: Invalid arguments to routine
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5I.c line 509 in H5Iget_ref(): can't get ID ref count
+    major: Object atom
     minor: Can't get value
-  #001: H5Iint.c line 1361 in H5I_get_ref(): can't locate ID
-    major: Object ID
-    minor: Unable to find ID information (already closed?)
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5F.c line 1060 in H5Fclose(): decrementing file ID failed
+  #001: H5Iint.c line 1040 in H5I_get_ref(): can't locate ID
+    major: Object atom
+    minor: Unable to find atom information (already closed?)
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5F.c line 569 in H5Fclose(): closing file ID failed
     major: File accessibility
     minor: Unable to close file
-  #001: H5Iint.c line 1155 in H5I_dec_app_ref(): can't decrement ID ref count
-    major: Object ID
-    minor: Unable to decrement reference count
-  #002: H5Iint.c line 1107 in H5I__dec_app_ref(): can't decrement ID ref count
-    major: Object ID
-    minor: Unable to decrement reference count
-  #003: H5Iint.c line 1011 in H5I__dec_ref(): can't locate ID
-    major: Object ID
-    minor: Unable to find ID information (already closed?)
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5I.c line 550 in H5Iget_ref(): can't get ID ref count
-    major: Object ID
+  #001: H5Fint.c line 2123 in H5F__close(): invalid file identifier
+    major: File accessibility
+    minor: Inappropriate type
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5I.c line 509 in H5Iget_ref(): can't get ID ref count
+    major: Object atom
     minor: Can't get value
-  #001: H5Iint.c line 1361 in H5I_get_ref(): can't locate ID
-    major: Object ID
-    minor: Unable to find ID information (already closed?)
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5F.c line 1060 in H5Fclose(): decrementing file ID failed
+  #001: H5Iint.c line 1040 in H5I_get_ref(): can't locate ID
+    major: Object atom
+    minor: Unable to find atom information (already closed?)
+HDF5-DIAG: Error detected in HDF5 (1.10.8) thread 0:
+  #000: H5F.c line 569 in H5Fclose(): closing file ID failed
     major: File accessibility
     minor: Unable to close file
-  #001: H5Iint.c line 1155 in H5I_dec_app_ref(): can't decrement ID ref count
-    major: Object ID
-    minor: Unable to decrement reference count
-  #002: H5Iint.c line 1107 in H5I__dec_app_ref(): can't decrement ID ref count
-    major: Object ID
-    minor: Unable to decrement reference count
-  #003: H5Iint.c line 1011 in H5I__dec_ref(): can't locate ID
-    major: Object ID
-    minor: Unable to find ID information (already closed?)
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
-    major: Invalid arguments to routine
-    minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
-    major: Invalid arguments to routine
-    minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
-    major: Invalid arguments to routine
-    minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
-    major: Invalid arguments to routine
-    minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
-    major: Invalid arguments to routine
-    minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
-    major: Invalid arguments to routine
-    minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
-    major: Invalid arguments to routine
-    minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
-    major: Invalid arguments to routine
-    minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
-    major: Invalid arguments to routine
-    minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
-    major: Invalid arguments to routine
-    minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
-    major: Invalid arguments to routine
-    minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
-    major: Invalid arguments to routine
-    minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
-    major: Invalid arguments to routine
-    minor: Inappropriate type
-HDF5-DIAG: Error detected in HDF5 (1.14.1-2) thread 0:
-  #000: H5T.c line 1911 in H5Tclose(): not a datatype
-    major: Invalid arguments to routine
+  #001: H5Fint.c line 2123 in H5F__close(): invalid file identifier
+    major: File accessibility
     minor: Inappropriate type

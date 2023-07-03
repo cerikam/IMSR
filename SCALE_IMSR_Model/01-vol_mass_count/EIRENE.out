@@ -18,19 +18,19 @@
 
                   Job Information
                   ---------------
-      Job started on owl on Sun 2023-07-02 03:32:39
-      Working directory: /tmp/scale.o.218476
-      Input file name  : /home/o/git/IMSR/SCALE_IMSR_Model/01-vol_mass_count/EIRENE.inp
-      Output file name : /home/o/git/IMSR/SCALE_IMSR_Model/01-vol_mass_count/EIRENE.out
-      SCALE executable : /opt/scale6.3.1-mpi/bin/scale
+      Job started on c0209 on Mon 2023-07-03 01:26:04
+      Working directory: /tmp/scale.ondrejch.3941708
+      Input file name  : /home/ondrejch/git/IMSR/SCALE_IMSR_Model/01-vol_mass_count/EIRENE.inp
+      Output file name : /home/ondrejch/git/IMSR/SCALE_IMSR_Model/01-vol_mass_count/EIRENE.out
+      SCALE executable : /opt/scale_ondrejch/bin/scale
 
  *******************************************************************************
 --------------------------------------------------------------------------
-[[57602,1],0]: A high-performance Open MPI point-to-point messaging module
+[[24985,1],0]: A high-performance Open MPI point-to-point messaging module
 was unable to find any relevant network interfaces:
 
 Module: OpenFabrics (openib)
-  Host: owl
+  Host: c0209
 
 Another transport will be used instead, although this may result in
 lower performance.
@@ -40,11 +40,11 @@ btl_base_warn_component_unused to 0.
 --------------------------------------------------------------------------
 
 
-    module csas6-shift will be called on Sun Jul  2 15:32:40 2023.
+    module csas6-shift will be called on Mon Jul  3 01:26:05 2023.
     sequence specification record:=csas6-shift  parm=( check )
 Input Data:
 
-      EIRENE SCALE/CSAS model, UF4 mol% = 5.0, U enrichment% = 2.29
+      EIRENE SCALE/CSAS model, UF4 mol% = 5.0, U enrichment% = 2.7800000000000002
       ce_v7.1
       
       read volume
@@ -54,15 +54,15 @@ Input Data:
       
       read comp
       ' FLIBe-U fuel salt
-      ' Fuel salt: 63.333%LiF + 31.667%BeF2 + 5.000%UF4, U enrichment 0.0229
-      Li-6 1 den=2.5492002799761875 8.094986942651376e-06 923.15 end
-      Li-7 1 den=2.5492002799761875 0.09441000263222576 923.15 end
-      Be-9 1 den=2.5492002799761875 0.06064269800063807 923.15 end
-      F-19 1 den=2.5492002799761875 0.5920945943948821 923.15 end
-      U-234 1 den=2.5492002799761875 5.0679105130034304e-05 923.15 end
-      U-235 1 den=2.5492002799761875 0.005718684204168463 923.15 end
-      U-236 1 den=2.5492002799761875 2.641804915915418e-05 923.15 end
-      U-238 1 den=2.5492002799761875 0.24704882862685348 923.15 end
+      ' Fuel salt: 63.333%LiF + 31.667%BeF2 + 5.000%UF4, U enrichment 0.027800000000000002
+      Li-6 1 den=2.549159779193791 8.095115554952315e-06 923.15 end
+      Li-7 1 den=2.549159779193791 0.0944115026084155 923.15 end
+      Be-9 1 den=2.549159779193791 0.0606436614854442 923.15 end
+      F-19 1 den=2.549159779193791 0.5921040015315087 923.15 end
+      U-234 1 den=2.549159779193791 6.152408326367852e-05 923.15 end
+      U-235 1 den=2.549159779193791 0.006942443088392895 923.15 end
+      U-236 1 den=2.549159779193791 3.207132904105904e-05 923.15 end
+      U-238 1 den=2.549159779193791 0.24579670075837903 923.15 end
       
       
       ' Hastelloy N
@@ -87,7 +87,7 @@ Input Data:
               64157 55.7
               64152 2.3 end
       ' Graphite
-         graphite 4 den=2.300000 1.0 923.15 end
+         graphite 4 den=1.84 1.0 923.15 end
       ' Stainless Steel SS316
          ss316 5 den=8.030000 1.0 923.15 end
       
@@ -354,14 +354,14 @@ Input Data:
       end data
 end
 
-    >>>> ScaleDriver initializes CsasShift on 36 processors.
+    >>>> ScaleDriver initializes CsasShift on 64 processors.
 
 --------------------------------------------------------------------------
-[[57658,1],0]: A high-performance Open MPI point-to-point messaging module
+[[24993,1],5]: A high-performance Open MPI point-to-point messaging module
 was unable to find any relevant network interfaces:
 
 Module: OpenFabrics (openib)
-  Host: owl
+  Host: c0209
 
 Another transport will be used instead, although this may result in
 lower performance.
@@ -388,14 +388,14 @@ btl_base_warn_component_unused to 0.
 *****                                                                                                                          *****
 *****                      version:  6.3.1 (603001)                                                                            *****
 *****                                                                                                                          *****
-*****                     username:  o                                                                                         *****
+*****                     username:  ondrejch                                                                                  *****
 *****                                                                                                                          *****
 *****                     hostname:  Unknown                                                                                   *****
 *****                                                                                                                          *****
 *****                                                                                                                          *****
-*****            date of execution:  2023-07-02                                                                                *****
+*****            date of execution:  2023-07-03                                                                                *****
 *****                                                                                                                          *****
-*****            time of execution:  15:32:40                                                                                  *****
+*****            time of execution:  01:26:06                                                                                  *****
 *****                                                                                                                          *****
 ************************************************************************************************************************************
 ************************************************************************************************************************************
@@ -413,10 +413,10 @@ Mixture = 1 with density(g/cc) = 2.5492 and temperature(K) = 923.15
             2            1         3007             2.065777e-02              923.15
             3            1         4009             1.033008e-02              923.15
             4            1         9019             4.784417e-02              923.15
-            5            1        92234             3.324238e-07              923.15
-            6            1        92235             3.735098e-05              923.15
-            7            1        92236             1.718145e-07              923.15
-            8            1        92238             1.593192e-03              923.15
+            5            1        92234             4.035537e-07              923.15
+            6            1        92235             4.534311e-05              923.15
+            7            1        92236             2.085783e-07              923.15
+            8            1        92238             1.585092e-03              923.15
 ------------------------------------------------------------------------------------
 Mixture = 2 with density(g/cc) = 8.8900 and temperature(K) = 923.15
         Entry      Mixture      Nuclide     Density (atoms/b-cm)     Temperature (K)
@@ -444,11 +444,11 @@ Mixture = 3 with density(g/cc) = 7.9010 and temperature(K) = 923.15
            25            3        64158             4.459091e-03              923.15
            26            3        64160             3.540447e-03              923.15
 ------------------------------------------------------------------------------------
-Mixture = 4 with density(g/cc) = 2.3000 and temperature(K) = 923.15
+Mixture = 4 with density(g/cc) = 1.8400 and temperature(K) = 923.15
         Entry      Mixture      Nuclide     Density (atoms/b-cm)     Temperature (K)
 ------------------------------------------------------------------------------------
-           27            4      3006012             1.140873e-01              923.15
-           28            4      3006013             1.233937e-03              923.15
+           27            4      3006012             9.126982e-02              923.15
+           28            4      3006013             9.871497e-04              923.15
 ------------------------------------------------------------------------------------
 Mixture = 5 with density(g/cc) = 8.0300 and temperature(K) = 923.15
         Entry      Mixture      Nuclide     Density (atoms/b-cm)     Temperature (K)
@@ -486,7 +486,7 @@ Mixture = 5 with density(g/cc) = 8.0300 and temperature(K) = 923.15
  End of mixture table for component comps at line:10, column:1
 ------------------------------------------------------------------------------------
 
-SequenceInputBuilder prepared 5 unit cells in 0.25 seconds.
+SequenceInputBuilder prepared 5 unit cells in 0.18 seconds.
 
 
 
@@ -506,14 +506,14 @@ SequenceInputBuilder prepared 5 unit cells in 0.25 seconds.
 *****                                                                                                                          *****
 *****                      version:  6.3.1 (603001)                                                                            *****
 *****                                                                                                                          *****
-*****                     username:  o                                                                                         *****
+*****                     username:  ondrejch                                                                                  *****
 *****                                                                                                                          *****
 *****                     hostname:  Unknown                                                                                   *****
 *****                                                                                                                          *****
 *****                                                                                                                          *****
-*****            date of execution:  2023-07-02                                                                                *****
+*****            date of execution:  2023-07-03                                                                                *****
 *****                                                                                                                          *****
-*****            time of execution:  15:40:54                                                                                  *****
+*****            time of execution:  01:30:25                                                                                  *****
 *****                                                                                                                          *****
 ************************************************************************************************************************************
 ************************************************************************************************************************************
@@ -528,12 +528,12 @@ SequenceInputBuilder prepared 5 unit cells in 0.25 seconds.
 ============================================================================================================================
 
 
- - Problem-Title       Short description title for the input problem       EIRENE SCALE/CSAS model, UF4 mol% = 5.0, U enrichment% = 2.29
+ - Problem-Title       Short description title for the input problem       EIRENE SCALE/CSAS model, UF4 mol% = 5.0, U enrichment% = 2.7800000000000002
  - Problem-Mode        Forward / Hybrid / KCode                            KCode            
  - Transport-Mode      Continuous-Energy / Multi-Group                     Continuous-Energy
  - Particle-Type       Neutron / Photon / Neutron-Photon transport         Neutron          
- - Std-Comp-Path       Path to the SCALE Standard Composition Library      /opt/scale6.3.1-mpi/data/scale.rev40.sclib
- - MC-Lib-Path         Library path used for Monte Carlo transport         /opt/scale6.3.1-mpi/data/ce_v7.1_endf.xml
+ - Std-Comp-Path       Path to the SCALE Standard Composition Library      /opt/scale6.3_data/scale.rev40.sclib
+ - MC-Lib-Path         Library path used for Monte Carlo transport         /opt/scale6.3_data/ce_v7.1_endf.xml
 
 
 ============================================================================================================================
@@ -655,16 +655,16 @@ Upper Energy(eV) Boundaries of 252 Group Structure
 ============================================================================================================================
 
 
- mixture =     1          density(g/cc) = 2.54920e+00          temperature(K) =    923.15
+ mixture =     1          density(g/cc) = 2.54916e+00          temperature(K) =    923.15
     nuclide    nucmix   atom-dens.   wgt. frac.     za      awt         temp          nuclide title
-       3006        1   2.06598e-06  8.09499e-06    3006     6.0151      923.15     li-6 @ 923.15K
-       3007        1   2.06578e-02  9.44100e-02    3007     7.0160      923.15     li-7 @ 923.15K
-       4009        1   1.03301e-02  6.06427e-02    4009     9.0122      923.15     be-9 @ 923.15K
-       9019        1   4.78442e-02  5.92095e-01    9019    18.9984      923.15     f-19 @ 923.15K
-      92234        1   3.32424e-07  5.06791e-05   92234   234.0410      923.15     u-234 @ 923.15K
-      92235        1   3.73510e-05  5.71868e-03   92235   235.0439      923.15     u-235 @ 923.15K
-      92236        1   1.71815e-07  2.64180e-05   92236   236.0456      923.15     u-236 @ 923.15K
-      92238        1   1.59319e-03  2.47049e-01   92238   238.0508      923.15     u-238 @ 923.15K
+       3006        1   2.06598e-06  8.09512e-06    3006     6.0151      923.15     li-6 @ 923.15K
+       3007        1   2.06578e-02  9.44115e-02    3007     7.0160      923.15     li-7 @ 923.15K
+       4009        1   1.03301e-02  6.06437e-02    4009     9.0122      923.15     be-9 @ 923.15K
+       9019        1   4.78442e-02  5.92104e-01    9019    18.9984      923.15     f-19 @ 923.15K
+      92234        1   4.03554e-07  6.15241e-05   92234   234.0410      923.15     u-234 @ 923.15K
+      92235        1   4.53431e-05  6.94244e-03   92235   235.0439      923.15     u-235 @ 923.15K
+      92236        1   2.08578e-07  3.20713e-05   92236   236.0456      923.15     u-236 @ 923.15K
+      92238        1   1.58509e-03  2.45797e-01   92238   238.0508      923.15     u-238 @ 923.15K
 
  mixture =     2          density(g/cc) = 8.89000e+00          temperature(K) =    923.15
     nuclide    nucmix   atom-dens.   wgt. frac.     za      awt         temp          nuclide title
@@ -690,9 +690,9 @@ Upper Energy(eV) Boundaries of 252 Group Structure
       64158        3   4.45909e-03  1.48000e-01   64158   157.9241      923.15     gd-158 @ 923.15K
       64160        3   3.54045e-03  1.19000e-01   64160   159.9270      923.15     gd-160 @ 923.15K
 
- mixture =     4          density(g/cc) = 2.29815e+00          temperature(K) =    923.15
+ mixture =     4          density(g/cc) = 1.83852e+00          temperature(K) =    923.15
     nuclide    nucmix   atom-dens.   wgt. frac.     za      awt         temp          nuclide title
-    3006000        4   1.15321e-01  1.00000e+00    6000    12.0011      923.15     c-graphite @ 923.15K
+    3006000        4   9.22570e-02  1.00000e+00    6000    12.0011      923.15     c-graphite @ 923.15K
 
 
 ============================================================================================================================
@@ -2039,49 +2039,49 @@ bnds ---
                                          geometry
                          unit     uses    region     mixture        total region volume (cm**3)
 
-                           1         6       1           3          2.63234e+05 +/- 5.00659e+00
-                                             2           2          1.52614e+04 +/- 5.75550e+00
-                                             3           1          1.27033e+05 +/- 1.63466e+00
-                                             4           4          1.06929e+06 +/- 7.69301e+00
+                           1         6       1           3          2.63234e+05 +/- 3.70593e+00
+                                             2           2          1.52616e+04 +/- 4.57913e+00
+                                             3           1          1.27033e+05 +/- 1.52470e+00
+                                             4           4          1.06929e+06 +/- 6.65563e+00
 
-                           2       247       1           1          4.31093e+05 +/- 1.68562e+01
-                                             2           4          1.91075e+06 +/- 2.36358e+01
+                           2       247       1           1          4.31088e+05 +/- 1.39918e+01
+                                             2           4          1.91075e+06 +/- 1.84163e+01
 
-                           3      8246       1           4          3.13519e+06 +/- 4.79706e+01
+                           3      8246       1           4          3.13512e+06 +/- 3.92394e+01
 
-                           4        13       2           4          5.47193e+05 +/- 1.44181e+01
+                           4        13       2           4          5.47193e+05 +/- 9.93102e+00
 
-                           5      1368       1           1          2.65324e+06 +/- 4.18877e+01
-                                             2           4          1.03169e+07 +/- 5.37832e+01
+                           5      1368       1           1          2.65328e+06 +/- 3.05684e+01
+                                             2           4          1.03168e+07 +/- 4.05841e+01
 
-                           6        72       2           4          3.03054e+06 +/- 3.57885e+01
+                           6        72       2           4          3.03056e+06 +/- 2.81259e+01
 
-                           7       912       1           1          2.16223e+06 +/- 3.77374e+01
-                                             2           4          6.48447e+06 +/- 4.01726e+01
+                           7       912       1           1          2.16220e+06 +/- 2.91874e+01
+                                             2           4          6.48452e+06 +/- 3.64091e+01
 
-                           8        48       2           4          2.02036e+06 +/- 3.10737e+01
+                           8        48       2           4          2.02036e+06 +/- 2.37459e+01
 
-                           9       302       1           4          1.28990e+07 +/- 2.15165e+01
+                           9       302       1           4          1.28990e+07 +/- 1.61515e+01
 
-                          10         1       2           2          2.50975e+06 +/- 1.96800e+01
-                                             3           1          9.16088e+06 +/- 2.40529e+01
-                                             4           2          4.65660e+06 +/- 2.45548e+01
-                                             5           2          1.79189e+06 +/- 4.91771e-01
-                                             6           1          2.98648e+06 +/- 8.19646e-01
-                                             7           1          2.98648e+06 +/- 8.19646e-01
+                          10         1       2           2          2.50975e+06 +/- 1.51867e+01
+                                             3           1          9.16088e+06 +/- 1.80333e+01
+                                             4           2          4.65662e+06 +/- 1.85534e+01
+                                             5           2          1.79189e+06 +/- 4.02175e-01
+                                             6           1          2.98648e+06 +/- 6.70377e-01
+                                             7           1          2.98648e+06 +/- 6.70377e-01
 
 
 
                              mixture       total mixture volume (cm**3)           total mixture mass (gm)
 
-                                 1         2.05074e+07 +/- 2.53334e+01             5.22776e+07 +/- 6.45800e+01
-                                 2         8.97350e+06 +/- 2.05258e+01             7.97745e+07 +/- 1.82475e+02
-                                 3         2.63234e+05 +/- 5.00659e+00             2.07981e+06 +/- 3.95571e+01
-                                 4         4.14137e+07 +/- 3.82438e+01             9.51750e+07 +/- 8.78901e+01
+                                 1         2.05074e+07 +/- 1.89802e+01             5.22767e+07 +/- 4.83836e+01
+                                 2         8.97352e+06 +/- 1.55950e+01             7.97746e+07 +/- 1.38640e+02
+                                 3         2.63234e+05 +/- 3.70593e+00             2.07981e+06 +/- 2.92805e+01
+                                 4         4.14137e+07 +/- 3.03181e+01             7.61400e+07 +/- 5.57405e+01
                                           -------------                           -------------
-                                           7.11579e+07                             2.29307e+08
+                                           7.11579e+07                             2.10271e+08
 
- The maximum order of error associated with the calculated volumes is    0.0377 percent.
+ The maximum order of error associated with the calculated volumes is    0.0300 percent.
 
 
 
@@ -2098,10 +2098,10 @@ Neutrons were started with a flat distribution in a cuboid defined by:
 
 ***Warning: This problem will not be run because parm=check was entered in the analytical sequence specification.
 
-    SCALE is finished on Sun Jul  2 15:42:46 2023.
+    SCALE is finished on Mon Jul  3 01:30:41 2023.
 -------------------------- Summary --------------------------
-csas6-shift finished. used 606.14 seconds.
-SCALE driver required a maximum of 47.83 MiB of RAM.
+csas6-shift finished. used 275.586 seconds.
+SCALE driver required a maximum of 77.73 MiB of RAM.
 ------------------------ End Summary ------------------------
 
-_vol000000000000000000 copied to /home/o/git/IMSR/SCALE_IMSR_Model/01-vol_mass_count/EIRENE.000000000000000000.volumes.
+_vol000000000000000000 copied to /home/ondrejch/git/IMSR/SCALE_IMSR_Model/01-vol_mass_count/EIRENE.000000000000000000.volumes.
