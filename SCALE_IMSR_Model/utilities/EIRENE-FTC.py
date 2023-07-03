@@ -2,7 +2,7 @@
 
 
 """ Example Integral REactor for Nuclear Education (EIRENE)
-Script to find critical enrichment of IRENE
+Script to calculate Fuel Temperature Coefficient of reactivity (FTC) of EIRENE
 Ondrej Chvala <ochvala@utk.edu>
 MIT license
 """
