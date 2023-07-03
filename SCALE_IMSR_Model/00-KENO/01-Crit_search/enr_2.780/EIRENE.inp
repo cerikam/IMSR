@@ -1,5 +1,5 @@
 =csas6 parm=(   )
-EIRENE SCALE/CSAS model, UF4 mol% = 5.0, U enrichment% = 2.78
+EIRENE SCALE/CSAS model, UF4 mol% = 5.0, U enrichment% = 2.7800000000000002
 ce_v7.1
 
 read comp
@@ -44,8 +44,7 @@ wtptHastelloy 2 8.89 5
 end comp
 
 read parameters
- npg=40000 nsk=30 gen=10050
-' sig=50e-5
+ npg=10000 nsk=50 gen=10050 sig=50e-5
  htm=no
  fdn=no
  pms=no
@@ -301,41 +300,6 @@ read array
                         9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9
   end fill
 end array
-
-read definitions
-  read grid 1
-  xlinear 430 -215 215
-  ylinear 430 -215 215
-  zlinear 246 -32 460
-end grid
-
-read energyBounds DEFAULT
-'title "1 group for everything but fluxes"
-    bounds 2.00000E+07 1.00000E-05 end
-end energyBounds
-energybounds 3
-'title "Fast, epithermal, thermal energy groups"
-    bounds 2.00000E+07 1.00000E+02 2.00000E+00 1.00000E-05 end
-end energyBounds
-end definitions
-
-read tallies
-read mesh 1
-    energy=3
-    grid=1
-    response=FLUX
-end mesh
-read mesh 2
-    energy=DEFAULT
-    grid=1
-    response=FISSION_DENSITY
-end mesh
-read mesh 3
-    energy=DEFAULT
-    grid=1
-    response=FISSION_SOURCE
-end mesh
-end tallies
 
 end data
 end

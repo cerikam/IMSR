@@ -15,7 +15,7 @@ unset bars
 set autoscale extend
 set grid
 set key bottom
-set format x "%.1f"
+set format x "%.0f"
 set format y "%.0f"
 set title "EIRENE FLiBe-U 5mol\% UF_4"
 set xlabel "Fuel salt temperature [°C]"

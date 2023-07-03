@@ -37,7 +37,7 @@ def saltmix(mU:float=5) -> str:
 #
 
 UF4molpct = 5.0     # UF4 mol % in FLiBe-U
-Uenrpct   = 2.29    # Uranium enrichment %
+Uenrpct   = 2.78    # Uranium enrichment %
 Uenrichment = Uenrpct / 100.0
 
 for core_tempC in np.linspace(600, 700, 11):
@@ -80,7 +80,7 @@ wtptHastelloy 2 8.89 5
         64157 55.7
         64152 2.3 end
 ' Graphite
-   graphite 4 den=2.300000 1.0 {T} end
+   graphite 4 den=1.84 1.0 {T} end
 ' Stainless Steel SS316
    ss316 5 den=8.030000 1.0 {T} end
 
