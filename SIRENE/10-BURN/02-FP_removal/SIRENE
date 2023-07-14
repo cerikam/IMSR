@@ -1,0 +1,277 @@
+
+% *********************************************************************
+%
+%
+%                EIRENE REACTOR SERPENT-2 MODEL
+%
+%
+% *********************************************************************
+
+
+% *********************************************************************
+%                    REGION 1 FUEL ASSEMBLIES
+% *********************************************************************
+
+% -------------------------------------------------------
+%              Small molten salt fuel channels
+% -------------------------------------------------------
+
+% --- Universe 1: Single small fuel channel in graphite hex ---
+
+% Surfaces:
+
+surf 1 cyl 0 0 1.157 0 415       % Single small fuel channel
+surf 2 hexxprism 0 0 2.6 0 415   % Graphite hex to contain channel
+
+% Cells:
+
+cell 1 1 fuel -1
+cell 2 1 graphite 1 -2
+cell 3 1 graphite 2
+
+% --- Universe 2: Bare graphite hexprism for creating the array
+
+surf 3 hexxprism 0 0 2.6 0 415   % Bare grahpite hex
+
+cell 4 2 graphite -3
+cell 5 2 graphite 3
+
+lat R1 2 0.0 0.0 9 9 5.2
+2 2 2 2 2 2 2 2 2
+ 2 2 2 2 2 2 2 2 2
+  2 2 2 2 1 1 1 2 2
+   2 2 2 1 1 1 1 2 2
+    2 2 1 1 1 1 1 2 2
+     2 2 1 1 1 1 2 2 2
+      2 2 1 1 1 2 2 2 2
+       2 2 2 2 2 2 2 2 2
+        2 2 2 2 2 2 2 2 2
+
+% --- Universe S: Single Small Fuel Assembly Hex ---
+
+surf 4 hexxprism 0 0 13.076 0 415  % Hex to contain R1 channels
+
+cell 6 S fill R1 -4
+cell 7 S graphite 4
+
+% *********************************************************************
+%                    REGION 2 FUEL ASSEMBLIES
+% *********************************************************************
+
+% -------------------------------------------------------
+%              Medium molten salt fuel channels
+% -------------------------------------------------------
+
+% --- Universe 3: Single medium fuel channel in graphite hex ---
+
+surf 5 cyl 0 0 1.2197 0 415       % Single medium fuel channel
+surf 6 hexxprism 0 0 2.6 0 415    % Graphite hex to contain channel
+
+cell 8 3 fuel -5
+cell 9 3 graphite 5 -6
+cell 10 3 graphite 6
+
+lat R2 2 0.0 0.0 9 9 5.2
+2 2 2 2 2 2 2 2 2
+ 2 2 2 2 2 2 2 2 2
+  2 2 2 2 3 3 3 2 2
+   2 2 2 3 3 3 3 2 2
+    2 2 3 3 3 3 3 2 2
+     2 2 3 3 3 3 2 2 2
+      2 2 3 3 3 2 2 2 2
+       2 2 2 2 2 2 2 2 2
+        2 2 2 2 2 2 2 2 2
+
+% --- Universe M: Single Medium Fuel Assembly Hex
+
+surf 7 hexxprism 0 0 13.076 0 415  % Hex to contain R2 channels
+
+cell 11 M fill R2 -7
+cell 12 M graphite 7
+
+% *********************************************************************
+%                    REGION 3 FUEL ASSEMBLIES
+% *********************************************************************
+
+% -------------------------------------------------------
+%              Large molten salt fuel channels
+% -------------------------------------------------------
+
+% --- Universe 4: Single large fuel channel in graphite hex ---
+
+surf 8 cyl 0 0 1.3485 0 415       % Single large fuel channel
+surf 9 hexxprism 0 0 2.6 0 415    % Graphite hex to contain channel
+
+cell 13 4 fuel -8
+cell 14 4 graphite 8 -9
+cell 15 4 graphite 9
+
+lat R3 2 0.0 0.0 9 9 5.2
+2 2 2 2 2 2 2 2 2
+ 2 2 2 2 2 2 2 2 2
+  2 2 2 2 4 4 4 2 2
+   2 2 2 4 4 4 4 2 2
+    2 2 4 4 4 4 4 2 2
+     2 2 4 4 4 4 2 2 2
+      2 2 4 4 4 2 2 2 2
+       2 2 2 2 2 2 2 2 2
+        2 2 2 2 2 2 2 2 2
+
+% --- Universe L: Single Large Fuel Assembly Hex
+
+surf 10 hexxprism 0 0 13.076 0 415  % Hex to contain R3 channels
+
+cell 16 L fill R3 -10
+cell 17 L graphite 10
+
+% *********************************************************************
+%                      BARE GRAPHITE HEX CELL
+% *********************************************************************
+
+% Universe G - Bare Graphite Hex
+
+surf 11 hexxprism 0 0 13.076 0 415
+
+cell 18 G graphite -11
+cell 19 G graphite 11
+
+% *********************************************************************
+%                          CONTROL RODS
+% *********************************************************************
+
+% Universe C - Control Rods
+
+surf 100 cyl 0 0 7.0 130 415           % Shutdown rod (Gd)
+surf 101 cyl 0 0 7.2 130 415           % Guide tube
+surf 102 cyl 0 0 7.2 0 130             % Fuel region below
+surf 103 hexxprism 0 0 13.076 0 415    % Graphite hexprism to contain rod
+
+cell 100 C gd -100                     % Shutdown rod (Gd)
+cell 101 C hastelloy 100 -101          % Guide tube (Hastelloy)
+cell 102 C fuel -102                   % Fuel region below
+cell 103 C graphite 100 101 102 -103   % Graphite hexprism to contain rod
+cell 104 C graphite 103
+
+
+% *********************************************************************
+%                         MAIN ASSEMBLY
+% *********************************************************************
+
+% ------------------------ LATTICE CODE -------------------------------
+%
+%          G = bare graphite hexprism
+%          L = large fuel channel (fuel region 3)
+%          M = medium fuel channel (fuel region 2)
+%          S = small fuel channel (fuel region 1)
+%          C = control rod
+%
+% ---------------------------------------------------------------------
+
+lat MAIN 2 0.0 0.0 21 21 26.153
+G G G G G G G G G G G G G G G G G G G G G
+ G G G G G G G G G G G G G G G G G G G G G
+  G G G G G G G G G G G G G G G G G G G G G
+   G G G G G G G G G G G G G L L G G G G G G
+    G G G G G G G G G G L L L L L L L G G G G
+     G G G G G G G G G L M M M M M M L G G G G
+      G G G G G G G L L M M M M M M M L L G G G
+       G G G G G G L L M M M M M M M M L L G G G
+        G G G G G G L M M M S C S M M M L G G G G
+         G G G G G L M M M C S S C M M M L G G G G
+          G G G G L M M M S S S S S M M M L G G G G
+           G G G G L M M M C S S C M M M L G G G G G
+            G G G G L M M M S C S M M M L G G G G G G
+             G G G L L M M M M M M M M L L G G G G G G
+              G G G L L M M M M M M M L L G G G G G G G
+               G G G G L M M M M M M L G G G G G G G G G
+                G G G G L L L L L L L G G G G G G G G G G
+                 G G G G G G L L G G G G G G G G G G G G G
+                  G G G G G G G G G G G G G G G G G G G G G
+                   G G G G G G G G G G G G G G G G G G G G G
+                    G G G G G G G G G G G G G G G G G G G G G
+
+surf 12 cyl 0 0 190 0 415         % Clinder to contain main array
+surf 13 cyl 0 0 195 0 415         % Hastelloy N core blanket
+surf 14 cyl 0 0 200 -10.5 440.5   % Downcomer region
+surf 15 cyl 0 0 195 415 430       % Hastelloy N reflector
+surf 16 cyl 0 0 195 430 435.5     % Outlet plenum
+surf 17 cyl 0 0 195 -5.5 0        % Inlet plenum
+surf 18 cyl 0 0 200 440.5 560     % Helium cylinder
+surf 19 cyl 0 0 205 -15.5 565     % Hastelloy N reactor vessel
+
+cell 20 0 fill MAIN -12                  % Core region (main array fill)
+cell 21 0 hastelloy 12 -13               % Hastelloy N core blanket
+cell 22 0 fuel 12 13 15 16 17 18 -14     % Downcomer region
+cell 23 0 hastelloy 12 13 -15            % Hastelloy N reflector
+cell 24 0 fuel 12 13 -16                 % Outlet plenum
+cell 25 0 fuel 12 13 -17                 % Inlet plenum
+cell 26 0 helium 12 13 -18               % Helium cylinder
+cell 27 0 hastelloy -19 15 14 16 17 18   % Hastelloy N reactor vessel
+cell 99 0 outside 19
+
+% *********************************************************************
+%                             MATERIALS
+% *********************************************************************
+
+mat fuel  -2.5491583774689186 tmp 923.1500244140625
+   3006.82c -0.0000080951201548562
+   3007.82c -0.0944115654498369899
+   4009.82c -0.0606436968844575805
+   9019.82c -0.5921043958992648903
+  92234.82c -0.0000619667406310665
+  92235.82c -0.0069923926493772378
+  92236.82c -0.0000323020823196375
+  92238.82c -0.2457455851739577535
+
+mat hastelloy  -8.890000651086797 tmp 923.1500244140625
+  14028.82c -0.0100000003762846477
+  24052.82c -0.0700000059513135181
+  26056.82c -0.0499999953826693461
+  28058.82c -0.4799599898806743425
+  28060.82c -0.2300400018823102466
+  42092.82c -0.0234399984949525617
+  42094.82c -0.0147040005589922813
+  42095.82c -0.0253920010704295797
+  42096.82c -0.0266720016742630073
+  42097.82c -0.0153280007633818157
+  42098.82c -0.0388640041155065979
+  42100.82c -0.0155999998492220397
+
+mat gd  -7.901000630727843 tmp 923.1500244140625
+  64152.82c -0.0229999999559112392
+  64155.82c -0.0480000027254268088
+  64156.82c -0.1050000001669653543
+  64157.82c -0.5569999860869842001
+  64158.82c -0.1480000105726897441
+  64160.82c -0.1190000004920227089
+
+mat graphite  -1.8400001150886074 tmp 923.1500244140625 moder grph 6000
+   6000.82c -0.9999999999999997780
+
+mat helium  -0.0001785000167555282 tmp 923.1500244140625
+   2003.82c -0.0000007535178742520
+   2004.82c -0.9999992464821257920
+
+
+
+% Thermal scattering data
+therm grph 923.15 "grph.15t" "grph.16t" % Graphite at 923.15 K
+
+
+% TODO ADD POWER, DEPLETION, GAS REMOVAL
+% set power 400e6
+% etc.
+
+% --- Neutron population and criticality cycles:
+set pop 5000 520 20
+
+% --- Geometry and mesh plots:
+plot 3 1000 1000
+plot 1 1000 1000 0.0 -300 300 -60 600
+plot 2 1000 1000 0.0 -300 300 -60 600
+mesh 3 1000 1000
+mesh 1 1000 1000 0 -300 300 -300 300 -60 600
+mesh 2 1000 1000 0 -300 300 -300 300 -60 600
+
+% --- Data Libraries
+set acelib "/opt/MCNP6.2/MCNP_DATA/xsdir_mcnp6.2_msr783k.sss"
