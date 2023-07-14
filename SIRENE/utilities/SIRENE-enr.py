@@ -323,7 +323,7 @@ therm grph {Tgr} "grph.{grlib0}" "grph.{grlib1}" % Graphite at {Tgr} K
 
 
 % --- Neutron population and criticality cycles:
-set pop 20000 520 20
+set pop 50000 820 20
 
 % --- Geometry and mesh plots:
 plot 3 1000 1000
