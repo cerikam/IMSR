@@ -1,7 +1,8 @@
 #!/bin/env python3
 
+
 """ Example Integral REactor for Nuclear Education (EIRENE)
-Script to calculate Fuel Temperature Coefficient of reactivity (FTC) of EIRENE
+Script to find critical enrichment of IRENE
 Ondrej Chvala <ochvala@utk.edu>
 MIT license
 """
@@ -10,7 +11,6 @@ import salts
 import os
 import numpy as np
 
-runSHIFT:bool = True    # Keno or Shift?
 
 def tempK(tempC: float) -> float:
     return tempC + 273.15
@@ -40,25 +40,20 @@ def saltmix(mU: float = 5) -> str:
 #
 
 UF4molpct = 5.0  # UF4 mol % in FLiBe-U
-Uenrpct = 2.800  # Uranium enrichment %
-Uenrichment = Uenrpct / 100.0
 
-flag_shift = ''
-if runSHIFT:
-    flag_shift = '-shift'
+for enrpct in np.linspace(2.7, 2.9, 11):
+    # np.linspace(2.2, 2.4, 11):
+    enrpath = f'enr_{enrpct:5.03f}'
+    if not os.path.isdir(enrpath):
+        os.mkdir(enrpath)
+    os.chdir(enrpath)
 
-for salt_tempC in np.linspace(600, 700, 11):
-    deckpath = f'FTC_{salt_tempC:5.01f}'
-    if not os.path.isdir(deckpath):
-        os.mkdir(deckpath)
-    os.chdir(deckpath)
-
+    Uenrichment = enrpct / 100.0
     s = salts.Salt(saltmix(UF4molpct), Uenrichment)
-    T = tempK(salt_tempC)
-    scale_fuel = s.scale_mat(T, T, 1, 1)
+    scale_fuel = s.scale_mat(923.15, 923.15, 1, 1)
 
-    keno_deck = f'''=csas6{flag_shift} parm=(   )
-EIRENE SCALE/CSAS model, UF4 mol% = {UF4molpct}, U enrichment% = {Uenrpct}, fuel salt {T} K
+    keno_deck = f'''=csas6-shift parm=(  )
+EIRENE SCALE/CSAS model, UF4 mol% = {UF4molpct}, U enrichment% = {enrpct}
 ce_v7.1
 
 read comp
@@ -96,7 +91,7 @@ wtptHastelloy 2 8.89 5
 end comp
 
 read parameters
- npg=10000 nsk=50 gen=10050 sig=20e-5
+ npg=10000 nsk=50 gen=10050 sig=50e-5
  htm=no
  fdn=no
  pms=no
