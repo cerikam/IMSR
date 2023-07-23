@@ -49,7 +49,7 @@ if runSHIFT:
     flag_shift = '-shift'
 
 for salt_tempC in np.linspace(600, 700, 11):
-    deckpath = f'FTC_{salt_tempC:5.01f}'
+    deckpath = f'ITC_{salt_tempC:5.01f}'
     if not os.path.isdir(deckpath):
         os.mkdir(deckpath)
     os.chdir(deckpath)

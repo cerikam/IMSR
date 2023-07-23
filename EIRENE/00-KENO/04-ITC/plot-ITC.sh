@@ -12,7 +12,6 @@ gnuplot << EOGA
 set term postscript portrait enhanced color size 15cm,12cm
 set out "rho-temp-ITC.ps"
 unset bars
-set autoscale extend
 set grid
 set key bottom
 set format x "%.0f"
