@@ -1,0 +1,1 @@
+../../../util/write_core_average_comp.py

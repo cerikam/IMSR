@@ -1,7 +1,8 @@
 #!/bin/env python3
 
 """ Example Integral REactor for Nuclear Education (EIRENE)
-Script to calculate Fuel Temperature Coefficient of reactivity (FTC) of EIRENE
+Script to calculate the Integral Temperature Coefficient of reactivity (ITC) of EIRENE.
+Geometrical and density changes of moderator and steel are ignored.
 Ondrej Chvala <ochvala@utk.edu>
 MIT license
 """
@@ -40,22 +41,22 @@ def saltmix(mU: float = 5) -> str:
 #
 
 UF4molpct = 5.0  # UF4 mol % in FLiBe-U
-Uenrpct = 2.650  # Uranium enrichment %
+Uenrpct = 2.80   # Uranium enrichment %
 Uenrichment = Uenrpct / 100.0
 
-flag_shift = ''
-if runSHIFT:
-    flag_shift = '-shift'
-
-for salt_tempC in np.linspace(600, 700, 11):
-    deckpath = f'FTC_{salt_tempC:5.01f}'
+for core_tempC in np.linspace(600, 700, 11):
+    deckpath = f'ITC_{core_tempC:5.01f}'
     if not os.path.isdir(deckpath):
         os.mkdir(deckpath)
     os.chdir(deckpath)
 
     s = salts.Salt(saltmix(UF4molpct), Uenrichment)
-    T = tempK(salt_tempC)
+    T = tempK(core_tempC)
     scale_fuel = s.scale_mat(T, T, 1, 1)
+
+    flag_shift = ''
+    if runSHIFT:
+        flag_shift = '-shift'
 
     keno_deck = f'''=csas6{flag_shift} parm=(   )
 EIRENE SCALE/CSAS model, UF4 mol% = {UF4molpct}, U enrichment% = {Uenrpct}, fuel salt {T} K
@@ -72,25 +73,31 @@ wtptHastelloy 2 8.89 5
          26000 5.0
          14000 1.0
          42000 16.0
-         1.0 923.15
+         1.0 {T}
          28058 67.6 28060 32.4
          24052 100.0
          26056 100.0
          14028 100.0
          42092 14.65 42094 9.19 42095 15.87 42096 16.67 42097 9.58 42098 24.29 42100 9.75 end
-' SS Shutdown Rods
-    ss316 3 den=2.7 1.0 923.15 end
+' Gd Shutdown Rods
+    gd 3 den=7.901000 1.0 {T}
+        64158 14.8
+        64156 10.5
+        64155 4.8
+        64160 11.9
+        64157 55.7
+        64152 2.3 end
 ' Graphite
-   graphite 4 den=1.84 1.0 923.15 end
+   graphite 4 den=1.84 1.0 {T} end
 ' Stainless Steel SS316
-   ss316 5 den=8.030000 1.0 923.15 end
+   ss316 5 den=8.030000 1.0 {T} end
 ' Helium gas
    he 6 den=0.0001785 1.0 923.15 end
 
 end comp
 
 read parameters
- npg=20000 nsk=50 gen=10050 sig=10e-5
+ npg=10000 nsk=50 gen=10050 sig=50e-5
  htm=no
  fdn=no
  pms=no
@@ -230,7 +237,7 @@ global unit 10
 ' Downcomer Region
   cylinder 3 200 440.5 -10.5
 ' Hastelloy N Reactor Vessel
-  cylinder 4 205 565 -15.5
+  cylinder 4 205 500 -15.5
 ' Reflector (top) (Hastelloy N)
   cylinder 5 195 430 415
 ' Outlet Plenum
@@ -238,7 +245,7 @@ global unit 10
 ' Inlet Plenum
   cylinder 7 195 0.0 -5.5
 ' Helium Cylinder
-  cylinder 8 200 560 440.5
+  cylinder 8 200 495 440.5
 ' Main array placement
   array 4 1 place 10 10 1 0.0 0.0 0.0
   media 2 1 -1 2
@@ -359,6 +366,6 @@ end
     fout.write(keno_deck)
     fout.close()
 
-    os.system('qsub ../../../../util/runEIRENE-Scale.sh')  # Submit job
+    os.system('qsub ../../../utilities/runEIRENE-Scale.sh')  # Submit job
 
     os.chdir('..')

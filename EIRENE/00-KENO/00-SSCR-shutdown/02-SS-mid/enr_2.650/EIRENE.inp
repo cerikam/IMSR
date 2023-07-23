@@ -1,69 +1,19 @@
-#!/bin/env python3
-
-""" Example Integral REactor for Nuclear Education (EIRENE)
-Script to calculate Fuel Temperature Coefficient of reactivity (FTC) of EIRENE
-Ondrej Chvala <ochvala@utk.edu>
-MIT license
-"""
-
-import salts
-import os
-import numpy as np
-
-runSHIFT:bool = True    # Keno or Shift?
-
-def tempK(tempC: float) -> float:
-    return tempC + 273.15
-
-
-def tempC(tempK: float) -> float:
-    return tempK - 273.15
-
-
-def saltmix(mU: float = 5) -> str:
-    """Calculates salt mixture, assuming the MSRR salt is a melt of two salts,
-     UF4 salt and a 66.6% LiF 33.3%BeF2 eutectic FLiBe.
-    input: UF4 mol%
-    output: salt name string"""
-
-    mLi: float = (100.0 - mU) * 2.0 / 3.0
-    mBe: float = mLi / 2.0
-    mysalt = f'{mLi:5.3f}%LiF + {mBe:5.3f}%BeF2 + {mU:5.3f}%UF4'
-    if True:
-        print("Salt: ", mysalt)
-        print("Molar percent sum: ", mBe + mLi + mU)
-    return mysalt
-
-
-#
-# main
-#
-
-UF4molpct = 5.0  # UF4 mol % in FLiBe-U
-Uenrpct = 2.650  # Uranium enrichment %
-Uenrichment = Uenrpct / 100.0
-
-flag_shift = ''
-if runSHIFT:
-    flag_shift = '-shift'
-
-for salt_tempC in np.linspace(600, 700, 11):
-    deckpath = f'FTC_{salt_tempC:5.01f}'
-    if not os.path.isdir(deckpath):
-        os.mkdir(deckpath)
-    os.chdir(deckpath)
-
-    s = salts.Salt(saltmix(UF4molpct), Uenrichment)
-    T = tempK(salt_tempC)
-    scale_fuel = s.scale_mat(T, T, 1, 1)
-
-    keno_deck = f'''=csas6{flag_shift} parm=(   )
-EIRENE SCALE/CSAS model, UF4 mol% = {UF4molpct}, U enrichment% = {Uenrpct}, fuel salt {T} K
+=csas6 parm=(   )
+EIRENE SCALE/CSAS model, UF4 mol% = 5.0, U enrichment% = 2.65
 ce_v7.1
 
 read comp
 ' FLIBe-U fuel salt
-{scale_fuel}
+' Fuel salt: 63.333%LiF + 31.667%BeF2 + 5.000%UF4, U enrichment 0.0265
+Li-6 1 den=2.549170524299325 8.095081432923162e-06 923.15 end
+Li-7 1 den=2.549170524299325 0.09441110465090366 923.15 end
+Be-9 1 den=2.549170524299325 0.06064340586404249 923.15 end
+F-19 1 den=2.549170524299325 0.5921015057314345 923.15 end
+U-234 1 den=2.549170524299325 5.8646810581877845e-05 923.15 end
+U-235 1 den=2.549170524299325 0.0066177685742261575 923.15 end
+U-236 1 den=2.549170524299325 3.0571461769190935e-05 923.15 end
+U-238 1 den=2.549170524299325 0.24612890182560904 923.15 end
+
 
 ' Hastelloy N
 wtptHastelloy 2 8.89 5
@@ -90,7 +40,7 @@ wtptHastelloy 2 8.89 5
 end comp
 
 read parameters
- npg=20000 nsk=50 gen=10050 sig=10e-5
+ npg=20000 nsk=50 gen=10050 sig=50e-5
  htm=no
  fdn=no
  pms=no
@@ -107,18 +57,21 @@ read geometry
 ' Unit 1: Control rod unit cell (cylinder 1 = shutdown rod; cylinder 2 = guide tube)
 unit 1
 ' Shutdown rod (Gd)
-  cylinder 1 7.0 415.0 130
+  cylinder 1 7.0 350.0 65.0
 ' Guide tube
-  cylinder 2 7.2 415.0 130
+  cylinder 2 7.2 350.0 65.0
 ' Fuel region beneath
-  cylinder 3 7.2 130 0.0
+  cylinder 3 7.2 65.0 0.0
+' Fuel region above
+  cylinder 4 7.2 415.0 350
 ' Graphite hexprism
-  hexprism 4 13.076 415.0 0.0
+  hexprism 5 13.076 415.0 0.0
   media 3 1 1
   media 2 1 -1 2
   media 1 1 3
-  media 4 1 4 -1 -2 -3
-  boundary 4
+  media 1 1 4
+  media 4 1 5 -1 -2 -3 -4
+  boundary 5
 
 ' ****************************************************************************
 '                        REGION 1 FUEL ASSEMBLIES
@@ -230,7 +183,7 @@ global unit 10
 ' Downcomer Region
   cylinder 3 200 440.5 -10.5
 ' Hastelloy N Reactor Vessel
-  cylinder 4 205 565 -15.5
+  cylinder 4 205 500 -15.5
 ' Reflector (top) (Hastelloy N)
   cylinder 5 195 430 415
 ' Outlet Plenum
@@ -238,7 +191,7 @@ global unit 10
 ' Inlet Plenum
   cylinder 7 195 0.0 -5.5
 ' Helium Cylinder
-  cylinder 8 200 560 440.5
+  cylinder 8 200 495 440.5
 ' Main array placement
   array 4 1 place 10 10 1 0.0 0.0 0.0
   media 2 1 -1 2
@@ -353,12 +306,3 @@ end array
 
 end data
 end
-'''
-
-    fout = open("EIRENE.inp", "w")  # Dump deck into file
-    fout.write(keno_deck)
-    fout.close()
-
-    os.system('qsub ../../../../util/runEIRENE-Scale.sh')  # Submit job
-
-    os.chdir('..')
