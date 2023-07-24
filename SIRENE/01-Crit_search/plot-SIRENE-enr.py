@@ -25,7 +25,7 @@ ks = [] ; kerrs = []
 rhos = [] ; rhoerrs = []
 k0:float = -1.0
 k0err:float = -1.0
-for enrpct in np.linspace(2.7, 2.9, 11):
+for enrpct in np.linspace(2.5, 2.7, 21):
     deckpath = f'enr_{enrpct:5.03f}'
     res = serpentTools.read(f'{deckpath}/SIRENE_res.m')
     k:float    = float(res.resdata['absKeff'][0])
@@ -64,7 +64,7 @@ popt, pcov = curve_fit(fitf, enrs, ks, sigma=kerrs, absolute_sigma=True, method=
 perr = np.sqrt(np.diag(pcov))
 
 fig, ax = plt.subplots(1,1)
-ax.set_title(f"EIRENE FLiBe-U 5mol% UF$_4$", fontsize=20)
+ax.set_title(f"EIRENE FLiBe-U 5mol% UF$_4$, Serpent2", fontsize=20)
 ax.set_xlabel("Uranium enrichment %", fontsize=16)
 ax.set_ylabel("SIRENE k$_{eff}$", fontsize=16)
 data = ax.errorbar(enrs, ks, xerr=None, yerr=kerrs, fmt='o', color='blue', markersize=3.6)

@@ -1,6 +1,6 @@
 #!/bin/bash
 #PBS -V
-#PBS -N Serp2MSR_lat
+#PBS -N job_SIRENE
 #PBS -q fill
 #PBS -l nodes=1:ppn=64
 

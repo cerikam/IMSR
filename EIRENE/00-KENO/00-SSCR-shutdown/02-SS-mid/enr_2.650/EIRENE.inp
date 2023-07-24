@@ -183,7 +183,7 @@ global unit 10
 ' Downcomer Region
   cylinder 3 200 440.5 -10.5
 ' Hastelloy N Reactor Vessel
-  cylinder 4 205 500 -15.5
+  cylinder 4 205 565 -15.5
 ' Reflector (top) (Hastelloy N)
   cylinder 5 195 430 415
 ' Outlet Plenum
@@ -191,7 +191,7 @@ global unit 10
 ' Inlet Plenum
   cylinder 7 195 0.0 -5.5
 ' Helium Cylinder
-  cylinder 8 200 495 440.5
+  cylinder 8 200 560 440.5
 ' Main array placement
   array 4 1 place 10 10 1 0.0 0.0 0.0
   media 2 1 -1 2
