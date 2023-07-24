@@ -1,1 +1,0 @@
-../../utilities/runEIRENE-Scale.sh

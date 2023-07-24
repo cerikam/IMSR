@@ -76,7 +76,8 @@ wtptHastelloy 2 8.89 5
 end comp
 
 read parameters
- npg=20000 nsk=50 gen=10050 sig=50e-5
+ npg=40000 nsk=30 gen=10050
+' sig=50e-5
  htm=no
  fdn=no
  pms=no
