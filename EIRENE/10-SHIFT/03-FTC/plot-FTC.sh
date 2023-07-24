@@ -16,7 +16,7 @@ set grid
 set key bottom
 set format x "%.0f"
 set format y "%.0f"
-set title "EIRENE FLiBe-U 5mol\% UF_4, SCALE/KENO"
+set title "EIRENE FLiBe-U 5mol\% UF_4, SCALE/SHiFT"
 set xlabel "Fuel salt temperature [°C]"
 set ylabel "EIRENE {/Symbol r} [pcm]"
 

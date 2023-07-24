@@ -1,8 +1,8 @@
 #!/bin/env python3
 
+
 """ Example Integral REactor for Nuclear Education (EIRENE)
-Script to calculate Integral Temperature Coefficient of reactivity (ITC) of EIRENE.
-GEometry of the reactor is unchanged.
+Script to find critical enrichment of IRENE
 Ondrej Chvala <ochvala@utk.edu>
 MIT license
 """
@@ -11,7 +11,6 @@ import salts
 import os
 import numpy as np
 
-runSHIFT:bool = False    # Keno or Shift?
 
 def tempK(tempC: float) -> float:
     return tempC + 273.15
@@ -41,25 +40,20 @@ def saltmix(mU: float = 5) -> str:
 #
 
 UF4molpct = 5.0  # UF4 mol % in FLiBe-U
-Uenrpct = 2.650  # Uranium enrichment %
-Uenrichment = Uenrpct / 100.0
 
-flag_shift = ''
-if runSHIFT:
-    flag_shift = '-shift'
+for enrpct in np.linspace(2.5, 2.7, 21):
+    # np.linspace(2.2, 2.4, 11):
+    enrpath = f'enr_{enrpct:5.03f}'
+    if not os.path.isdir(enrpath):
+        os.mkdir(enrpath)
+    os.chdir(enrpath)
 
-for salt_tempC in np.linspace(600, 700, 11):
-    deckpath = f'ITC_{salt_tempC:5.01f}'
-    if not os.path.isdir(deckpath):
-        os.mkdir(deckpath)
-    os.chdir(deckpath)
-
+    Uenrichment = enrpct / 100.0
     s = salts.Salt(saltmix(UF4molpct), Uenrichment)
-    T = tempK(salt_tempC)
-    scale_fuel = s.scale_mat(T, T, 1, 1)
+    scale_fuel = s.scale_mat(923.15, 923.15, 1, 1)
 
-    keno_deck = f'''=csas6{flag_shift} parm=(   )
-EIRENE SCALE/CSAS model, UF4 mol% = {UF4molpct}, U enrichment% = {Uenrpct}, fuel salt {T} K
+    keno_deck = f'''=csas6-shift parm=(   )
+EIRENE SCALE/CSAS model, UF4 mol% = {UF4molpct}, U enrichment% = {enrpct}
 ce_v7.1
 
 read comp
@@ -73,25 +67,25 @@ wtptHastelloy 2 8.89 5
          26000 5.0
          14000 1.0
          42000 16.0
-         1.0 {T}
+         1.0 923.15
          28058 67.6 28060 32.4
          24052 100.0
          26056 100.0
          14028 100.0
          42092 14.65 42094 9.19 42095 15.87 42096 16.67 42097 9.58 42098 24.29 42100 9.75 end
 ' SS Shutdown Rods
-    ss316 3 den=2.7 1.0 {T} end
+    ss316 3 den=2.7 1.0 923.15 end
 ' Graphite
-   graphite 4 den=1.84 1.0 {T} end
+   graphite 4 den=1.84 1.0 923.15 end
 ' Stainless Steel SS316
-   ss316 5 den=8.030000 1.0 {T} end
+   ss316 5 den=8.030000 1.0 923.15 end
 ' Helium gas
-   he 6 den=0.0001785 1.0 {T} end
+   he 6 den=0.0001785 1.0 923.15 end
 
 end comp
 
 read parameters
- npg=20000 nsk=50 gen=10050 sig=10e-5
+ npg=10000 nsk=50 gen=10050 sig=50e-5
  htm=no
  fdn=no
  pms=no

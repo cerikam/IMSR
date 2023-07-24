@@ -6,18 +6,19 @@
 # MIT license
 
 
-grep 'best estimate' FTC_*/EIRENE.out | sed -E -e s/^FTC.//g -e 's/.EIRENE.*eff//g'  -e 's/\+ or \-//g' -e 's/\*\*\*//g' -e 's/\s+/ /g' | sort -g  > data-temp.out
+grep 'best estimate' enr_*/EIRENE.out | sed -E -e s/^enr.//g -e 's/.EIRENE.*eff//g'  -e 's/\+ or \-//g' -e 's/\*\*\*//g' -e 's/\s+/ /g' | sort -g  > data-temp.out
 
 gnuplot << EOGA
 set term postscript portrait enhanced color size 15cm,12cm
-set out "rho-temp-FTC.ps"
+set out "rho-enr.ps"
 unset bars
+set autoscale extend
 set grid
 set key bottom
-set format x "%.0f"
+set format x "%.2f"
 set format y "%.0f"
-set title "EIRENE FLiBe-U 5mol\% UF_4, SCALE/KENO"
-set xlabel "Fuel salt temperature [°C]"
+set title "EIRENE FLiBe-U 5mol\% UF_4, SCALE/SHIFT"
+set xlabel "Uranium enrichment %"
 set ylabel "EIRENE {/Symbol r} [pcm]"
 
 # Make sure X axis extends beyond the data points
@@ -30,7 +31,7 @@ f(x) = a*x +b
 fit [:] f(x) 'data-temp.out' u 1:(\$2-1)*1e5/\$2:(\$3*1e5)  yerrors via a,b
 
 #plot [Xmin:Xmax] 'data-temp.out' u 1:(\$2-1)*1e5/\$2:(\$3*1e5) w e ls 7 ps .5 lc "blue" notit, f(x) ls 1 lw 0.4 lc "navy" tit sprintf(" slope = %5.2f {/Symbol \261} %5.2f pcm/K", a, a_err)
-plot [Xmin:Xmax] 'data-temp.out' u 1:(\$2-1)*1e5/\$2:(\$3*1e5) w e ls 7 ps .5 lc "blue" notit, [:] f(x) ls 1 lw 0.4 lc "navy" tit sprintf(" slope = %5.2f {/Symbol \261} %5.2f pcm/K", a, a_err)
+plot [Xmin:Xmax] 'data-temp.out' u 1:(\$2-1)*1e5/\$2:(\$3*1e5) w e ls 7 ps .5 lc "blue" notit, [:] f(x) ls 1 lw 0.4 lc "navy" tit sprintf(" slope = %5.0f {/Symbol \261} %5.0f pcm/Uenr\%", a, a_err)
 
 set out
 EOGA
@@ -39,12 +40,12 @@ convert           \
    -verbose       \
    -density 500   \
    -trim          \
-    rho-temp-FTC.ps      \
+    rho-enr.ps      \
    -quality 100   \
    -flatten       \
    -sharpen 0x1.0 \
    -geometry 1600x1000 \
-    rho-temp-FTC.png
+    rho-enr.png
 
 
 

@@ -1,8 +1,7 @@
 #!/bin/env python3
 
 """ Example Integral REactor for Nuclear Education (EIRENE)
-Script to calculate Integral Temperature Coefficient of reactivity (ITC) of EIRENE.
-GEometry of the reactor is unchanged.
+Script to calculate Fuel Temperature Coefficient of reactivity (FTC) of EIRENE
 Ondrej Chvala <ochvala@utk.edu>
 MIT license
 """
@@ -11,7 +10,7 @@ import salts
 import os
 import numpy as np
 
-runSHIFT:bool = False    # Keno or Shift?
+runSHIFT:bool = True    # Keno or Shift?
 
 def tempK(tempC: float) -> float:
     return tempC + 273.15
@@ -49,7 +48,7 @@ if runSHIFT:
     flag_shift = '-shift'
 
 for salt_tempC in np.linspace(600, 700, 11):
-    deckpath = f'ITC_{salt_tempC:5.01f}'
+    deckpath = f'FTC_{salt_tempC:5.01f}'
     if not os.path.isdir(deckpath):
         os.mkdir(deckpath)
     os.chdir(deckpath)
@@ -73,20 +72,20 @@ wtptHastelloy 2 8.89 5
          26000 5.0
          14000 1.0
          42000 16.0
-         1.0 {T}
+         1.0 923.15
          28058 67.6 28060 32.4
          24052 100.0
          26056 100.0
          14028 100.0
          42092 14.65 42094 9.19 42095 15.87 42096 16.67 42097 9.58 42098 24.29 42100 9.75 end
 ' SS Shutdown Rods
-    ss316 3 den=2.7 1.0 {T} end
+    ss316 3 den=2.7 1.0 923.15 end
 ' Graphite
-   graphite 4 den=1.84 1.0 {T} end
+   graphite 4 den=1.84 1.0 923.15 end
 ' Stainless Steel SS316
-   ss316 5 den=8.030000 1.0 {T} end
+   ss316 5 den=8.030000 1.0 923.15 end
 ' Helium gas
-   he 6 den=0.0001785 1.0 {T} end
+   he 6 den=0.0001785 1.0 923.15 end
 
 end comp
 

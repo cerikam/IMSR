@@ -17,7 +17,7 @@ set grid
 set key bottom
 set format x "%.2f"
 set format y "%.0f"
-set title "EIRENE FLiBe-U 5mol\% UF_4"
+set title "EIRENE FLiBe-U 5mol\% UF_4, SCALE/KENO"
 set xlabel "Uranium enrichment %"
 set ylabel "EIRENE {/Symbol r} [pcm]"
 

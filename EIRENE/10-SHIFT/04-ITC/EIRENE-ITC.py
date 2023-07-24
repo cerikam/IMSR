@@ -11,7 +11,7 @@ import salts
 import os
 import numpy as np
 
-runSHIFT:bool = False    # Keno or Shift?
+runSHIFT:bool = True    # Keno or Shift?
 
 def tempK(tempC: float) -> float:
     return tempC + 273.15
