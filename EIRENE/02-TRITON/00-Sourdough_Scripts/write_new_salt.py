@@ -78,6 +78,3 @@ def write_scale_mat(f71_name, refuel_amount, refuel_enrichment, bs_volume=155156
     for i in range(8):
         scale_mat += "{:10s} 1 0  {:>5e} 923.15 end \n".format(isotopes[i], mixed_salt_aden[i])
     return scale_mat
-
-test = write_scale_mat("EIRENE03.f71", 100000, 0.03, 1551567.8)
-print(test)
