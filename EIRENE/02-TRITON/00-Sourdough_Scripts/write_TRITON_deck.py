@@ -3,7 +3,7 @@
 #                           EIRENE Write New TRITON Deck with Crit Refuel Amount
 #
 #   Purpose: Writes a new TRITON deck for next depletion step based on critical refuel amount obtained
-#            via the get_crit_refuel.py module.
+#            via the get_crit_refuel.py module (depletion is with removal of gaseous FP).
 #
 # *******************************************************************************************************
 
