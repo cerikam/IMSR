@@ -26,6 +26,7 @@ def add_refuel_volume(f71_name, refuel_amount, V0):
             vol = data[1:]
             volume = float(vol[1])
     total_vol = volume + refuel_amount    # Total volume of fuel salt (original V0 from prev. dep step + added refuel volume for current dep. step)
+    # Check if the volume has doubled:
     if total_vol >= 2*V0:
         new_vol = total_vol/2                        # Half the total fuel salt volume
         new_refuel_vol = new_vol - V0                # In case there is any extra refuel that needs to be added to the gas plenum (for when total_vol > V0)
