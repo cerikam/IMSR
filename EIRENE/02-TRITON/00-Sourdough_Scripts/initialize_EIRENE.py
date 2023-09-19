@@ -27,7 +27,7 @@ def saltmix(mU: float = 5) -> str:
         print("Molar percent sum: ", mBe + mLi + mU)
     return mysalt
 
-T = 921.15      # Temperature in K
+T = 923.15      # Temperature in K
 UF4molpct = 5.0  # UF4 mol % in FLiBe-U
 Uenrpct = 2.650  # Uranium enrichment %
 Uenrichment = Uenrpct / 100.0
