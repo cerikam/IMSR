@@ -15,5 +15,5 @@ export DATA=/opt/scale6.3_data
 
 export HDF5_USE_FILE_LOCKING=FALSE
 
-scalerte -m -N $PBS_NUM_PPN EIRENE.inp
+scalerte -m -N 32 EIRENE.inp
 
