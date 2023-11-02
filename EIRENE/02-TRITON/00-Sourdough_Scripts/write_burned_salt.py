@@ -37,7 +37,7 @@ def get_burned_salt_atom_dens(f71_name):
                 nuclide = elem + "-" + str(num) + "m"   # for metastable isotopes
             else:
                 nuclide = elem + "-" + str(num)
-            densities[nuclide] = float(data[2])  # The [1] here is what causes the code to return only the densities at position 1 of the f71 file
+            densities[nuclide] = float(data[2])  # The [2] here is what causes the code to return only the densities at position 2 of the f71 file (position 1 is BOC data)
     be9 = densities['be-9']
     f19 = densities['f-19']
     li6 = densities['li-6']
