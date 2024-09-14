@@ -28,7 +28,7 @@ fuel.set_density('g/cm3', 2.549170524299325)
 graphite = openmc.Material(name='graphite', temperature=923.15)
 graphite.add_nuclide('C0', 1.0)
 graphite.set_density('g/cm3', 1.8400001150886074)
-graphite.add_s_alpha_beta('c_Graphite')   # ???
+graphite.add_s_alpha_beta('c_Graphite')
 
 # ----- Hastelloy: -----
 
