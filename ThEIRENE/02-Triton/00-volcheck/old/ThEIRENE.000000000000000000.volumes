@@ -1,0 +1,32 @@
+unit 1
+  media 3                vol=2.6323731770112e+05
+  media 2                vol=1.5249643979779e+04
+  media 1                vol=1.2702914041585e+05
+  media 4                vol=1.0692779980365e+06
+unit 2
+  media 1                vol=4.3107277802304e+05
+  media 4                vol=1.9107621168274e+06
+unit 3
+  media 4                vol=3.1351994603244e+06
+unit 4
+  media 4                vol=5.4726273329400e+05
+unit 5
+  media 1                vol=2.6533310361235e+06
+  media 4                vol=1.0316658408238e+07
+unit 6
+  media 4                vol=3.0305382115913e+06
+unit 7
+  media 1                vol=2.1620841931749e+06
+  media 4                vol=6.4846922698651e+06
+unit 8
+  media 4                vol=2.0203050941138e+06
+unit 9
+  media 4                vol=1.2899119179435e+07
+unit 10
+  media 2                vol=2.5096520222627e+06
+  media 1                vol=3.9929771716397e+06
+  media 2                vol=4.9495105442615e+06
+  media 2                vol=1.7918845157858e+06
+  media 1                vol=6.5702432245479e+05
+  media 1                vol=6.5702432245479e+05
+  media 6                vol=1.5016826255701e+07
