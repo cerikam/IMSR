@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='utf-8'?>
+<materials>
+  <cross_sections>/home/cmoss9/OpenEIRENE_FTC_Cluster/CrossSections/endfb71/endfb-vii.1-hdf5/cross_sections.xml</cross_sections>
+  <material depletable="true" id="1" name="fuel" temperature="873.15">
+    <density units="g/cm3" value="2.575388403130299"/>
+    <nuclide name="Li6" wo="8.0950813339628e-06"/>
+    <nuclide name="Li7" wo="0.0944111081717933"/>
+    <nuclide name="Be9" wo="0.060643402213481884"/>
+    <nuclide name="F19" wo="0.5921015159894704"/>
+    <nuclide name="U234" wo="5.86468129798191e-05"/>
+    <nuclide name="U235" wo="0.006617768624666206"/>
+    <nuclide name="U236" wo="3.05714610861125e-05"/>
+    <nuclide name="U238" wo="0.24612889164518817"/>
+  </material>
+  <material id="2" name="graphite" temperature="923.15">
+    <density units="g/cm3" value="1.8400001150886074"/>
+    <nuclide ao="1.0" name="C0"/>
+    <sab name="c_Graphite"/>
+  </material>
+  <material id="3" name="hastelloy" temperature="923.15">
+    <density units="g/cm3" value="8.890000651086797"/>
+    <nuclide name="Si28" wo="0.010000000376284648"/>
+    <nuclide name="Cr52" wo="0.07000000595131352"/>
+    <nuclide name="Fe56" wo="0.049999995382669346"/>
+    <nuclide name="Ni58" wo="0.47995998988067434"/>
+    <nuclide name="Ni60" wo="0.23004000188231025"/>
+    <nuclide name="Mo92" wo="0.02343999849495256"/>
+    <nuclide name="Mo94" wo="0.014704000558992281"/>
+    <nuclide name="Mo95" wo="0.02539200107042958"/>
+    <nuclide name="Mo96" wo="0.026672001674263007"/>
+    <nuclide name="Mo97" wo="0.015328000763381816"/>
+    <nuclide name="Mo98" wo="0.0388640041155066"/>
+    <nuclide name="Mo100" wo="0.01559999984922204"/>
+  </material>
+  <material id="4" name="helium" temperature="923.15">
+    <density units="g/cm3" value="0.0001785000167555282"/>
+    <nuclide name="He3" wo="7.53517874252e-07"/>
+    <nuclide name="He4" wo="0.9999992464821258"/>
+  </material>
+  <material id="5" name="ss316" temperature="923.15">
+    <density units="g/cm3" value="2.700000413664517"/>
+    <nuclide name="Si28" wo="0.00918664802075201"/>
+    <nuclide name="Si29" wo="0.0004833626785762188"/>
+    <nuclide name="Si30" wo="0.0003299883706368502"/>
+    <nuclide name="P31" wo="0.000449999995107896"/>
+    <nuclide name="Cr50" wo="0.007095265155046545"/>
+    <nuclide name="Cr52" wo="0.14228890853393728"/>
+    <nuclide name="Cr53" wo="0.016445097311015483"/>
+    <nuclide name="Cr54" wo="0.004170718613181791"/>
+    <nuclide name="Mn55" wo="0.02000000005956478"/>
+    <nuclide name="Fe54" wo="0.036907834173219085"/>
+    <nuclide name="Fe56" wo="0.6008062742951422"/>
+    <nuclide name="Fe57" wo="0.014123404912664474"/>
+    <nuclide name="Fe58" wo="0.0019125088130287396"/>
+    <nuclide name="Ni58" wo="0.08063723555400215"/>
+    <nuclide name="Ni60" wo="0.03213115675916968"/>
+    <nuclide name="Ni61" wo="0.0014200309348739954"/>
+    <nuclide name="Ni62" wo="0.004601786654287921"/>
+    <nuclide name="Ni64" wo="0.0012097805493252172"/>
+    <nuclide name="Mo92" wo="0.0035373609044804704"/>
+    <nuclide name="Mo94" wo="0.0022586137482495756"/>
+    <nuclide name="Mo95" wo="0.003932251179586278"/>
+    <nuclide name="Mo96" wo="0.004168568832285793"/>
+    <nuclide name="Mo97" wo="0.0024141256934221197"/>
+    <nuclide name="Mo98" wo="0.006171542701334496"/>
+    <nuclide name="Mo100" wo="0.002517535682467484"/>
+    <nuclide name="C0" wo="0.0007999998746414314"/>
+  </material>
+</materials>
