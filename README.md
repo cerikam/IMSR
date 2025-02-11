@@ -13,6 +13,4 @@ EIRENE is an non-proprietary reactor model somewhat resembling the IMSR-400 desi
 * util: Contains Python scripts used in the creation of the EIRENE, SIRENE, and OpenEIRENE models and shell scripts for executing the model input files on a computational cluster.
 
 # Published papers:
-
-
-
+* C. E. MOSS, O. CHVÁLA, D. HARTANTO, and J. P. CARTER, “Implementation of the Sourdough Fuel Cycle and Waste Management Strategy in the EIRENE Novel Molten Salt Reactor Design,” in “2024 ANS Annual Conference on Advanced Reactor Safety, ARS 2024,” American Nuclear Society (2024), pp. 516–525
