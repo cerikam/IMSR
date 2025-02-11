@@ -12,6 +12,7 @@ EIRENE is an non-proprietary reactor model somewhat resembling the IMSR-400 desi
 * ThEIRENE: Contains source model files for the Th-EIRENE SCALE 6.3.1 model, a structurally and gemoetrically identical variation of the EIRENE model which uses a mixture of fertile thorium and fissile HALEU fuel. The directory includes model input files for performing neutronics analyses (critical uranium search and fuel and isothermal temperature feedback coefficients); TRITON inputs for depletion analyses (both with and without Sourdough refueling); and nuclide vector data collected at each depletion step with the Sourdough refueling simulations using 19.75% enriched refuel salt.
 * util: Contains Python scripts used in the creation of the EIRENE, SIRENE, and OpenEIRENE models and shell scripts for executing the model input files on a computational cluster.
 
-# Published papers:
+# Published papers and proceedings:
 * C. E. MOSS, O. CHVÁLA, D. HARTANTO, and J. P. CARTER, “Implementation of the Sourdough Fuel Cycle and Waste Management Strategy in the EIRENE Novel Molten Salt Reactor Design,” in “2024 ANS Annual Conference on Advanced Reactor Safety, ARS 2024,” American Nuclear Society (2024), pp. 516–525.
 * C. E. MOSS, O. CHVÁLA, D. HARTANTO, and J. P. CARTER, “Production of Medically Desirable Radioisotopes in the EIRENE Molten Salt Reactor,” Transactions of the American Nuclear Society, 131, 1, 418–421 (2024).
+* C. E. MOSS, O. CHVÁLA, D. HARTANTO, and J. P. CARTER, “Application of the Sourdough Fuel Cycle for Rapid Decarbonization of Electric Grids,” Transactions of the American Nuclear Society, 131, 1, 234-237 (2024).
